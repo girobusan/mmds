@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Markdown Site</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+  window.settings = {
+    hideEditor: false,
+  }
+</script>
+<script>
+
+  function toggleSidebar(){
+    var s = document.querySelector("#sidebarContainer");
+    s.classList.toggle("hidden");
+  }
+</script>
+  <link rel="stylesheet" href="view.css">
+  <script defer src="mdsite.js"></script>
+</head>
+<body>
+
+<nav id="toolbar"></nav>
+<main>
+<nav id="sidebarContainer" class="hidden">
+<div id="burger" onClick="toggleSidebar()">&mdash;<br>&mdash;<br>&mdash;<br></div>
+<div id="sidebar"></div>
+<br>
+<footer> &copy; My Markdown Site </footer>
+</nav>
+  <article id="content"></article>
+</main>
+  
+</body>
+</html>
