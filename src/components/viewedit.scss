@@ -1,0 +1,12 @@
+.ViewEdit{
+  .editorContainer{
+    // all: initial;
+    padding: 16px;
+    // position: static;
+
+    &.hidden{
+      display: none;
+    }
+  }
+}
+

@@ -19,6 +19,25 @@ body{
   min-height: 100vh;
   justify-items: stretch;
 }
+
+code{
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #efefef;
+  font-size: 0.85rem;
+  line-height: 1em;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+pre{
+  display: block;
+  overflow: auto;
+  background-color: #efefef;
+  padding: 8px !important;
+  border-radius: 4px;
+  margin: 2em auto;
+}
+
+
 main{
   display: flex;
   flex-direction: row;
@@ -38,7 +57,7 @@ main{
     #burger{
       display: none;
     }
-    #sidebar{
+    #menu{
       font-size: 0.8rem;
       text-align: left;
       width: $sidebarW;
@@ -132,22 +151,6 @@ main{
         margin: 1rem auto;
         height: 2px;
         width: 100%;
-      }
-      code{
-        font-family: 'Courier New', Courier, monospace;
-        background-color: #efefef;
-        font-size: 0.85rem;
-        line-height: 1em;
-        padding-left: 6px;
-        padding-right: 6px;
-      }
-      pre{
-        display: block;
-        overflow: auto;
-        background-color: #efefef;
-        padding: 8px !important;
-        border-radius: 4px;
-        margin: 2em auto;
       }
 
     .text{

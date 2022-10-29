@@ -17,6 +17,7 @@ window.MDS = {
     title: "MD Site",
     mdDir: "md/",
     indexFile: "index.md",
+    menuFile: "sidebar.md"
     // hideEditor: false
   },
   updaters: {},
@@ -84,10 +85,10 @@ window.MDS = {
       s.src="mdeditor.js";
       document.body.appendChild(s)
     },
-    setSidebar: (p)=>{
+    setMenu: (p)=>{
 
-      const sidebarNode = document.getElementById("sidebar");
-      getContent(window.MDS.makePath("sidebar.md"))
+      const sidebarNode = document.getElementById("menu");
+      getContent(window.MDS.makePath(window.MDS.menuFile))
       .then(r=>{sidebarNode.innerHTML=r.html})
     .catch( e=>console.log( "no sidebar" ,e ))
     }
@@ -105,7 +106,7 @@ function startSite(){
   const settings = Object.assign(MDS.settings , window.settings) ;
   MDS.settings = settings;
   //find DOM nodes
-  const sidebarNode = document.getElementById("sidebar");
+  const sidebarNode = document.getElementById("menu");
   const contentNode = document.getElementById("content");
   //add sidebar
   if(sidebarNode)
