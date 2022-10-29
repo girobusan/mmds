@@ -5,6 +5,7 @@ import {ActionRow} from "./ActionRow";
 import * as MDE from "easymde";
 import {If} from "./If";
 import {renderMd} from "../mdops";
+import { saveToDisk } from "../fileops";
 // require("./editor.scss")
 require("easymde/dist/easymde.min.css");
 require("./viewedit.scss");
@@ -88,18 +89,18 @@ export class ViewEdit extends Component{
           return renderMd(m);
         },
         spellChecker: true,
-        sideBySideFullscreen: false,
+        sideBySideFullscreen: true,
         toolbar: ["bold", "italic", "heading", "|", "quote" ,
           "unordered-list" , "ordered-list" ,  "|" , "link" , "image" , "|",
           "preview" , "side-by-side" , "fullscreen" , "|" , "guide" , "|",
-          // {
-            //   name: "export",
-            //   action: ()=>{ saveToDisk(this.state.filename.replace(/.htm(l)?$/ , ".md"),
-              //     this.state.text)
-              //   },
-              //   className: "fa fa-download",
-              //   title: "Export markdown"
-              // },
+          {
+              name: "export",
+              action: ()=>{ saveToDisk( this.state.path,
+                  me.easyMDE.value())
+                },
+                className: "fa fa-download",
+                title: "Save"
+              },
               // {
                 //   name: "import",
                 //   action: ()=>{
@@ -115,7 +116,7 @@ export class ViewEdit extends Component{
       this.easyMDE.value( this.state.content.markdown );
       this.easyMDE.codemirror.on("change" , 
         ()=>{
-          console.log(me.easyMDE.value())
+          console.log("edited...")
           // this.handleInput("text", easyMDE.value()) 
         } )
 

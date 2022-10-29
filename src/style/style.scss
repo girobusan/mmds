@@ -190,6 +190,10 @@ footer{
   main{
     display: block;
 
+  #content .text{
+    max-width: 100%;
+    padding-left: 1rem;
+  }
   }
   main #sidebarContainer{
     margin-left: 0;

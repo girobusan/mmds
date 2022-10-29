@@ -136,10 +136,10 @@ function detectClicks(evt){
   // console.log(t.parentNode)
   
   const h =t.getAttribute("href") || (t.parentNode.getAttribute && t.parentNode.getAttribute("href") ) ;
-  if(!h){ return } //no link
+  if(!h || h.startsWith("data:")){ return } //no link
   //goo!
   window.MDS.go( h );
-  console.log("link clicked");
+  console.log("link clicked" , h);
   evt.preventDefault();
   evt.stopPropagation();
 
