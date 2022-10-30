@@ -1,8 +1,10 @@
+var emoji = require('markdown-it-emoji');
 var md = require('markdown-it')({
   html:true,
-  
+  linkify: true,
   })
 .use(require('markdown-it-checkbox'))
+.use(emoji )
 .use(require('markdown-it-multimd-table') , { 
   headerless: true,
   multiline: true

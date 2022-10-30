@@ -2,7 +2,7 @@
 
 100% client-side markdown CMS/viewer/editor written in Java Script.
 
-![Screenshot](docs/screenshot_00.png)
+![Screenshot](docs/screen.png)
 
 ## Features
 

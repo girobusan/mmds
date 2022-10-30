@@ -17,7 +17,8 @@ window.MDS = {
     title: "MD Site",
     mdDir: "md/",
     indexFile: "index.md",
-    menuFile: "sidebar.md"
+    menuFile: "menu.md",
+    scripts: [],
     // hideEditor: false
   },
   updaters: {},
@@ -101,20 +102,24 @@ window.MDS = {
 function startSite(){
   console.log("Starting...");
   const MDS = window.MDS;
-  // console.log("MDS" , MDS)
+  //
   //read settings
   const settings = Object.assign(MDS.settings , window.settings) ;
   MDS.settings = settings;
+  //
   //find DOM nodes
   const sidebarNode = document.getElementById("menu");
   const contentNode = document.getElementById("content");
-  //add sidebar
+  //
+  //add menu
   if(sidebarNode)
   {
     getContent(MDS.makePath("sidebar.md"))
     .then(r=>{sidebarNode.innerHTML=r.html})
   .catch( e=>console.log( "no sidebar" ,e ))
   }
+  //
+  //add and show content
   if(contentNode){
     // console.log("Content node found")
     const JV = h(JustView , {base: MDS.settings.mdDir})
@@ -128,8 +133,15 @@ function startSite(){
   }else{
      console.error("Content node not found")
   }
+  //load custom scripts
+  window.MDS.settings.scripts.forEach( s=>{
+    const sc = document.createElement("script") ;
+    sc.setAttribute("src", s);
+    document.head.appendChild(sc);
+  } )
 
 }
+
 function detectClicks(evt){
   
   const t = evt.target;
