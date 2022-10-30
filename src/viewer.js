@@ -19,6 +19,7 @@ window.MDS = {
     indexFile: "index.md",
     menuFile: "menu.md",
     scripts: [],
+    editorScript: "mdedit.js",
     // hideEditor: false
   },
   updaters: {},
@@ -83,7 +84,7 @@ window.MDS = {
     edit: ()=>{
       window.MDS.editMode = true;
       const s = document.createElement("script");
-      s.src="mdeditor.js";
+      s.src= window.MDS.settings.editorScript;
       document.body.appendChild(s)
     },
     setMenu: (p)=>{
