@@ -19,7 +19,7 @@ window.MDS = {
     indexFile: "index.md",
     menuFile: "menu.md",
     scripts: [],
-    editorScript: "mdedit.js",
+    editorScript: "mdeditor.js",
     // hideEditor: false
   },
   updaters: {},
