@@ -1,2 +1,2 @@
-* [Cover](index.md)
+* ⌂ [Cover](index.md)
 * [Typography test](typography.md)
