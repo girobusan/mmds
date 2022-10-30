@@ -1,4 +1,15 @@
 .ViewEdit{
+  position: relative;
+  .notSavedWarning{
+    position: fixed;
+    display: block;
+    padding: 0 8px;
+    z-index: 1000;
+    top: 0px;
+    left: 0px;
+    background-color: orangered;
+    color: black;
+  }
   .editorContainer{
     // all: initial;
     padding: 16px;

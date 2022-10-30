@@ -15,6 +15,7 @@ const MDS = window.MDS;
 export class ViewEdit extends Component{
   constructor(props){
     super(props);
+    this.notSaved={};
     this.updater = this.updater.bind(this);
     this.text = createRef();
     this.mdEditorNode = createRef();
@@ -33,6 +34,10 @@ export class ViewEdit extends Component{
     MDS.addUpdater(this.updater);
   }
   componentDidUpdate(){
+    if(this.easyMDE){
+       console.log("Update editor content...")
+       this.easyMDE.value(this.checkContent(this.state.path, this.state.content).markdown);
+    }
      if(this.text.current)
      {
        const imgs = this.text.current.querySelectorAll("*[src]");
@@ -54,14 +59,17 @@ export class ViewEdit extends Component{
   updater(p,c){
     console.log("mds editmode" , MDS.editMode);
     this.setState({content: c , path: p}) 
-    if(this.easyMDE){
-       console.log("Update editor content...")
-       this.easyMDE.value(c.markdown);
-    }
+    // if(this.easyMDE){
+    //    console.log("Update editor content...")
+    //    this.easyMDE.value(this.checkContent(p, c).markdown);
+    // }
   }
 
   render(){
      return html`<div class="ViewEdit">
+     <${ If } condition=${this.isEdited(this.state.path)}> 
+     <small class="notSavedWarning">${this.state.path} has unsaved changes</small>
+     </${ If }>
      <div class=${"editorContainer " + (MDS.editMode ? "" : "hidden")}>
      <textarea 
      class="editorArea"
@@ -71,11 +79,32 @@ export class ViewEdit extends Component{
      <${If} condition=${!MDS.editMode}>
     <div class="text" 
     ref=${this.text}
-    dangerouslySetInnerHTML=${{ __html:this.state.content.html }} >
+    dangerouslySetInnerHTML=${{ __html:this.checkContent(this.state.path, this.state.content).html }} >
     </div>
      </${ If }>
      <${ActionRow} />
      </div>`
+  }
+  edited(path,content){
+    console.info("we touched" , path);
+    this.notSaved[path] = content;
+  }
+  saved(path){
+    delete(this.notSaved[path])
+  }
+  checkContent(path,content){
+    console.log("Checking" , path);
+    if(this.notSaved[path]){ 
+       console.log("this one has not saved changes" , this.notSaved)
+       return this.notSaved[path] 
+       }
+    console.log("this file was not changed")
+    return content;
+  }
+  isEdited(path){
+     console.log("Is it edited?" , path)
+     if(this.notSaved[path]){return true}
+     return false;
   }
   updateMdEditor(){
     if(!this.mdEditorNode.current){return}
@@ -96,9 +125,10 @@ export class ViewEdit extends Component{
           {
               name: "export",
               action: ()=>{ saveToDisk( this.state.path,
-                  me.easyMDE.value())
+                  me.easyMDE.value());
+                  this.saved(this.state.path);
                 },
-                className: "fa fa-download",
+                className: "fa fa-save",
                 title: "Save"
               },
               // {
@@ -113,12 +143,16 @@ export class ViewEdit extends Component{
         ]
       });
 
-      this.easyMDE.value( this.state.content.markdown );
-      this.easyMDE.codemirror.on("change" , 
-        ()=>{
+      this.easyMDE.value( this.checkContent(this.state.path , this.state.content).markdown );
+      const changeHandler = ()=>{
           console.log("edited...")
+          const cm = me.easyMDE.value();
+          me.edited(me.state.path , {markdown: cm , html: renderMd(cm)})
           // this.handleInput("text", easyMDE.value()) 
-        } )
+        }
+      this.easyMDE.codemirror.on("inputRead" , changeHandler);
+      // this.easyMDE.codemirror.on("cursorActivity" , changeHandler);
+      this.easyMDE.codemirror.on("keyHandled" , changeHandler);
 
 
         // console.log("MDE" , easyMDE);
