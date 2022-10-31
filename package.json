@@ -7,8 +7,7 @@
     "css-watch": "npx sass --watch src/style/style.scss:test/view.css",
     "css-build": "npx sass  src/style/style.scss:dist/view.css --no-source-map",
     "build": "npx webpack --mode production",
-    "watch": "npx webpack --mode development",
-    "postbuild": "shx rm dist/loader.js dist/*.map"
+    "watch": "npx webpack --mode development"
   },
   "author": "",
   "license": "ISC",
