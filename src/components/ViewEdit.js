@@ -119,7 +119,7 @@ export class ViewEdit extends Component{
         },
         spellChecker: true,
         sideBySideFullscreen: true,
-        toolbar: ["bold", "italic", "heading", "|", "quote" ,
+        toolbar: ["bold", "italic", "strikethrough" ,"heading", "|", "quote" ,
           "unordered-list" , "ordered-list" ,  "|" , "link" , "image" , "|",
           "preview" , "side-by-side" , "fullscreen" , "|" , "guide" , "|",
           {

@@ -1,0 +1,1 @@
+window.MDS.addUpdater(((e,r)=>{document.querySelectorAll("a").forEach((r=>{r.getAttribute("href")==e?r.classList.add("currentPage"):r.classList.remove("currentPage")}))}));

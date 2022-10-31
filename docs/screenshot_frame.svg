@@ -56,11 +56,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
-     inkscape:cx="549.01339"
-     inkscape:cy="162.31945"
+     inkscape:zoom="0.63403909"
+     inkscape:cx="555.17082"
+     inkscape:cy="419.92316"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer2"
      showgrid="false"
      inkscape:window-width="1280"
      inkscape:window-height="953"
@@ -79,17 +79,17 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <g
-     inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1"
-     transform="translate(183.59195,-42.386332)">
+     id="layer2"
+     inkscape:label="shadow">
     <rect
-       style="opacity:0.60100002;fill:#000000;fill-opacity:0.18905473;stroke:#204a87;stroke-width:0.52916664;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers;filter:url(#filter1180)"
+       transform="translate(183.59195,-42.386332)"
+       style="opacity:0.60100002;fill:#000000;fill-opacity:0.69680852;stroke:#204a87;stroke-width:0.52916664;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers;filter:url(#filter1180)"
        id="rect910"
        width="274.90207"
        height="135.73125"
@@ -97,15 +97,23 @@
        y="52.241531"
        rx="3.2972903"
        ry="3.2972903" />
+  </g>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(183.59195,-42.386332)"
+     sodipodi:insensitive="true"
+     style="display:inline">
     <image
        sodipodi:absref="/home/gleb/PROJECTS_MMXX/my-md-site/docs/screenshot_00.png"
        xlink:href="screenshot_00.png"
-       clip-path="url(#clipPath906)"
-       width="274.90207"
-       height="135.73125"
-       preserveAspectRatio="none"
-       id="image901"
+       y="52.241528"
        x="-173.73676"
-       y="52.241528" />
+       id="image901"
+       preserveAspectRatio="none"
+       height="135.73125"
+       width="274.90207"
+       clip-path="url(#clipPath906)" />
   </g>
 </svg>

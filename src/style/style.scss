@@ -95,6 +95,21 @@ main{
       // padding: 1rem;
       box-sizing: content-box;
     }
+    a.currentPage{
+       pointer-events: none;
+       color: gray;
+       position: relative;
+       &:after{
+         color: white;
+         opacity: 1;
+         content: "  →";
+         font-size: 1.2em;
+         display: block;
+         position: absolute;
+         top: -0.05em;
+         right: -1em  ;
+       }
+    }
     hr{
       display: block;
       border: none;

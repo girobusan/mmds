@@ -1,3 +1,5 @@
+[Русский](https://girobusan.github.io/mmds/#!index.ru.md)
+
 # My Markdown Site
 
 100% client-side markdown CMS/viewer/editor written in Java Script.

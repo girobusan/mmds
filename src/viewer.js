@@ -128,6 +128,12 @@ async function startSite(){
   .catch( e=>console.log( "no sidebar" ,e ))
   }
   //
+  //load custom scripts
+  window.MDS.settings.scripts.forEach( s=>{
+    const sc = document.createElement("script") ;
+    sc.setAttribute("src", s);
+    document.head.appendChild(sc);
+  } )
   //add and show content
   if(contentNode){
     // console.log("Content node found")
@@ -153,12 +159,6 @@ async function startSite(){
     }
 
   })
-  //load custom scripts
-  window.MDS.settings.scripts.forEach( s=>{
-    const sc = document.createElement("script") ;
-    sc.setAttribute("src", s);
-    document.head.appendChild(sc);
-  } )
 
 }
 
