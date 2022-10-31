@@ -100,13 +100,22 @@ window.MDS = {
 
 
 
-function startSite(){
+async function startSite(){
   console.info("My Markdown Site, version" , VERSION);
   const MDS = window.MDS;
   //
   //read settings
-  const settings = Object.assign(MDS.settings , window.settings) ;
+  const sjr = await fetch("settings.json")
+  .catch(e=>{console.log("Can not access settings.json")});
+
+  const settingsJSON =sjr&&( sjr.status=='200' ) ? await sjr.json() :  ""
+
+  // console.log("what we've got" , settingsJSON );
+  const userSettings = settingsJSON || window.settings ;
+
+  const settings =  userSettings ? Object.assign(MDS.settings , userSettings) : MDS.settings ;
   MDS.settings = settings;
+  // console.log("settings" , settings)
   //
   //find DOM nodes
   const sidebarNode = document.getElementById("menu");
@@ -134,6 +143,17 @@ function startSite(){
   }else{
      console.error("Content node not found")
   }
+  //let window title follow document header
+  MDS.addUpdater((p,c)=>{
+    const ttr = /<h1>(.*?)<\/h1>/i ;
+    const ttext = c.html.match(ttr) ;
+    if(ttext){
+      window.document.title = ttext[1].replace(/<[^>]+>/g , "") 
+    }else{
+      window.document.title = MDS.settings.title + ": " + p;
+    }
+
+  })
   //load custom scripts
   window.MDS.settings.scripts.forEach( s=>{
     const sc = document.createElement("script") ;
