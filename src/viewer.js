@@ -90,7 +90,7 @@ window.MDS = {
     setMenu: (p)=>{
 
       const sidebarNode = document.getElementById("menu");
-      getContent(window.MDS.makePath(window.MDS.menuFile))
+      getContent(window.MDS.makePath(window.MDS.settings.menuFile))
       .then(r=>{sidebarNode.innerHTML=r.html})
     .catch( e=>console.log( "no sidebar" ,e ))
     }
