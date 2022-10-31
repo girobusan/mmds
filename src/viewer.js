@@ -3,7 +3,6 @@ import {h, render} from "preact";
 import { getContent } from "./mdops";
 import { JustView} from "./components/JustView"
 
-console.log("viewer");
 const page404 = function(l){
   return{
     html: `<h1>No such page: ${l}</h1>Oops...`,
@@ -93,6 +92,7 @@ window.MDS = {
       getContent(window.MDS.makePath(window.MDS.settings.menuFile))
       .then(r=>{sidebarNode.innerHTML=r.html})
     .catch( e=>console.log( "no sidebar" ,e ))
+
     }
   }
 }
@@ -101,7 +101,7 @@ window.MDS = {
 
 
 function startSite(){
-  console.log("Starting...");
+  console.info("My Markdown Site, version" , VERSION);
   const MDS = window.MDS;
   //
   //read settings
