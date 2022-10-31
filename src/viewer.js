@@ -115,7 +115,7 @@ function startSite(){
   //add menu
   if(sidebarNode)
   {
-    getContent(MDS.makePath("sidebar.md"))
+    getContent(MDS.makePath(MDS.settings.menuFile))
     .then(r=>{sidebarNode.innerHTML=r.html})
   .catch( e=>console.log( "no sidebar" ,e ))
   }

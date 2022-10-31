@@ -19,7 +19,7 @@ MMDS это CMS/просмотровщик/редактор markdown, работ
 --------------------
 
 |  :wrench:  | CMS.js | MDWiki | MMDS |
------------------------
+|-------|-----|-----|------|
 | URL страниц | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:|
 | Встроенный редактор | :heavy_minus_sign:  | :heavy_minus_sign: | :heavy_check_mark: |
 | Требуется настройка сервера | :heavy_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: |
