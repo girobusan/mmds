@@ -3,23 +3,22 @@ import {h, render} from "preact";
 import { getContent } from "./mdops";
 import { JustView} from "./components/JustView"
 
-const page404 = function(l){
-  return{
-    html: `<h1>No such page: ${l}</h1>Oops...`,
-    markdown: ""
-  }
-}
-
 
 window.MDS = {
   settings: {
-    title: "MD Site",
-    mdDir: "md/",
-    indexFile: "index.md",
-    menuFile: "menu.md",
-    scripts: [],
-    editorScript: "mdeditor.js",
-    // hideEditor: false
+    "title": "MD Site",
+    "mdDir": "md/",
+    "indexFile": "index.md",
+    "menuFile": "menu.md",
+    "scripts": [],
+    "editorScript": "mdeditor.js",
+    "hideEditor": false
+  },
+  page404:  function(l){
+  return{
+    html: `<h1>No such page: ${l}</h1>`,
+    markdown: ""
+  }
   },
   updaters: {},
   updID: 1,
@@ -60,7 +59,7 @@ window.MDS = {
     .catch(e=>{
       console.info("No such file" , filePath , e);
       //show 404 page?
-       window.MDS.showContent( p , page404(p) );
+       window.MDS.showContent( p , MDS.page404(p) );
     })
   },
   go: function(p){ //go to the location

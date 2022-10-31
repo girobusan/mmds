@@ -1,4 +1,5 @@
 var emoji = require('markdown-it-emoji');
+// import { parse as emoParse } from 'twemoji';
 var md = require('markdown-it')({
   html:true,
   linkify: true,
@@ -9,6 +10,11 @@ var md = require('markdown-it')({
   headerless: true,
   multiline: true
 });
+
+// md.renderer.rules.emoji = function(token, idx) {
+//   // console.log(twemoji);
+//   return emoParse(token[idx].content);
+// };
 //
 export function getFile(p , errf){
   return fetch(p)
