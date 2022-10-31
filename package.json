@@ -7,10 +7,11 @@
     "css-watch": "npx sass --watch src/style/style.scss:test/view.css",
     "css-build": "npx sass  src/style/style.scss:dist/view.css --no-source-map",
     "build": "npx webpack --mode production",
-    "watch": "npx webpack --mode development"
+    "watch": "npx webpack --mode development",
+    "postbuild": "npm run css-build"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "css-loader": "^6.7.1",
     "html-inline-css-webpack-plugin": "^1.11.1",

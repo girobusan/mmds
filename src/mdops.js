@@ -2,7 +2,7 @@ var emoji = require('markdown-it-emoji');
 // import { parse as emoParse } from 'twemoji';
 var md = require('markdown-it')({
   html:true,
-  linkify: true,
+  linkify: false,
   })
 .use(require('markdown-it-checkbox'))
 .use(emoji )

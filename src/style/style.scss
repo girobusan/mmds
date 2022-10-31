@@ -37,6 +37,36 @@ pre{
   margin: 2em auto;
 }
 
+blockquote{
+  font-size: 1.2rem;
+  line-height: 140%;
+  margin:0;
+  padding: 2rem 2rem 3rem 3rem;
+  position: relative;
+  // padding-left: 3rem;
+  font-family: "PT Serif Caption";
+  color: #555;
+  cite{
+    
+  font-family: "PT Serif";
+    display: block;
+    font-size: 0.75em;
+    letter-spacing: 0.03em;
+  }
+  &:before{
+  font-family: "PT Serif";
+    content: '“';
+    // line-height: 100%;
+    font-size: 6rem;
+    font-weight: bold;
+    position: absolute;
+    top: 3.5rem;
+    left: -0.25rem;
+    color: silver;
+
+  }
+}
+
 
 main{
   display: flex;
@@ -64,6 +94,23 @@ main{
       display: inline-block;
       // padding: 1rem;
       box-sizing: content-box;
+    }
+    hr{
+      display: block;
+      border: none;
+      background-color: transparent;
+      // height: 1px;
+      margin: 1em 0;
+      height: 4px;
+      overflow: visible;
+      &:before{
+        display: block;
+        content: ".....";
+        letter-spacing: 0.3em;
+        color: gray;
+        height: 1px;
+        line-height: 0;
+      }
     }
     a{
       color: lightblue;
@@ -133,13 +180,17 @@ main{
         }
       }
       table{
+        caption{
+          text-align: left;
+          padding-bottom: 0.5em;
+        }
          font-size: 0.75rem;
          font-family: "PT Serif Caption" , "PT Serif" , Times , serif;
          line-height: 120%;;
          border-collapse: collapse;
          margin: 2rem auto;
          td , th{
-           border: 1px solid #888;
+           border: 1px solid #999;
            padding: 6px 8px;
            text-align: left;
            vertical-align: top;
@@ -147,7 +198,8 @@ main{
       }
       hr{
         border: none;
-        background-color: #444;
+        display: block;
+        background-color: #ccc;
         margin: 1rem auto;
         height: 2px;
         width: 100%;
