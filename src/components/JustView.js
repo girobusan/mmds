@@ -7,7 +7,7 @@ import {ActionRow} from "./ActionRow";
 export class JustView extends Component{
  
   constructor(props){
-  console.log("Just View");
+  // console.log("Just View");
   super(props);
   this.state={ html: props.html }
   this.updater = this.updater.bind(this);

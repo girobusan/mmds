@@ -17,7 +17,10 @@ MMDS это CMS/просмотровщик/редактор markdown, работ
 
 Сравнение с аналогами
 --------------------
-
+Существуют, как минимум, два аналогичных прокта:
+* [CMS.js](https://github.com/chrisdiana/cms.js) — жив и развивается
+* [MDWiki](https://github.com/Dynalon/mdwiki) — архивирован
+ 
 |  :wrench:  | CMS.js | MDWiki | MMDS |
 |-------|-----|-----|------|
 | URL страниц | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:|

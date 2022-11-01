@@ -5,6 +5,7 @@ import { JustView} from "./components/JustView"
 
 
 window.MDS = {
+  usr: {},
   settings: {
     "title": "MD Site",
     "mdDir": "md/",
@@ -16,7 +17,7 @@ window.MDS = {
   },
   page404:  function(l){
   return{
-    html: `<h1>No such page: ${l}</h1>`,
+    html: `<h1>${l}</h1><p>This page is not created yet. Click "edit" to create it.</p>`,
     markdown: ""
   }
   },
@@ -143,6 +144,7 @@ async function startSite(){
        history.replaceState(window.location.hash.substring(2), null );
        MDS.showPath(window.location.hash.substring(2))
     }else{
+      window.location.hash = "#!" + MDS.settings.indexFile;
        MDS.showPath(MDS.settings.indexFile)
     }
   }else{
@@ -165,7 +167,6 @@ async function startSite(){
 function detectClicks(evt){
   
   const t = evt.target;
-  // console.log(t.parentNode)
   
   const h =t.getAttribute("href") || (t.parentNode.getAttribute && t.parentNode.getAttribute("href") ) ;
   if(!h || h.startsWith("data:")){ return } //no link

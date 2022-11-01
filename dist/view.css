@@ -77,6 +77,25 @@ main #sidebarContainer {
   background-color: #444;
   color: white;
 }
+main #sidebarContainer #langSwitch {
+  font-family: monospace;
+  width: 250px;
+  text-align: left;
+  display: inline-block;
+}
+main #sidebarContainer #langSwitch div, main #sidebarContainer #langSwitch a {
+  font-size: 0.75em;
+  margin-right: 0.1rem;
+  display: inline-block;
+  background-color: #333;
+  padding: 0 8px;
+  color: gold;
+  cursor: pointer;
+}
+main #sidebarContainer #langSwitch.ru .ru, main #sidebarContainer #langSwitch.en .en {
+  color: gray;
+  pointer-events: none;
+}
 main #sidebarContainer #burger {
   display: none;
 }
@@ -95,7 +114,7 @@ main #sidebarContainer a.currentPage {
 main #sidebarContainer a.currentPage:after {
   color: white;
   opacity: 1;
-  content: "  →";
+  content: "  >";
   font-size: 1.2em;
   display: block;
   position: absolute;

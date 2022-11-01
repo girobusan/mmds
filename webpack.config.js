@@ -36,7 +36,8 @@ module.exports = function (env, argv) {
       "mdsite": './src/viewer.js',
       "mdeditor": './src/editor.js',
       // USER SCRIPTS
-      "currentpage": "./src/user_scripts/currentlink.js"
+      "currentpage": "./src/user_scripts/currentlink.js",
+      "bilingual": "./src/user_scripts/bilingual.js",
     },
     devtool: argv.mode != "production" ? 'inline-source-map' : false, 
     // devServer: argv.mode != "production" ? {contentBase: 'dist'} : {contentBase: 'dist'},

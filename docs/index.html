@@ -2,15 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="view.css">
   <title>My Markdown Site</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>
   window.settings = {
     hideEditor: false,
-    mdDir: "",
-    menuFile: "sidebar.ru.md",
-    indexFile: "index.ru.md",
-    editorScript: "https://cdn.jsdelivr.net/gh/girobusan/mmds@latest/dist/mdeditor.js"
+    menuFile: "sidebar.md"
   }
 </script>
 <script>
@@ -20,18 +18,15 @@
     s.classList.toggle("hidden");
   }
 </script>
-  <link rel="stylesheet" href="view.css">
   <script defer src="mdsite.js"></script>
 </head>
 <body>
-   <a href="https://github.com/girobusan/mmds">
-       <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_orange_ff7600.png?resize=149%2C149" alt="Fork me on GitHub">
-           </a>
 
 <nav id="toolbar"></nav>
 <main>
 <nav id="sidebarContainer" class="hidden">
 <div id="burger" onClick="toggleSidebar()">&mdash;<br>&mdash;<br>&mdash;<br></div>
+<div id="langSwitch" data-langs="ru,en"></div><br />
 <div id="menu"></div>
 <br>
 <footer> Powered by <a href="https://github.com/girobusan/mmds">My Markdown Site</a> </footer>

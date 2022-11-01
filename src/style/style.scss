@@ -84,6 +84,25 @@ main{
     // min-width: 200px;
     background-color: #444;
     color: white;
+    #langSwitch{
+      font-family: monospace ;
+      width: $sidebarW;
+      text-align: left;
+      display: inline-block;
+      div, a{
+        font-size: 0.75em;
+        margin-right: 0.1rem;
+        display: inline-block;
+        background-color: #333;
+        padding: 0 8px;
+        color: gold;
+        cursor: pointer;
+      }
+      &.ru .ru , &.en .en{
+        color: gray;
+        pointer-events: none;
+      }
+    }
     #burger{
       display: none;
     }
@@ -102,7 +121,7 @@ main{
        &:after{
          color: white;
          opacity: 1;
-         content: "  →";
+         content: "  >";
          font-size: 1.2em;
          display: block;
          position: absolute;
