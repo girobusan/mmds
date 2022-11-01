@@ -38,6 +38,7 @@ module.exports = function (env, argv) {
       // USER SCRIPTS
       "currentpage": "./src/user_scripts/currentlink.js",
       "bilingual": "./src/user_scripts/bilingual.js",
+      "forkme" : "./src/user_scripts/forkme.js",
     },
     devtool: argv.mode != "production" ? 'inline-source-map' : false, 
     // devServer: argv.mode != "production" ? {contentBase: 'dist'} : {contentBase: 'dist'},
