@@ -190,6 +190,8 @@ main #content table {
   line-height: 120%;
   border-collapse: collapse;
   margin: 2rem auto;
+  max-width: 100%;
+  overflow-x: auto;
 }
 main #content table caption {
   text-align: left;
@@ -245,13 +247,13 @@ footer {
     padding-left: 1rem;
   }
   main #sidebarContainer {
+    z-index: 500;
     margin-left: 0;
     position: fixed;
     top: 0;
     left: 0;
     right: auto;
-    min-height: 100vh;
-    max-width: 100vw;
+    width: 100vw;
     background-color: rgba(0, 0, 0, 0.9);
   }
   main #sidebarContainer #burger {
@@ -276,8 +278,8 @@ footer {
     background-color: orangered;
   }
   main #sidebarContainer.hidden {
-    right: 100vw;
-    left: auto;
+    left: -100vw;
+    width: 100vw;
   }
   main #sidebarContainer.hidden #burger {
     right: -40px;

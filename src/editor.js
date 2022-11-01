@@ -4,7 +4,7 @@ import {h,Component , createRef , render} from "preact";
 import { getContent } from "./mdops";
 import { ViewEdit } from "./components/ViewEdit"
 
-console.log("Editor!")
+console.log("MMDS editor, version" , VERSION);
 
 const container = document.getElementById("content");
 const editor = h(ViewEdit , {

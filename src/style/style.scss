@@ -204,6 +204,8 @@ main{
          line-height: 120%;;
          border-collapse: collapse;
          margin: 2rem auto;
+         max-width: 100%;
+         overflow-x: auto;
          td , th{
            border: 1px solid #999;
            padding: 6px 8px;
@@ -263,13 +265,14 @@ footer{
   }
   }
   main #sidebarContainer{
+    z-index: 500;
     margin-left: 0;
     position: fixed;
     top: 0;
     left: 0;
     right: auto;
-    min-height: 100vh;
-    max-width: 100vw;
+    // min-height: 100vh;
+    width: 100vw;
 
     background-color: rgba(0,0,0,.9);
     #burger{
@@ -294,9 +297,9 @@ footer{
       }
     }
     &.hidden{
-      right: 100vw;
-      left: auto;
-      // width: 100vw;
+      left: -100vw;
+      // left: auto;
+      width: 100vw;
       // float: left;
       #burger{
         right: -40px;
