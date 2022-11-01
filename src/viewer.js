@@ -46,7 +46,7 @@ window.MDS = {
   showContent: function(p,c){ //show page
      // console.info("Showing" , p)
      window.MDS.current = { path: p , content: c , saved: true }
-     
+     if(!window.MDS.editMode){ window.scrollTo(0,0) } 
      window.MDS.updateViews(p,c);
   },
   showPath: function(p){

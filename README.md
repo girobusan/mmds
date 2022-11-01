@@ -1,4 +1,4 @@
-[Русский](https://girobusan.github.io/mmds/#!index.ru.md)
+:ru: [Русский](https://girobusan.github.io/mmds/#!index.ru.md)
 
 # My Markdown Site
 
