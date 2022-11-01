@@ -83,7 +83,7 @@ main{
     // max-width: 400px;
     // min-width: 200px;
     background-color: #444;
-    color: white;
+    color: #999;
     #langSwitch{
       font-family: monospace ;
       width: $sidebarW;
@@ -116,17 +116,19 @@ main{
     }
     a.currentPage{
        pointer-events: none;
-       color: gray;
+       color: white;
        position: relative;
        &:after{
-         color: white;
+         // color: lightblue;
          opacity: 1;
          content: "  >";
-         font-size: 1.2em;
-         display: block;
-         position: absolute;
-         top: -0.05em;
-         right: -1em  ;
+         position: relative;
+         top: 2px;
+         // font-size: 1.2em;
+         // display: block;
+         // position: absolute;
+         // top: -0.05em;
+         // right: -1em  ;
        }
     }
     hr{
@@ -150,7 +152,7 @@ main{
       color: lightblue;
       text-decoration: none;
       &:hover{
-        color: ivory;
+        color: orangered;
       }
     }
     ul{
@@ -210,7 +212,7 @@ main{
       a{
         color: royalblue;
         &:visited{
-          color: darken(royalblue , 30%);
+          color: darken(royalblue , 20%);
         }
       }
       table{

@@ -4,8 +4,6 @@
 
 100% client-side markdown CMS/viewer/editor written in Java Script.
 
-![Screenshot](docs/screen.png)
-
 ## Features
 
 * Direct links to pages
@@ -15,3 +13,6 @@
 * Totally customizable design (html + css + JS API for custom scripts)
 * Light and fast 
 * Embedded markdown editor (easyMDE, loads only on demand) 
+* Any server (no server setup required)
+
+![Screenshot](docs/screen.png)

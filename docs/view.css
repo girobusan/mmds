@@ -75,7 +75,7 @@ main #sidebarContainer {
   width: calc(100vw - 750px + 250px);
   min-width: 250px;
   background-color: #444;
-  color: white;
+  color: #999;
 }
 main #sidebarContainer #langSwitch {
   font-family: monospace;
@@ -108,18 +108,14 @@ main #sidebarContainer #menu {
 }
 main #sidebarContainer a.currentPage {
   pointer-events: none;
-  color: gray;
+  color: white;
   position: relative;
 }
 main #sidebarContainer a.currentPage:after {
-  color: white;
   opacity: 1;
   content: "  >";
-  font-size: 1.2em;
-  display: block;
-  position: absolute;
-  top: -0.05em;
-  right: -1em;
+  position: relative;
+  top: 2px;
 }
 main #sidebarContainer hr {
   display: block;
@@ -142,7 +138,7 @@ main #sidebarContainer a {
   text-decoration: none;
 }
 main #sidebarContainer a:hover {
-  color: ivory;
+  color: orangered;
 }
 main #sidebarContainer ul {
   list-style-type: none;
@@ -201,7 +197,7 @@ main #content a {
   color: royalblue;
 }
 main #content a:visited {
-  color: #132c76;
+  color: #1a3ca2;
 }
 main #content table {
   font-size: 0.75rem;
