@@ -32,9 +32,12 @@ pre{
   display: block;
   overflow: auto;
   background-color: #efefef;
-  padding: 8px !important;
+  padding: 4px 8px !important;
   border-radius: 4px;
   margin: 2em auto;
+  code{
+    padding: 0;
+  }
 }
 
 blockquote{

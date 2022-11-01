@@ -128,7 +128,7 @@ export class ViewEdit extends Component{
                   me.easyMDE.value());
                   this.saved(this.state.path);
                 },
-                className: "fa fa-save",
+                className: "fa fa-save no-disable",
                 title: "Save"
               },
               // {
