@@ -33,7 +33,9 @@ Please, note: if the `settings.json` present, all settings, defined in `index.ht
 | scripts | [] | List of user script paths | 
 | hideEditor | false | Hide `edit` button and it's panel |\
 | | |You'll have to add `?edit=true` to site url to edit |
+| usr | {} | User scripts settings dictionary |
 | editorFile* | "mdeditor.js" | Path to editor script |
+| userScriptsPath* | "" | Path to user scripts |
 [Settings explained]
 
 <small>* experimental</small>

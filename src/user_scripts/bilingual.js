@@ -67,22 +67,25 @@ window.MDS.addUpdater( (p,c)=>{
 } )
 //Create switcher
 console.info("Bilingual user script")
-const B = window.MDS.usr.bilingual;
-// console.log("lang switch!")
-var langSwitchContainer = document.querySelector("#langSwitch");
-if(langSwitchContainer && langSwitchContainer.dataset.langs){
-  let currentLang = B.extractLang(window.location.hash.substring(2)) ;
-  langSwitchContainer.setAttribute("class", currentLang);
-  let lng = langSwitchContainer.dataset.langs.split(",").map(e=>e.toLowerCase());
-  lng.forEach( l=>{
-    const e = document.createElement("a");
-    e.innerHTML = l;
-    e.setAttribute("class", l)
-    // e.setAttribute("href", )
-    e.addEventListener("click", ()=>{window.MDS.usr.bilingual.switchTo(l)  })
-    langSwitchContainer.appendChild(e);
-  } )
-
-}
+window.MDS.once(function(mds)
+  {
+    const B = mds.usr.bilingual;
+    // console.log("lang switch!")
+    var langSwitchContainer = document.querySelector("#langSwitch");
+    if(langSwitchContainer && langSwitchContainer.dataset.langs){
+      let currentLang = B.extractLang(window.location.hash.substring(2)) ;
+      langSwitchContainer.setAttribute("class", currentLang);
+      let lng = langSwitchContainer.dataset.langs.split(",").map(e=>e.toLowerCase());
+      lng.forEach( l=>{
+        const e = document.createElement("a");
+        e.innerHTML = l;
+        e.setAttribute("class", l)
+        // e.setAttribute("href", )
+        e.addEventListener("click", ()=>{window.MDS.usr.bilingual.switchTo(l)  })
+        langSwitchContainer.appendChild(e);
+      } )
+    }
+  }
+)
 
 

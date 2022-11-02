@@ -13,7 +13,9 @@ window.MDS = {
     "menuFile": "menu.md",
     "scripts": [],
     "editorScript": "mdeditor.js",
-    "hideEditor": false
+    "hideEditor": false,
+    "userScriptsPath" : "",
+    "usr" : {}
   },
   page404:  function(l){
   return{
@@ -39,6 +41,10 @@ window.MDS = {
   },
   removeUpdater : function(id){
    delete(window.MDS.updaters[id]);
+  },
+  once(f){
+     // console.log("run once");
+     f(window.MDS);
   },
   updateViews : function(path,content){
     Object.values(window.MDS.updaters).forEach(f=>f(path,content));
@@ -84,6 +90,7 @@ window.MDS = {
   },
 
   action: {
+    
     edit: ()=>{
       window.MDS.editMode = true;
       const s = document.createElement("script");
@@ -137,7 +144,7 @@ async function startSite(){
   //load custom scripts
   window.MDS.settings.scripts.forEach( (s , i)=>{
     const sc = document.createElement("script") ;
-    sc.setAttribute("src", s);
+    sc.setAttribute("src", MDS.settings.userScriptsPath + s);
     console.info(i , "Loading user script:" , s);
     document.head.appendChild(sc);
   } )
