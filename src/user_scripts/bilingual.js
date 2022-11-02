@@ -21,7 +21,7 @@ window.MDS.usr.bilingual = {
   changeLang(p,lang){
     const B = window.MDS.usr.bilingual;
     if(!B.extractLang(p)){return p}
-    console.log("replace to" , lang);
+    // console.log("replace to" , lang);
     return p.replace( /\.([a-z]{1,3})\.([a-z]+)$/i , "." + lang + ".$2"   )
 
   },
@@ -44,7 +44,7 @@ window.MDS.addUpdater( (p,c)=>{
   const B = window.MDS.usr.bilingual;
   const sbL = B.extractLang( window.MDS.settings.menuFile );
   const pathL= B.extractLang( p );
-  console.log("paths" , sbL , pathL);
+  // console.log("paths" , sbL , pathL);
   if(sbL === pathL || !pathL){return}
   //change menufile
   const newM = B.changeLang( window.MDS.settings.menuFile , pathL );
@@ -55,6 +55,12 @@ window.MDS.addUpdater( (p,c)=>{
   var langSwitchContainer = document.querySelector("#langSwitch");
   if(langSwitchContainer){
     langSwitchContainer.setAttribute("class", pathL);
+    langSwitchContainer.querySelectorAll("a")
+      .forEach( e=> { e.classList.remove("currentLanguage")} );
+    const cl = langSwitchContainer.querySelector("." + pathL)
+    cl.classList.add("currentLanguage");
+    // .classList.add("current");
+
   }
 
 
@@ -67,7 +73,7 @@ var langSwitchContainer = document.querySelector("#langSwitch");
 if(langSwitchContainer && langSwitchContainer.dataset.langs){
   let currentLang = B.extractLang(window.location.hash.substring(2)) ;
   langSwitchContainer.setAttribute("class", currentLang);
-  let lng = langSwitchContainer.dataset.langs.split(",");
+  let lng = langSwitchContainer.dataset.langs.split(",").map(e=>e.toLowerCase());
   lng.forEach( l=>{
     const e = document.createElement("a");
     e.innerHTML = l;

@@ -43,6 +43,12 @@ window.MDS = {
   updateViews : function(path,content){
     Object.values(window.MDS.updaters).forEach(f=>f(path,content));
   },
+  refresh(){
+     window.MDS.updateViews(window.MDS.current.path,window.MDS.current.content);
+  },
+  reload(){
+     window.MDS.showPath(window.MDS.current.path);
+  },
   showContent: function(p,c){ //show page
      // console.info("Showing" , p)
      window.MDS.current = { path: p , content: c , saved: true }
@@ -73,8 +79,6 @@ window.MDS = {
          return; 
      }
     
-    // const filePath = window.MDS.makePath(p);
-    // console.log("Browse to" , filePath) 
        window.MDS.showPath( p  )
        history.pushState(p , null , "#!"+p) ; //no URL here
   },
@@ -90,7 +94,8 @@ window.MDS = {
 
       const sidebarNode = document.getElementById("menu");
       getContent(window.MDS.makePath(window.MDS.settings.menuFile))
-      .then(r=>{sidebarNode.innerHTML=r.html})
+      .then(r=>{sidebarNode.innerHTML=r.html; window.MDS.refresh()})
+      
     .catch( e=>console.log( "no sidebar" ,e ))
 
     }
@@ -130,9 +135,10 @@ async function startSite(){
   }
   //
   //load custom scripts
-  window.MDS.settings.scripts.forEach( s=>{
+  window.MDS.settings.scripts.forEach( (s , i)=>{
     const sc = document.createElement("script") ;
     sc.setAttribute("src", s);
+    console.info(i , "Loading user script:" , s);
     document.head.appendChild(sc);
   } )
   //add and show content
