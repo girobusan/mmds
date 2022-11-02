@@ -30,6 +30,12 @@ export class ViewEdit extends Component{
     MDS.editMode = !MDS.editMode 
     this.setState({editMode: MDS.editMode})
     };
+    MDS.action.save = ()=>{
+       console.info("Saving from editor");
+       saveToDisk( this.state.path, this.easyMDE.value());
+       this.saved(this.state.path);
+
+    }
 
     MDS.addUpdater(this.updater);
   }

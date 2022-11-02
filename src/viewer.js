@@ -2,6 +2,7 @@
 import {h, render} from "preact";
 import { getContent } from "./mdops";
 import { JustView} from "./components/JustView"
+import {saveToDisk} from "./fileops";
 
 
 window.MDS = {
@@ -96,6 +97,11 @@ window.MDS = {
       const s = document.createElement("script");
       s.src= window.MDS.settings.editorScript;
       document.body.appendChild(s)
+    },
+    save: ()=>{
+    console.info("Saving without editing")  ;
+    saveToDisk(window.MDS.current.path, window.MDS.current.content.markdown)
+
     },
     setMenu: (p)=>{
 

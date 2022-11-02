@@ -14,6 +14,11 @@ export function ActionRow(props){
    onclick=${window.MDS.action.edit}
    >
    </input>
+   <input type="button" class="actions" 
+   value=${"save"}
+   onclick=${window.MDS.action.save}
+   >
+   </input>
    </div>`
    }else{
    return "";

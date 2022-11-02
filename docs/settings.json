@@ -5,5 +5,5 @@
     "indexFile": "index.ru.md",
     "scripts" : ["currentpage.js" , "bilingual.js" , "forkme.js"],
     "_editorScript" : "mdeditor.js",
-    "editorScript": "https://cdn.jsdelivr.net/gh/girobusan/mmds@latest/dist/mdeditor.js"
+    "editorScript": "https://cdn.jsdelivr.net/gh/girobusan/mmds/dist/mdeditor.js"
   }
