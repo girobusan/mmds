@@ -5,4 +5,4 @@
   * [ Settings ](settings.en.md)
   * [Java Script API](api.en.md)
 
-* :wrench: [menu](sidebar.en.md)
+*  [:wrench:](sidebar.en.md)

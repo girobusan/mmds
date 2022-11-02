@@ -5,4 +5,4 @@
   * [ Настройки ](settings.ru.md)
   * [Java Script API](api.ru.md)
 
-* :wrench: [Меню](sidebar.ru.md)
+*  [:wrench:](sidebar.ru.md)
