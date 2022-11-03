@@ -6,24 +6,29 @@
    </input>
    <input type="button" class="actions" 
    value=${"save"}
-   onclick=${window.MDS.action.save}
+   onclick=${()=>{window.MDS.action.save()}}
    >
    </input>
-   </div>`:""}r(7057),window.MDS;var P=r(4442);class H extends f{constructor(e){super(e)}render(){return this.props.condition?this.props.children:""}}function j(e,t){var r=document.createElement("a");r.setAttribute("href","data:text/plain;charset=utf-8,"+encodeURIComponent(t)),r.setAttribute("download",e),document.body.appendChild(r),r.click(),document.body.removeChild(r)}r(3132),r(8149);const W=window.MDS;console.log("MMDS editor, version","0.0.5");const U=document.getElementById("content"),$=d(class extends f{constructor(e){super(e),this.notSaved={},this.updater=this.updater.bind(this),this.text={current:null},this.mdEditorNode={current:null},this.state={editMode:!0,content:this.props.content,path:this.props.path}}componentWillMount(){W.action.edit=()=>{W.editMode=!W.editMode,this.setState({editMode:W.editMode})},W.action.save=()=>{console.info("Saving from editor"),j(this.state.path,this.easyMDE.value()),this.saved(this.state.path)},W.addUpdater(this.updater)}componentDidUpdate(){this.easyMDE&&(console.log("Update editor content..."),this.easyMDE.value(this.checkContent(this.state.path,this.state.content).markdown)),this.text.current&&this.text.current.querySelectorAll("*[src]").forEach((e=>{e.getAttribute("src").match(/^http(s)?:/)||e.getAttribute("src").startsWith(this.props.base)||(e.src=this.props.base+e.getAttribute("src"))}))}componentDidMount(){this.updateMdEditor()}updater(e,t){console.log("mds editmode",W.editMode),this.setState({content:t,path:e})}render(){return q`<div class="ViewEdit">
+   <input type="button" class="actions" 
+   value=${"refresh"}
+   onclick=${window.MDS.reload}
+   >
+   </input>
+   </div>`:""}r(7057),window.MDS;var P=r(4442);class H extends f{constructor(e){super(e)}render(){return this.props.condition?this.props.children:""}}r(3132),r(8149);const j=window.MDS;console.log("MMDS editor, version","0.0.5");const W=document.getElementById("content"),U=d(class extends f{constructor(e){super(e),this.notSaved={},this.updater=this.updater.bind(this),this.text={current:null},this.mdEditorNode={current:null},this.state={editMode:!0,content:this.props.content,path:this.props.path}}componentWillMount(){j.action.edit=()=>{j.editMode=!j.editMode,this.setState({editMode:j.editMode})},j.action.save=()=>{var e,t,r;console.info("Saving from editor"),e=this.state.path,t=this.easyMDE.value(),(r=document.createElement("a")).setAttribute("href","data:text/plain;charset=utf-8,"+encodeURIComponent(t)),r.setAttribute("download",e),document.body.appendChild(r),r.click(),document.body.removeChild(r),this.saved(this.state.path),j.whenActive(j.reload)},j.addUpdater(this.updater)}componentDidUpdate(){this.easyMDE&&(console.log("Update editor content..."),this.easyMDE.value(this.checkContent(this.state.path,this.state.content).markdown)),this.text.current&&this.text.current.querySelectorAll("*[src]").forEach((e=>{e.getAttribute("src").match(/^http(s)?:/)||e.getAttribute("src").startsWith(this.props.base)||(e.src=this.props.base+e.getAttribute("src"))}))}componentDidMount(){this.updateMdEditor()}updater(e,t){console.log("mds editmode",j.editMode),this.setState({content:t,path:e})}render(){return q`<div class="ViewEdit">
      <${H} condition=${this.isEdited(this.state.path)}> 
      <small class="notSavedWarning">${this.state.path} has unsaved changes</small>
      </${H}>
-     <div class=${"editorContainer "+(W.editMode?"":"hidden")}>
+     <div class=${"editorContainer "+(j.editMode?"":"hidden")}>
      <textarea 
      class="editorArea"
      ref=${this.mdEditorNode}>
      </textarea>
      </div>
-     <${H} condition=${!W.editMode}>
+     <${H} condition=${!j.editMode}>
     <div class="text" 
     ref=${this.text}
     dangerouslySetInnerHTML=${{__html:this.checkContent(this.state.path,this.state.content).html}} >
     </div>
      </${H}>
      <${R} />
-     </div>`}edited(e,t){console.info("we touched",e),this.notSaved[e]=t}saved(e){delete this.notSaved[e]}checkContent(e,t){return console.log("Checking",e),this.notSaved[e]?(console.log("this one has not saved changes",this.notSaved),this.notSaved[e]):(console.log("this file was not changed"),t)}isEdited(e){return console.log("Is it edited?",e),!!this.notSaved[e]}updateMdEditor(){if(!this.mdEditorNode.current)return;const e=this;this.easyMDE=new P({element:this.mdEditorNode.current,syncSideBySidePreviewScroll:!1,previewRender:(e,t)=>N(e),spellChecker:!0,sideBySideFullscreen:!0,toolbar:["bold","italic","strikethrough","heading","|","quote","unordered-list","ordered-list","|","link","image","|","preview","side-by-side","fullscreen","|","guide","|",{name:"export",action:()=>{j(this.state.path,e.easyMDE.value()),this.saved(this.state.path)},className:"fa fa-save no-disable",title:"Save"}]}),this.easyMDE.value(this.checkContent(this.state.path,this.state.content).markdown);const t=()=>{console.log("edited...");const t=e.easyMDE.value();e.edited(e.state.path,{markdown:t,html:N(t)})};this.easyMDE.codemirror.on("inputRead",t),this.easyMDE.codemirror.on("keyHandled",t)}},{base:window.MDS.settings.mdDir,path:window.MDS.current.path||"",content:window.MDS.current.content});T(null,U),T($,U)})()})();
+     </div>`}edited(e,t){console.info("we touched",e),this.notSaved[e]=t}saved(e){delete this.notSaved[e]}checkContent(e,t){return console.log("Checking",e),this.notSaved[e]?(console.log("this one has not saved changes",this.notSaved),this.notSaved[e]):(console.log("this file was not changed"),t)}isEdited(e){return console.log("Is it edited?",e),!!this.notSaved[e]}updateMdEditor(){if(!this.mdEditorNode.current)return;const e=this;this.easyMDE=new P({element:this.mdEditorNode.current,syncSideBySidePreviewScroll:!1,previewRender:(e,t)=>N(e),spellChecker:!0,sideBySideFullscreen:!0,toolbar:["bold","italic","strikethrough","heading","|","quote","unordered-list","ordered-list","|","link","image","|","preview","side-by-side","fullscreen","|","guide","|",{name:"export",action:()=>{window.MDS.action.save()},className:"fa fa-save no-disable",title:"Save"}]}),this.easyMDE.value(this.checkContent(this.state.path,this.state.content).markdown);const t=()=>{console.log("edited...");const t=e.easyMDE.value();e.edited(e.state.path,{markdown:t,html:N(t)})};this.easyMDE.codemirror.on("inputRead",t),this.easyMDE.codemirror.on("keyHandled",t)}},{base:window.MDS.settings.mdDir,path:window.MDS.current.path||"",content:window.MDS.current.content});T(null,W),T(U,W)})()})();

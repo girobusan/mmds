@@ -34,6 +34,7 @@ export class ViewEdit extends Component{
        console.info("Saving from editor");
        saveToDisk( this.state.path, this.easyMDE.value());
        this.saved(this.state.path);
+       MDS.whenActive( MDS.reload );
 
     }
 
@@ -130,9 +131,8 @@ export class ViewEdit extends Component{
           "preview" , "side-by-side" , "fullscreen" , "|" , "guide" , "|",
           {
               name: "export",
-              action: ()=>{ saveToDisk( this.state.path,
-                  me.easyMDE.value());
-                  this.saved(this.state.path);
+              action: ()=>{
+                  window.MDS.action.save();
                 },
                 className: "fa fa-save no-disable",
                 title: "Save"

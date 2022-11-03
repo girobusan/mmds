@@ -47,6 +47,10 @@ window.MDS = {
      // console.log("run once");
      f(window.MDS);
   },
+  whenActive(f){
+    const handler = function(){ f(); window.removeEventListener("focus" , this) }
+       window.addEventListener("focus", handler) ;
+    },
   updateViews : function(path,content){
     Object.values(window.MDS.updaters).forEach(f=>f(path,content));
   },
@@ -54,7 +58,7 @@ window.MDS = {
      window.MDS.updateViews(window.MDS.current.path,window.MDS.current.content);
   },
   reload(){
-     window.MDS.showPath(window.MDS.current.path);
+     window.MDS.showPath(window.MDS.current.path , {cache: "reload"});
   },
   showContent: function(p,c){ //show page
      // console.info("Showing" , p)
@@ -62,11 +66,11 @@ window.MDS = {
      if(!window.MDS.editMode){ window.scrollTo(0,0) } 
      window.MDS.updateViews(p,c);
   },
-  showPath: function(p){
+  showPath: function(p , fetchOpts){
   // console.log('showPath' , p);
     
     const filePath = window.MDS.makePath(p || window.MDS.settings.indexFile);
-    getContent(filePath)
+    getContent(filePath, fetchOpts)
     .then(r=>{
        window.MDS.showContent(p,r)
     })
@@ -202,4 +206,6 @@ window.addEventListener("click", detectClicks);
 window.addEventListener("popstate" , (s)=>{if(s){ window.MDS.showPath(s.state ) } });
 window.addEventListener("hashchange" , ()=>{window.MDS.go(window.location.hash.substring(2) )  });
 window.addEventListener("error", (e)=>console.log("Error in window" , e))
+window.addEventListener("blur", (e)=>console.log("Window blur" ,e))
+window.addEventListener("focus", (e)=>console.log("Window focus" ,e))
 
