@@ -229,19 +229,22 @@ async function startSite(){
 
   }
   function restoreState(s){
+     console.log("restoring state...");
     if(!s.state.isMMDSstate){ return }  // we restore only MMDS states
     window.MDS.showPath(s.state.path ) ;
   }  
   function syncHash(){
+     console.log("hash changed...")
     window.MDS.go(window.location.hash.substring(2) );
     }
 
     window.document.addEventListener("click", detectClicks);
-    window.addEventListener("popstate" , restoreState );
+    // window.addEventListener("popstate" , restoreState );
     window.addEventListener("hashchange" ,   syncHash);
 
     window.MDS.cleanUp = ()=>{
-      window.removeEventListener("popstate" , restoreState );
+       console.log("removing listeners...")
+      // window.removeEventListener("popstate" , restoreState );
       window.removeEventListener("DOMContentLoaded", startSite);
     }
 

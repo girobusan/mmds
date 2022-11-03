@@ -93,14 +93,14 @@ export class ViewEdit extends Component{
      </div>`
   }
   edited(path,content){
-    console.info("we touched" , path);
+    // console.info("we touched" , path);
     this.notSaved[path] = content;
   }
   saved(path){
     delete(this.notSaved[path])
   }
   checkContent(path,content){
-    console.log("Checking" , path);
+    // console.log("Checking" , path);
     if(this.notSaved[path]){ 
        console.log("this one has not saved changes" , this.notSaved)
        return this.notSaved[path] 
