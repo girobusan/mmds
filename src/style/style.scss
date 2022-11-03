@@ -1,7 +1,7 @@
 $sidebarW: 250px;
 $mainW: 500px;
 $colW: $sidebarW + $mainW;
-@import url('https://fonts.googleapis.com/css2?family=PT+Serif+Caption:ital@0;1&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&family=PT+Serif+Caption:ital@0;1&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 body,html{
  font-size: 18px;
@@ -21,7 +21,8 @@ body{
 }
 
 code{
-  font-family: 'Courier New', Courier, monospace;
+  font-family:  'Fira Code', monospace;
+  font-weight: 400;
   background-color: #efefef;
   font-size: 0.85em;
   line-height: 1em;
