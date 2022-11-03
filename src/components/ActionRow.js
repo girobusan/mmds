@@ -22,7 +22,7 @@ export function ActionRow(props){
    >
    </input>
    <input type="button" class="actions" 
-   value=${"refresh"}
+   value=${"reload"}
    onclick=${window.MDS.reload}
    >
    </input>
