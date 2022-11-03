@@ -86,12 +86,20 @@ window.MDS = {
      ( !p.match(/\.(md|markdown)$/i) )  || //does not end with md extension
        p.match(/\#/) //contains hash
      ){
+         window.MDS.cleanUp();
          window.location = p;
          return; 
      }
-    
-       window.MDS.showPath( p  )
-       history.pushState(p , null , "#!"+p) ; //no URL here
+      
+     if(p){
+       window.MDS.showPath( p );
+       history.pushState({ path: p , isMMDSstate:true } , null , "#!"+p) ; //no URL here
+     }else{
+      console.log("replace state")
+       window.MDS.showPath( window.MDS.settings.indexFile );
+       history.replaceState({ path: window.MDS.settings.indexFile , isMMDSstate:true } , null , "#!"+window.MDS.settings.indexFile) ; 
+
+     }
   },
 
   action: {
@@ -158,21 +166,6 @@ async function startSite(){
     console.info(i , "Loading user script:" , s);
     document.head.appendChild(sc);
   } )
-  //add and show content
-  if(contentNode){
-    // console.log("Content node found")
-    const JV = h(JustView , {base: MDS.settings.mdDir})
-    render( JV, contentNode )
-    if(window.location.hash){
-       history.replaceState(window.location.hash.substring(2), null );
-       MDS.showPath(window.location.hash.substring(2))
-    }else{
-      window.location.hash = "#!" + MDS.settings.indexFile;
-       MDS.showPath(MDS.settings.indexFile)
-    }
-  }else{
-     console.error("Content node not found")
-  }
   //let window title follow document header
   MDS.addUpdater((p,c)=>{
     const ttr = /<h1>(.*?)<\/h1>/i ;
@@ -184,28 +177,60 @@ async function startSite(){
     }
 
   })
+  //add and show content
+  if(contentNode){
+    // console.log("Content node found")
+    const JV = h(JustView , {base: MDS.settings.mdDir})
+    render( JV, contentNode )
+    //
+    //find and display start location
+    if(window.location.hash){
+       history.replaceState( { path: window.location.hash.substring(2) , isMMDSstate: true} , null  );
+       MDS.showPath(window.location.hash.substring(2))
+    }else{
+       history.replaceState({ path: window.MDS.settings.indexFile , isMMDSstate:true } , null , "#!"+window.MDS.settings.indexFile) ; 
+       MDS.showPath(MDS.settings.indexFile)
+    }
+  }else{
+     console.error("Content node not found")
+  }
 
-}
+  //add listeners
+  function detectClicks(evt){
 
-function detectClicks(evt){
-  
-  const t = evt.target;
-  
-  const h =t.getAttribute("href") || (t.parentNode.getAttribute && t.parentNode.getAttribute("href") ) ;
-  if(!h || h.startsWith("data:")){ return } //no link
-  //goo!
-  window.MDS.go( h );
-  console.log("link clicked" , h);
-  evt.preventDefault();
-  evt.stopPropagation();
+    const t = evt.target;
 
-}
+    const h =t.getAttribute("href") || (t.parentNode.getAttribute && t.parentNode.getAttribute("href") ) ;
+    if(!h || h.startsWith("data:")){ return } //no link
+    //goo!
+    window.MDS.go( h );
+    console.log("link clicked" , h);
+    evt.preventDefault();
+    evt.stopPropagation();
 
-window.addEventListener("DOMContentLoaded", startSite);
-window.addEventListener("click", detectClicks);
-window.addEventListener("popstate" , (s)=>{if(s){ window.MDS.showPath(s.state ) } });
-window.addEventListener("hashchange" , ()=>{window.MDS.go(window.location.hash.substring(2) )  });
-window.addEventListener("error", (e)=>console.log("Error in window" , e))
-window.addEventListener("blur", (e)=>console.log("Window blur" ,e))
-window.addEventListener("focus", (e)=>console.log("Window focus" ,e))
+  }
+  function restoreState(s){
+    if(!s.state.isMMDSstate){ return }
+    window.MDS.showPath(s.state.path ) ;
+  }  
+  function syncHash(){
+    window.MDS.go(window.location.hash.substring(2) );
+    }
+
+    window.document.addEventListener("click", detectClicks);
+    window.addEventListener("popstate" , restoreState );
+    window.addEventListener("hashchange" ,   syncHash);
+
+    window.MDS.cleanUp = ()=>{
+
+      // window.removeEventListener("click", detectClicks);
+      window.removeEventListener("popstate" , restoreState );
+      // window.removeEventListener("hashchange" ,   syncHash);
+      window.removeEventListener("DOMContentLoaded", startSite);
+      // delete(window.MDS);
+    }
+
+  }
+    window.addEventListener("DOMContentLoaded", startSite);
+
 
