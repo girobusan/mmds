@@ -71,6 +71,9 @@ window.MDS = {
   //force reload current file from server
   reload(){
      window.MDS.showPath(window.MDS.current.path , {cache: "reload"});
+     if(window.MDS.current.path===window.MDS.settings.menuFile){
+        window.MDS.action.setMenu(window.MDS.settings.menuFile , {cache:"reload"});
+     }
   },
 
   //show given content
@@ -135,11 +138,11 @@ window.MDS = {
       saveToDisk(window.MDS.current.path, window.MDS.current.content.markdown)
 
     },
-    setMenu: (p)=>{
+    setMenu: (p , fetchOptions)=>{
 
       const sidebarNode = document.getElementById("menu");
       if(!p){ return };
-      getContent(window.MDS.makePath(window.MDS.settings.menuFile))
+      getContent(window.MDS.makePath(window.MDS.settings.menuFile) , fetchOptions)
       .then(r=>{sidebarNode.innerHTML=r.html; window.MDS.refresh()})
     .catch( e=>console.log( "no sidebar" ,e ))
 
