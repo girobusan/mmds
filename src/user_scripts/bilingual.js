@@ -17,9 +17,9 @@ menu.cv.md - navigation in Chuvash
 
 */
 //API
-window.MDS.usr.bilingual = {
+window.MMDS.usr.bilingual = {
   changeLang(p,lang){
-    const B = window.MDS.usr.bilingual;
+    const B = window.MMDS.usr.bilingual;
     if(!B.extractLang(p)){return p}
     // console.log("replace to" , lang);
     return p.replace( /\.([a-z]{1,3})\.([a-z]+)$/i , "." + lang + ".$2"   )
@@ -31,26 +31,26 @@ window.MDS.usr.bilingual = {
     return findLang[1];
   },
   switchTo: (lc)=>{
-    const B = window.MDS.usr.bilingual;
+    const B = window.MMDS.usr.bilingual;
     const cp = window.location.hash.substring(2);
     console.log("switch to" ,  B.changeLang(cp, lc));
-    window.MDS.go(B.changeLang(cp, lc));
+    window.MMDS.go(B.changeLang(cp, lc));
   }
 }
 
 //Sidebar must follow main document language
 
-window.MDS.addUpdater( (p,c)=>{
-  const B = window.MDS.usr.bilingual;
-  const sbL = B.extractLang( window.MDS.settings.menuFile );
+window.MMDS.addUpdater( (p,c)=>{
+  const B = window.MMDS.usr.bilingual;
+  const sbL = B.extractLang( window.MMDS.settings.menuFile );
   const pathL= B.extractLang( p );
   console.log("We're inside Bilingual updater" , sbL , pathL);
   if(sbL === pathL || !pathL){return}
   //change menufile
-  const newM = B.changeLang( window.MDS.settings.menuFile , pathL );
-  window.MDS.settings.menuFile = newM;
+  const newM = B.changeLang( window.MMDS.settings.menuFile , pathL );
+  window.MMDS.settings.menuFile = newM;
   //force load menufile
-  window.MDS.action.setMenu(newM);
+  window.MMDS.action.setMenu(newM);
   //update langswitch if prsent
   var langSwitchContainer = document.querySelector("#langSwitch");
   if(langSwitchContainer){
@@ -67,7 +67,7 @@ window.MDS.addUpdater( (p,c)=>{
 } )
 //Create switcher
 console.info("Bilingual user script")
-window.MDS.once(function(mds)
+window.MMDS.once(function(mds)
   {
     const B = mds.usr.bilingual;
     // console.log("lang switch!")
@@ -81,7 +81,7 @@ window.MDS.once(function(mds)
         e.innerHTML = l;
         e.setAttribute("class", l)
         // e.setAttribute("href", )
-        e.addEventListener("click", ()=>{window.MDS.usr.bilingual.switchTo(l)  })
+        e.addEventListener("click", ()=>{window.MMDS.usr.bilingual.switchTo(l)  })
         langSwitchContainer.appendChild(e);
       } )
     }

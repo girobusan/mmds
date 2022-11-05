@@ -9,7 +9,7 @@ current page.
 console.info("Current Link user script");
 function checkIfCurrentLink(p,c){
    console.log("check if current link" , p );
-  if(!p){ p = window.MDS.current.path }
+  if(!p){ p = window.MMDS.current.path }
    var lnks = document.querySelectorAll("a");
    lnks.forEach(
      l=>{
@@ -24,4 +24,4 @@ function checkIfCurrentLink(p,c){
    )  
 }
 
-window.MDS.addUpdater( checkIfCurrentLink );
+window.MMDS.addUpdater( checkIfCurrentLink );

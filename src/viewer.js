@@ -5,7 +5,8 @@ import { JustView} from "./components/JustView"
 import {saveToDisk} from "./fileops";
 
 
-window.MDS = {
+window.MMDS = {
+  version: VERSION,
   usr: {},
   editMode: false,
   current: null,
@@ -31,7 +32,7 @@ window.MDS = {
   },
 
   makePath: function(fn){
-    const dp = window.MDS.settings.mdDir ;
+    const dp = window.MMDS.settings.mdDir ;
     return dp ? dp + "" + fn : fn;
   },
 
@@ -39,18 +40,18 @@ window.MDS = {
   updaters: {},
   updID: 1,
   addUpdater : function(f){
-    const id =  window.MDS.updID
-    window.MDS.updaters[id] =  f;
-    window.MDS.updID++;
+    const id =  window.MMDS.updID
+    window.MMDS.updaters[id] =  f;
+    window.MMDS.updID++;
     return id;
   },
   removeUpdater : function(id){
-   delete(window.MDS.updaters[id]);
+   delete(window.MMDS.updaters[id]);
   },
 
   //run given function once
   once(f){
-     f(window.MDS);
+     f(window.MMDS);
   },
 
   //run given function once WHEN window become active
@@ -60,42 +61,42 @@ window.MDS = {
     },
 
   updateViews : function(path,content){
-    Object.values(window.MDS.updaters).forEach(f=>f(path,content));
+    Object.values(window.MMDS.updaters).forEach(f=>f(path,content));
   },
 
   //re-run view updaters
   refresh(){
-     window.MDS.updateViews(window.MDS.current.path,window.MDS.current.content);
+     window.MMDS.updateViews(window.MMDS.current.path,window.MMDS.current.content);
   },
 
   //force reload current file from server
   reload(){
-     window.MDS.showPath(window.MDS.current.path , {cache: "reload"});
-     if(window.MDS.current.path===window.MDS.settings.menuFile){
-        window.MDS.action.setMenu(window.MDS.settings.menuFile , {cache:"reload"});
+     window.MMDS.showPath(window.MMDS.current.path , {cache: "reload"});
+     if(window.MMDS.current.path===window.MMDS.settings.menuFile){
+        window.MMDS.action.setMenu(window.MMDS.settings.menuFile , {cache:"reload"});
      }
   },
 
   //show given content
   showContent: function(p,c){ //show page
      // console.info("Showing" , p)
-     window.MDS.current = { path: p , content: c , saved: true }
-     if(!window.MDS.editMode){ window.scrollTo(0,0) } 
-     window.MDS.updateViews(p,c);
+     window.MMDS.current = { path: p , content: c , saved: true }
+     if(!window.MMDS.editMode){ window.scrollTo(0,0) } 
+     window.MMDS.updateViews(p,c);
   },
 
   //show content of the file by given path
   showPath: function(p , fetchOpts){
   // console.log('showPath' , p);
     
-    const filePath = window.MDS.makePath(p || window.MDS.settings.indexFile);
+    const filePath = window.MMDS.makePath(p || window.MMDS.settings.indexFile);
     getContent(filePath, fetchOpts)
     .then(r=>{
-       window.MDS.showContent(p,r)
+       window.MMDS.showContent(p,r)
     })
     .catch(e=>{
       console.info("No such file" , filePath , e);
-       window.MDS.showContent( p , MDS.page404(p) );
+       window.MMDS.showContent( p , MMDS.page404(p) );
     })
   },
 
@@ -106,18 +107,18 @@ window.MDS = {
      ( !p.match(/\.(md|markdown)$/i) )  || //does not end with md extension
        p.match(/\#/) //contains hash
      ){
-         window.MDS.cleanUp();
+         window.MMDS.cleanUp();
          window.location = p;
          return; 
      }
       
      if(p){
-       window.MDS.showPath( p );
-       history.pushState({ path: p , isMMDSstate:true } , null , "#!"+p) ; //no URL here
+       window.MMDS.showPath( p );
+       history.pushState({ path: p , isMMMDSstate:true } , null , "#!"+p) ; //no URL here
     //handle empty path (=>indexFile)
      }else{
-       window.MDS.showPath( window.MDS.settings.indexFile );
-       history.pushState({ path: window.MDS.settings.indexFile , isMMDSstate:true } , null , "#!"+window.MDS.settings.indexFile) ; 
+       window.MMDS.showPath( window.MMDS.settings.indexFile );
+       history.pushState({ path: window.MMDS.settings.indexFile , isMMMDSstate:true } , null , "#!"+window.MMDS.settings.indexFile) ; 
 
      }
   },
@@ -125,25 +126,25 @@ window.MDS = {
   //basic app actions
   action: {
 
-    // window.MDS.go, //must be moved here
+    // window.MMDS.go, //must be moved here
 
     edit: ()=>{
-      window.MDS.editMode = true;
+      window.MMDS.editMode = true;
       const s = document.createElement("script");
-      s.src= window.MDS.settings.editorScript;
+      s.src= window.MMDS.settings.editorScript;
       document.body.appendChild(s)
     },
     save: ()=>{
       console.info("Saving without editing")  ;
-      saveToDisk(window.MDS.current.path, window.MDS.current.content.markdown)
+      saveToDisk(window.MMDS.current.path, window.MMDS.current.content.markdown)
 
     },
     setMenu: (p , fetchOptions)=>{
 
       const sidebarNode = document.getElementById("menu");
       if(!p){ return };
-      getContent(window.MDS.makePath(window.MDS.settings.menuFile) , fetchOptions)
-      .then(r=>{sidebarNode.innerHTML=r.html; window.MDS.refresh()})
+      getContent(window.MMDS.makePath(window.MMDS.settings.menuFile) , fetchOptions)
+      .then(r=>{sidebarNode.innerHTML=r.html; window.MMDS.refresh()})
     .catch( e=>console.log( "no sidebar" ,e ))
 
     }
@@ -155,7 +156,7 @@ window.MDS = {
 
 async function startSite(){
   console.info("My Markdown Site, version" , VERSION);
-  const MDS = window.MDS;
+  const MMDS = window.MMDS;
   
   //read settings
   const sjr = await fetch("settings.json")
@@ -163,8 +164,8 @@ async function startSite(){
 
   const settingsJSON =sjr&&( sjr.status=='200' ) ? await sjr.json() :  ""
   const userSettings = settingsJSON || window.settings ;
-  const settings =  userSettings ? Object.assign(MDS.settings , userSettings) : MDS.settings ;
-  MDS.settings = settings;
+  const settings =  userSettings ? Object.assign(MMDS.settings , userSettings) : MMDS.settings ;
+  MMDS.settings = settings;
   // console.log("settings" , settings)
   
   //find  required DOM nodes
@@ -174,27 +175,27 @@ async function startSite(){
   //add menu
   if(sidebarNode)
   {
-    getContent(MDS.makePath(MDS.settings.menuFile))
+    getContent(MMDS.makePath(MMDS.settings.menuFile))
     .then(r=>{sidebarNode.innerHTML=r.html})
   .catch( e=>console.log( "no sidebar" ,e ))
   }
   //
   //load custom scripts
-  window.MDS.settings.scripts.forEach( (s , i)=>{
+  window.MMDS.settings.scripts.forEach( (s , i)=>{
     const sc = document.createElement("script") ;
-    sc.setAttribute("src", MDS.settings.userScriptsPath + s);
+    sc.setAttribute("src", MMDS.settings.userScriptsPath + s);
     console.info(i , "Loading user script:" , s);
     document.head.appendChild(sc);
   } )
 
   //let window title follow document header
-  MDS.addUpdater((p,c)=>{
+  MMDS.addUpdater((p,c)=>{
     const ttr = /<h1>(.*?)<\/h1>/i ;
     const ttext = c.html.match(ttr) ;
     if(ttext){
       window.document.title = ttext[1].replace(/<[^>]+>/g , "") 
     }else{
-      window.document.title = MDS.settings.title + ": " + p;
+      window.document.title = MMDS.settings.title + ": " + p;
     }
 
   })
@@ -202,16 +203,16 @@ async function startSite(){
   //add and show content
   if(contentNode){
     // console.log("Content node found")
-    const JV = h(JustView , {base: MDS.settings.mdDir})
+    const JV = h(JustView , {base: MMDS.settings.mdDir})
     render( JV, contentNode )
     //
     //find and display start location
     if(window.location.hash){
-      history.replaceState( { path: window.location.hash.substring(2) , isMMDSstate: true} , null  );
-      MDS.showPath(window.location.hash.substring(2))
+      history.replaceState( { path: window.location.hash.substring(2) , isMMMDSstate: true} , null  );
+      MMDS.showPath(window.location.hash.substring(2))
     }else{
-      history.replaceState({ path: window.MDS.settings.indexFile , isMMDSstate:true } , null , "#!"+window.MDS.settings.indexFile) ; 
-      MDS.showPath(MDS.settings.indexFile)
+      history.replaceState({ path: window.MMDS.settings.indexFile , isMMMDSstate:true } , null , "#!"+window.MMDS.settings.indexFile) ; 
+      MMDS.showPath(MMDS.settings.indexFile)
     }
   }else{
     console.error("Content node not found")
@@ -225,7 +226,7 @@ async function startSite(){
     const h =t.getAttribute("href") || (t.parentNode.getAttribute && t.parentNode.getAttribute("href") ) ;
     if(!h || h.startsWith("data:")){ return } //no link
     //goo!
-    window.MDS.go( h );
+    window.MMDS.go( h );
     console.log("link clicked" , h);
     evt.preventDefault();
     evt.stopPropagation();
@@ -233,19 +234,19 @@ async function startSite(){
   }
   function restoreState(s){
      console.log("restoring state...");
-    if(!s.state.isMMDSstate){ return }  // we restore only MMDS states
-    window.MDS.showPath(s.state.path ) ;
+    if(!s.state.isMMMDSstate){ return }  // we restore only MMMDS states
+    window.MMDS.showPath(s.state.path ) ;
   }  
   function syncHash(){
      console.log("hash changed...")
-    window.MDS.go(window.location.hash.substring(2) );
+    window.MMDS.go(window.location.hash.substring(2) );
     }
 
     window.document.addEventListener("click", detectClicks);
     // window.addEventListener("popstate" , restoreState );
     window.addEventListener("hashchange" ,   syncHash);
 
-    window.MDS.cleanUp = ()=>{
+    window.MMDS.cleanUp = ()=>{
        console.log("removing listeners...")
       // window.removeEventListener("popstate" , restoreState );
       window.removeEventListener("DOMContentLoaded", startSite);

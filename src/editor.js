@@ -4,13 +4,13 @@ import {h,Component , createRef , render} from "preact";
 import { getContent } from "./mdops";
 import { ViewEdit } from "./components/ViewEdit"
 
-console.log("MMDS editor, version" , VERSION);
+console.log("MMMDS editor, version" , VERSION);
 
 const container = document.getElementById("content");
 const editor = h(ViewEdit , {
-   base:window.MDS.settings.mdDir ,
-   path: window.MDS.current.path || "",
-   content: window.MDS.current.content
+   base:window.MMDS.settings.mdDir ,
+   path: window.MMDS.current.path || "",
+   content: window.MMDS.current.content
    })
 
 

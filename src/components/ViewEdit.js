@@ -10,7 +10,7 @@ import { saveToDisk } from "../fileops";
 require("easymde/dist/easymde.min.css");
 require("./viewedit.scss");
 
-const MDS = window.MDS;
+const MMDS = window.MMDS;
 
 export class ViewEdit extends Component{
   constructor(props){
@@ -25,20 +25,20 @@ export class ViewEdit extends Component{
       path: this.props.path
   }};
   componentWillMount(){
-    MDS.action.edit = ()=>{ 
+    MMDS.action.edit = ()=>{ 
     // console.log("new and improved function")
-    MDS.editMode = !MDS.editMode 
-    this.setState({editMode: MDS.editMode})
+    MMDS.editMode = !MMDS.editMode 
+    this.setState({editMode: MMDS.editMode})
     };
-    MDS.action.save = ()=>{
+    MMDS.action.save = ()=>{
        console.info("Saving from editor");
        saveToDisk( this.state.path, this.easyMDE.value());
        this.saved(this.state.path);
-       MDS.whenActive( MDS.reload );
+       MMDS.whenActive( MMDS.reload );
 
     }
 
-    MDS.addUpdater(this.updater);
+    MMDS.addUpdater(this.updater);
   }
   componentDidUpdate(){
     if(this.easyMDE){
@@ -64,7 +64,7 @@ export class ViewEdit extends Component{
   }
 
   updater(p,c){
-    console.log("mds editmode" , MDS.editMode);
+    console.log("mds editmode" , MMDS.editMode);
     this.setState({content: c , path: p}) 
     // if(this.easyMDE){
     //    console.log("Update editor content...")
@@ -77,13 +77,13 @@ export class ViewEdit extends Component{
      <${ If } condition=${this.isEdited(this.state.path)}> 
      <small class="notSavedWarning">${this.state.path} has unsaved changes</small>
      </${ If }>
-     <div class=${"editorContainer " + (MDS.editMode ? "" : "hidden")}>
+     <div class=${"editorContainer " + (MMDS.editMode ? "" : "hidden")}>
      <textarea 
      class="editorArea"
      ref=${this.mdEditorNode}>
      </textarea>
      </div>
-     <${If} condition=${!MDS.editMode}>
+     <${If} condition=${!MMDS.editMode}>
     <div class="text" 
     ref=${this.text}
     dangerouslySetInnerHTML=${{ __html:this.checkContent(this.state.path, this.state.content).html }} >
@@ -132,7 +132,7 @@ export class ViewEdit extends Component{
           {
               name: "export",
               action: ()=>{
-                  window.MDS.action.save();
+                  window.MMDS.action.save();
                 },
                 className: "fa fa-save no-disable",
                 title: "Save"

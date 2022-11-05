@@ -1,5 +1,4 @@
 import {Component , createRef } from "preact";
-// import { useRef } from "preact/hooks";
 import {html} from "htm/preact";
 import {ActionRow} from "./ActionRow";
 
@@ -13,12 +12,12 @@ export class JustView extends Component{
   this.updater = this.updater.bind(this);
   this.text = createRef();
   //??
-  this.updaterRef = window.MDS.addUpdater(this.updater);
+  this.updaterRef = window.MMDS.addUpdater(this.updater);
   }
 
   componentWillUnmount(){
     console.info("removing JustView component");
-    window.MDS.removeUpdater(this.updaterRef);
+    window.MMDS.removeUpdater(this.updaterRef);
   }
   updater(p,c){
      // console.log("JustView updated");
