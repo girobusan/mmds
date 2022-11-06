@@ -31,6 +31,18 @@ window.MMDS = {
     }
   },
 
+  errorPage: function(p , errCode){
+     console.info("Error" , errCode )
+    if(errCode==404){
+      return window.MMDS.page404(p);
+    }
+
+    return {
+      html: "<h1>Fatal error</h1><p>Network down or host unreachable</p>",
+      markdown: ""
+    }
+  },
+
   makePath: function(fn){
     const dp = window.MMDS.settings.mdDir ;
     return dp ? dp + "" + fn : fn;
@@ -92,6 +104,11 @@ window.MMDS = {
     const filePath = window.MMDS.makePath(p || window.MMDS.settings.indexFile);
     getContent(filePath, fetchOpts)
     .then(r=>{
+       if(r.error){ console.info("Error" , r.error) ;
+         
+         window.MMDS.showContent( p , MMDS.errorPage(p , r.error ) );
+         return;
+       }
        window.MMDS.showContent(p,r)
     })
     .catch(e=>{

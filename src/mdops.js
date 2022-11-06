@@ -18,13 +18,16 @@ var md = require('markdown-it')({
 //
 export function getFile(p , fetchOpts){
    const fo = fetchOpts || {} ;
-   console.log("fetch with" , fo)
+   // console.log("fetch with" , fo)
   return fetch(p , fo)
   .then(r=>{
+     // console.log("request" , r )
     if(r.ok){ return r.text() }
-    throw new Error("no file");
+    return {error: r.status , html: "Error " + r.status , markdown: "Error " + r.status} 
   })
-  // .catch(e=>console.log(e));
+  .catch(e=>{ console.log("request failed" , e) ;
+      return { error: "Request failed" , html: "Error" , markdown: "error"  }
+    });
 }
 
 export function getContent(p, fetchOpts){
@@ -32,6 +35,7 @@ export function getContent(p, fetchOpts){
   return getFile(p, fetchOpts)
   .then(r=>{
     // console.log("r is" ,r)
+     if(r.error){ return r }
     
     return { 
       markdown: r ,

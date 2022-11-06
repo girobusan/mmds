@@ -8,7 +8,7 @@ current page.
 */
 console.info("Current Link user script");
 function checkIfCurrentLink(p,c){
-   console.log("check if current link" , p );
+   // console.log("check if current link" , p );
   if(!p){ p = window.MMDS.current.path }
    var lnks = document.querySelectorAll("a");
    lnks.forEach(

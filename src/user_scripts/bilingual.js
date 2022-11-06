@@ -44,7 +44,7 @@ window.MMDS.addUpdater( (p,c)=>{
   const B = window.MMDS.usr.bilingual;
   const sbL = B.extractLang( window.MMDS.settings.menuFile );
   const pathL= B.extractLang( p );
-  console.log("We're inside Bilingual updater" , sbL , pathL);
+  // console.log("We're inside Bilingual updater" , sbL , pathL);
   if(sbL === pathL || !pathL){return}
   //change menufile
   const newM = B.changeLang( window.MMDS.settings.menuFile , pathL );
