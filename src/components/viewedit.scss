@@ -1,3 +1,5 @@
+@use "_normalize";
+
 .ViewEdit{
   position: relative;
   .editor-toolbar{
@@ -15,6 +17,10 @@
   }
   .editorContainer{
     // all: initial;
+    .CodeMirror-scroll{
+      all: initial !important;
+      @include normalize.normalize;
+    }
     padding: 16px;
     // position: static;
 
