@@ -32,9 +32,15 @@ window.MMDS = {
   },
 
   errorPage: function(p , errCode){
-     console.info("Error" , errCode )
-    if(errCode==404){
+    console.info("Error" , errCode )
+    if(errCode===404){
       return window.MMDS.page404(p);
+    }
+    if(typeof(errCode)==='number'){
+      return {
+          html: "<h1>Error " + errCode + "</h1><p>Something went wrong</p>",
+          markdown: ""
+      }
     }
 
     return {
@@ -45,7 +51,7 @@ window.MMDS = {
 
   makePath: function(fn){
     const dp = window.MMDS.settings.mdDir ;
-    return dp ? dp + "" + fn : fn;
+    return dp ? dp + fn : fn;
   },
 
   //View updaters 
@@ -58,19 +64,19 @@ window.MMDS = {
     return id;
   },
   removeUpdater : function(id){
-   delete(window.MMDS.updaters[id]);
+    delete(window.MMDS.updaters[id]);
   },
 
   //run given function once
   once(f){
-     f(window.MMDS);
+    f(window.MMDS);
   },
 
   //run given function once WHEN window become active
   whenActive(f){
     const handler = function(){ f(); window.removeEventListener("focus" , this) }
-       window.addEventListener("focus", handler) ;
-    },
+    window.addEventListener("focus", handler) ;
+  },
 
   updateViews : function(path,content){
     Object.values(window.MMDS.updaters).forEach(f=>f(path,content));
@@ -78,66 +84,66 @@ window.MMDS = {
 
   //re-run view updaters
   refresh(){
-     window.MMDS.updateViews(window.MMDS.current.path,window.MMDS.current.content);
+    window.MMDS.updateViews(window.MMDS.current.path,window.MMDS.current.content);
   },
 
   //force reload current file from server
   reload(){
-     window.MMDS.showPath(window.MMDS.current.path , {cache: "reload"});
-     if(window.MMDS.current.path===window.MMDS.settings.menuFile){
-        window.MMDS.action.setMenu(window.MMDS.settings.menuFile , {cache:"reload"});
-     }
+    window.MMDS.showPath(window.MMDS.current.path , {cache: "reload"});
+    if(window.MMDS.current.path===window.MMDS.settings.menuFile){
+      window.MMDS.action.setMenu(window.MMDS.settings.menuFile , {cache:"reload"});
+    }
   },
 
   //show given content
   showContent: function(p,c){ //show page
-     // console.info("Showing" , p)
-     window.MMDS.current = { path: p , content: c , saved: true }
-     if(!window.MMDS.editMode){ window.scrollTo(0,0) } 
-     window.MMDS.updateViews(p,c);
+    // console.info("Showing" , p)
+    window.MMDS.current = { path: p , content: c , saved: true }
+    if(!window.MMDS.editMode){ window.scrollTo(0,0) } 
+    window.MMDS.updateViews(p,c);
   },
 
   //show content of the file by given path
   showPath: function(p , fetchOpts){
-  // console.log('showPath' , p);
-    
+    // console.log('showPath' , p);
+
     const filePath = window.MMDS.makePath(p || window.MMDS.settings.indexFile);
     getContent(filePath, fetchOpts)
     .then(r=>{
-       if(r.error){ console.info("Error" , r.error) ;
-         
-         window.MMDS.showContent( p , MMDS.errorPage(p , r.error ) );
-         return;
-       }
-       window.MMDS.showContent(p,r)
+      if(r.error){ console.info("Error" , r.error) ;
+
+        window.MMDS.showContent( p , MMDS.errorPage(p , r.error ) );
+        return;
+      }
+      window.MMDS.showContent(p,r)
     })
     .catch(e=>{
       console.info("No such file" , filePath , e);
-       window.MMDS.showContent( p , MMDS.page404(p) );
+      window.MMDS.showContent( p , MMDS.page404(p) );
     })
   },
 
   //go to location 
   go: function(p){ //go to the location
-     //check and handle external links
-     if(( p.match(/^( http|ftp )(s)?\:/i) ) ||  //starts with http
-     ( !p.match(/\.(md|markdown)$/i) )  || //does not end with md extension
-       p.match(/\#/) //contains hash
-     ){
-         window.MMDS.cleanUp();
-         window.location = p;
-         return; 
-     }
-      
-     if(p){
-       window.MMDS.showPath( p );
-       history.pushState({ path: p , isMMMDSstate:true } , null , "#!"+p) ; //no URL here
-    //handle empty path (=>indexFile)
-     }else{
-       window.MMDS.showPath( window.MMDS.settings.indexFile );
-       history.pushState({ path: window.MMDS.settings.indexFile , isMMMDSstate:true } , null , "#!"+window.MMDS.settings.indexFile) ; 
+    //check and handle external links
+    if(( p.match(/^( http|ftp )(s)?\:/i) ) ||  //starts with http
+    ( !p.match(/\.(md|markdown)$/i) )  || //does not end with md extension
+    p.match(/\#/) //contains hash
+    ){
+      window.MMDS.cleanUp();
+      window.location = p;
+      return; 
+    }
 
-     }
+    if(p){
+      window.MMDS.showPath( p );
+      history.pushState({ path: p , isMMMDSstate:true } , null , "#!"+p) ; //no URL here
+      //handle empty path (=>indexFile)
+    }else{
+      window.MMDS.showPath( window.MMDS.settings.indexFile );
+      history.pushState({ path: window.MMDS.settings.indexFile , isMMMDSstate:true } , null , "#!"+window.MMDS.settings.indexFile) ; 
+
+    }
   },
 
   //basic app actions
