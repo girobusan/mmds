@@ -5,14 +5,15 @@ import { JustView} from "./components/JustView"
 import {saveToDisk} from "./fileops";
 
 
-window.MMDS = {
-  version: VERSION,
-  usr: {},
-  editMode: false,
-  current: null,
+window.MMDS = new function(){
+  var my = this;
+  this.version= VERSION;
+  this.usr= {};
+  this.editMode= false;
+  this.current= null;
 
   //default settings
-  settings: {
+  this.settings= {
     "title": "MD Site",
     "mdDir": "md/",
     "indexFile": "index.md",
@@ -22,24 +23,25 @@ window.MMDS = {
     "hideEditor": false,
     "userScriptsPath" : "",
     "usr" : {}
-  },
+  };
 
-  page404:  function(l){
+  this.page404 =  function(l){
     return{
       html: `<h1>${l}</h1><p>This page is not created yet. Click "edit" to create it.</p>`,
       markdown: ""
     }
   },
 
-  errorPage: function(p , errCode){
-    console.info("Error" , errCode )
+  this.errorPage = (p , errCode) =>{
+    console.info("Error: " , errCode )
+
     if(errCode===404){
-      return window.MMDS.page404(p);
+      return this.page404(p);
     }
     if(typeof(errCode)==='number'){
       return {
-          html: "<h1>Error " + errCode + "</h1><p>Something went wrong</p>",
-          markdown: ""
+        html: "<h1>Error " + errCode + "</h1><p>Something went wrong</p>",
+        markdown: ""
       }
     }
 
@@ -47,127 +49,152 @@ window.MMDS = {
       html: "<h1>Fatal error</h1><p>Network down or host unreachable</p>",
       markdown: ""
     }
-  },
+  };
 
-  makePath: function(fn){
+  this.makePath= (fn)=>{
     const dp = window.MMDS.settings.mdDir ;
     return dp ? dp + fn : fn;
-  },
+  };
 
   //View updaters 
-  updaters: {},
-  updID: 1,
-  addUpdater : function(f){
-    const id =  window.MMDS.updID
-    window.MMDS.updaters[id] =  f;
-    window.MMDS.updID++;
-    return id;
-  },
-  removeUpdater : function(id){
-    delete(window.MMDS.updaters[id]);
-  },
+  this._updaters= {};
+  this._handlers= {};
+  var updID =  1;
+  this.addUpdater = (f)=>{
+    updID++;
+    this._updaters[updID] =  f;
+    return updID;
+  };
+  this.removeUpdater = (id)=>{
+    delete(my._updaters[id]);
+  };
 
-  //run given function once
-  once(f){
-    f(window.MMDS);
-  },
+  this.on = (evtID , f)=>{
+    console.log("setting listener" , evtID)
+    // const mmds = window.MMDS;
+    updID+=1;
+    if(!this._handlers[evtID]){ this._handlers[evtID] = {} };
+    this._handlers[evtID][updID] = f;
+    return updID;
+  };
 
-  //run given function once WHEN window become active
-  whenActive(f){
-    const handler = function(){ f(); window.removeEventListener("focus" , this) }
-    window.addEventListener("focus", handler) ;
-  },
-
-  updateViews : function(path,content){
-    Object.values(window.MMDS.updaters).forEach(f=>f(path,content));
-  },
-
-  //re-run view updaters
-  refresh(){
-    window.MMDS.updateViews(window.MMDS.current.path,window.MMDS.current.content);
-  },
-
-  //force reload current file from server
-  reload(){
-    window.MMDS.showPath(window.MMDS.current.path , {cache: "reload"});
-    if(window.MMDS.current.path===window.MMDS.settings.menuFile){
-      window.MMDS.action.setMenu(window.MMDS.settings.menuFile , {cache:"reload"});
+  this.off = (evtID , handlerID)=>{
+    try{
+      delete(this._handlers[evtID][handlerID]);
+    }catch{
+      console.error("Can not delete handler" , handlerID , "for" , evtID);
     }
   },
 
+  this.fire = (evtID , evtArgs)=>{
+    console.log("firing" , evtID );
+    if(!this._handlers[evtID] ){return};
+    Object.values( this._handlers[evtID] ) 
+    .forEach( ff=>ff(evtArgs) )
+    ;
+  };
+
+  //run given function once
+  this.once = (f)=>{
+    f(this);
+  },
+
+  //run given function once WHEN window become active
+  this.whenActive = (f)=>{
+    const handler = function(){ f(my); window.removeEventListener("focus" , this) }
+    window.addEventListener("focus", handler) ;
+  };
+
+  this.updateViews = (path,content)=>{
+    Object.values(this._updaters).forEach(f=>f(path,content));
+  },
+
+  //re-run view updaters
+  this.refresh = ()=>{
+    this.updateViews(this.current.path , this.current.content);
+  };
+
+  //force reload current file from server
+  this.reload = ()=>{
+    this.showPath(this.current.path , {cache: "reload"});
+    if(this.current.path===this.settings.menuFile){
+      this.action.setMenu(this.settings.menuFile , {cache:"reload"});
+    }
+  };
+
   //show given content
-  showContent: function(p,c){ //show page
+  this.showContent= (p,c)=>{ //show page
     // console.info("Showing" , p)
-    window.MMDS.current = { path: p , content: c , saved: true }
-    if(!window.MMDS.editMode){ window.scrollTo(0,0) } 
-    window.MMDS.updateViews(p,c);
+    this.current = { path: p , content: c , saved: true }
+    if(!this.editMode){ window.scrollTo(0,0) } 
+    this.updateViews(p,c);
+    this.fire("ready");
   },
 
   //show content of the file by given path
-  showPath: function(p , fetchOpts){
+  this.showPath = (p , fetchOpts)=>{
     // console.log('showPath' , p);
 
-    const filePath = window.MMDS.makePath(p || window.MMDS.settings.indexFile);
-    getContent(filePath, fetchOpts)
+    const filePath = this.makePath(p || this.settings.indexFile);
+    return getContent(filePath, fetchOpts)
     .then(r=>{
       if(r.error){ console.info("Error" , r.error) ;
 
-        window.MMDS.showContent( p , MMDS.errorPage(p , r.error ) );
+        this.showContent( p , this.errorPage(p , r.error ) );
         return;
       }
-      window.MMDS.showContent(p,r)
+      this.showContent(p,r)
     })
     .catch(e=>{
       console.info("No such file" , filePath , e);
-      window.MMDS.showContent( p , MMDS.page404(p) );
+      this.showContent( p , this.page404(p) );
     })
   },
 
   //go to location 
-  go: function(p){ //go to the location
+  this.go =  (p)=>{ //go to the location
     //check and handle external links
     if(( p.match(/^( http|ftp )(s)?\:/i) ) ||  //starts with http
     ( !p.match(/\.(md|markdown)$/i) )  || //does not end with md extension
     p.match(/\#/) //contains hash
     ){
-      window.MMDS.cleanUp();
+      this.cleanUp();
       window.location = p;
       return; 
     }
 
     if(p){
-      window.MMDS.showPath( p );
+      this.showPath( p );
       history.pushState({ path: p , isMMMDSstate:true } , null , "#!"+p) ; //no URL here
       //handle empty path (=>indexFile)
     }else{
-      window.MMDS.showPath( window.MMDS.settings.indexFile );
-      history.pushState({ path: window.MMDS.settings.indexFile , isMMMDSstate:true } , null , "#!"+window.MMDS.settings.indexFile) ; 
+      this.showPath( this.settings.indexFile );
+      history.pushState({ path: this.settings.indexFile , isMMMDSstate:true } , null , "#!"+this.settings.indexFile) ; 
 
     }
   },
 
   //basic app actions
-  action: {
+  this.action = {
 
-    // window.MMDS.go, //must be moved here
 
     edit: ()=>{
-      window.MMDS.editMode = true;
+      this.editMode = true;
       const s = document.createElement("script");
-      s.src= window.MMDS.settings.editorScript;
+      s.src= this.settings.editorScript;
       document.body.appendChild(s)
     },
     save: ()=>{
       console.info("Saving without editing")  ;
-      saveToDisk(window.MMDS.current.path, window.MMDS.current.content.markdown)
+      saveToDisk(this.current.path, this.current.content.markdown)
 
     },
     setMenu: (p , fetchOptions)=>{
 
       const sidebarNode = document.getElementById("menu");
       if(!p){ return };
-      getContent(window.MMDS.makePath(window.MMDS.settings.menuFile) , fetchOptions)
-      .then(r=>{sidebarNode.innerHTML=r.html; window.MMDS.refresh()})
+      getContent(this.makePath(this.settings.menuFile) , fetchOptions)
+      .then(r=>{sidebarNode.innerHTML=r.html; this.refresh()})
     .catch( e=>console.log( "no sidebar" ,e ))
 
     }
@@ -222,6 +249,8 @@ async function startSite(){
     }
 
   })
+
+  MMDS.on("ready" , ()=>console.log("ready fired"));
 
   //add and show content
   if(contentNode){

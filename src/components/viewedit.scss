@@ -18,8 +18,8 @@
   .editorContainer{
     // all: initial;
     .CodeMirror-scroll{
-      all: initial !important;
-      @include normalize.normalize;
+      // all: initial !important;
+      // @include normalize.normalize;
     }
     padding: 16px;
     // position: static;

@@ -13,6 +13,9 @@ each language, like:
 menu.ar.md - navigation in Arabic
 menu.cv.md - navigation in Chuvash
 
+Settings:
+settings.usr.bilingual.langs = "ru,es";
+
 
 
 */
@@ -42,6 +45,7 @@ window.MMDS.usr.bilingual = {
 
 window.MMDS.addUpdater( (p,c)=>{
   const B = window.MMDS.usr.bilingual;
+  
   const sbL = B.extractLang( window.MMDS.settings.menuFile );
   const pathL= B.extractLang( p );
   // console.log("We're inside Bilingual updater" , sbL , pathL);
@@ -70,16 +74,23 @@ console.info("Bilingual user script")
 window.MMDS.once(function(mds)
   {
     const B = mds.usr.bilingual;
-    // console.log("lang switch!")
+    const BS = mds.settings.usr.bilingual;
+    // console.log("lang switch!" , BS);
     var langSwitchContainer = document.querySelector("#langSwitch");
-    if(langSwitchContainer && langSwitchContainer.dataset.langs){
+
+    if(langSwitchContainer &&(BS || langSwitchContainer.dataset.langs)){
+      const langs = ( BS&&BS.langs ) || langSwitchContainer.dataset.langs;
+
       let currentLang = B.extractLang(window.location.hash.substring(2)) ;
       langSwitchContainer.setAttribute("class", currentLang);
-      let lng = langSwitchContainer.dataset.langs.split(",").map(e=>e.toLowerCase());
+      let lng = langs.split(",").map(e=>e.toLowerCase());
       lng.forEach( l=>{
         const e = document.createElement("a");
         e.innerHTML = l;
         e.setAttribute("class", l)
+        if(l==currentLang){
+           e.classList.add("currentLanguage");
+        }
         // e.setAttribute("href", )
         e.addEventListener("click", ()=>{window.MMDS.usr.bilingual.switchTo(l)  })
         langSwitchContainer.appendChild(e);
