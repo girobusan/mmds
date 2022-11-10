@@ -7,7 +7,7 @@
 Python 3:
 
 ```
-python3 -m http.server
+$ python3 -m http.server
 ```
 
 Или, если есть node.js (первая строчка устанавливает модуль, это надо сделать один раз):

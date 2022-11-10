@@ -1,18 +1,16 @@
  # Выделяем ссылку на текущий документ
 
 Удобно, когда ссылка в меню на текущий документ подсвечивается. Для этого достаточно загрузить пользовательский скрипт `currentpage.js`. 
+
+Для этого добавляем в `settings.json` параметр `scripts`, в котый вписываем массив путей до нужных нам скриптов. Скрипт `currentpage.js` должен уже быть в корне нашего сайта:
+
 ```
  {
    "title" : "My awesome site",
    "mdDir" : "docs/",
    "indexFile": "main.en.md",
    "menuFile": "sidebar.en.md",
-   "scripts" : ["bilingual.js" , "currentpage.js"],
-   "usr" : { "bilingual" : 
-	      {
-	         "langs" : "ru,en,es,ar"
-                }
-	  }
+   "scripts" : [ "currentpage.js"]   
  }
  
 ```
