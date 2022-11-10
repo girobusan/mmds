@@ -83,7 +83,8 @@ window.MMDS.once(function(mds)
 
       let currentLang = B.extractLang(window.location.hash.substring(2)) ;
       langSwitchContainer.setAttribute("class", currentLang);
-      let lng = langs.split(",").map(e=>e.toLowerCase());
+      let lng = langs.split(",").map(e=>e.toLowerCase()).map(g=>g.trim());
+
       lng.forEach( l=>{
         const e = document.createElement("a");
         e.innerHTML = l;

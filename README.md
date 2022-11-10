@@ -8,7 +8,7 @@
 
 * Direct links to pages
 * No restrictions on markdown content 
-* Renders `html` inside markdown
+* Renders HTML inside markdown
 * Fully client side 
 * Totally customizable design (html + css + JS API for custom scripts)
 * Light and fast 
