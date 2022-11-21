@@ -483,7 +483,7 @@ table {
 .text > p, .text > footer, .text > table {
   width: 55%;
 }
-@media (max-width: 800px) {
+@media (max-width: 760px) {
   .text > p, .text > footer, .text > table {
     width: 100%;
   }
@@ -494,6 +494,19 @@ table {
     opacity: 0.8;
   }
 }
+ul li {
+  list-style-type: none;
+  position: relative;
+}
+ul li::before {
+  content: ".";
+  position: absolute;
+  font-size: 1.5em;
+  font-weight: bold;
+  left: -0.6em;
+  top: -0.25em;
+}
+
 .ActionRow {
   padding-left: 0 !important;
 }

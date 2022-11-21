@@ -203,6 +203,18 @@ main #content a {
 main #content a:visited {
   color: #1a3ca2;
 }
+main #content ul li {
+  list-style-type: none;
+  position: relative;
+}
+main #content ul li::before {
+  content: ".";
+  position: absolute;
+  font-size: 1.5em;
+  font-weight: bold;
+  left: -0.6em;
+  top: -0.25em;
+}
 main #content table {
   font-size: 0.75rem;
   font-family: "PT Serif Caption", "PT Serif", Times, serif;

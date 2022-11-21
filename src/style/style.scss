@@ -219,6 +219,18 @@ main{
           color: darken(royalblue , 20%);
         }
       }
+      ul li{
+        list-style-type: none;
+        position: relative;
+        &::before{
+          content: ".";
+          position: absolute;
+          font-size: 1.5em;
+          font-weight: bold;
+          left: -0.6em;
+          top: -0.25em;
+        }
+}
       table{
         caption{
           text-align: left;
