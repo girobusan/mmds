@@ -1,0 +1,306 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code&family=PT+Serif+Caption:ital@0;1&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+body, html {
+  font-size: 18px;
+  line-height: 140%;
+  font-family: "PT Serif", "Times New Roman", Times, serif;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(255, 255, 250);
+  color: #333;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-items: stretch;
+}
+
+code {
+  font-family: "Fira Code", monospace;
+  font-weight: 400;
+  background-color: #efefef;
+  font-size: 0.85em;
+  line-height: 1em;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+pre {
+  display: block;
+  overflow: auto;
+  background-color: #efefef;
+  padding: 4px 8px !important;
+  border-radius: 4px;
+  margin: 2em auto;
+}
+pre code {
+  padding: 0;
+}
+
+blockquote {
+  font-size: 1.2rem;
+  line-height: 140%;
+  margin: 0;
+  padding: 2rem 2rem 3rem 3rem;
+  position: relative;
+  font-family: "PT Serif Caption";
+  color: #555;
+}
+blockquote cite {
+  font-family: "PT Serif";
+  display: block;
+  font-size: 0.75em;
+  letter-spacing: 0.03em;
+}
+blockquote:before {
+  font-family: "PT Serif";
+  content: "“";
+  font-size: 6rem;
+  font-weight: bold;
+  position: absolute;
+  top: 3.5rem;
+  left: -0.25rem;
+  color: silver;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}
+main #sidebarContainer {
+  transition: left 0.5s;
+  box-sizing: border-box;
+  text-align: right;
+  padding: 16px;
+  padding-top: 4rem;
+  width: calc(100vw - 750px + 250px);
+  min-width: 250px;
+  background-color: #444;
+  color: #999;
+}
+main #sidebarContainer #langSwitch {
+  font-family: monospace;
+  width: 250px;
+  text-align: left;
+  display: inline-block;
+}
+main #sidebarContainer #langSwitch div, main #sidebarContainer #langSwitch a {
+  font-size: 0.75em;
+  margin-right: 0.1rem;
+  display: inline-block;
+  background-color: #333;
+  padding: 0 8px;
+  color: #eee;
+  cursor: pointer;
+}
+main #sidebarContainer #langSwitch.ru .ru, main #sidebarContainer #langSwitch.en .en, main #sidebarContainer #langSwitch .currentLanguage {
+  color: gray;
+  pointer-events: none;
+}
+main #sidebarContainer #burger {
+  display: none;
+}
+main #sidebarContainer #menu {
+  font-size: 0.8rem;
+  text-align: left;
+  width: 250px;
+  display: inline-block;
+  box-sizing: content-box;
+}
+main #sidebarContainer a.currentPage {
+  pointer-events: none;
+  color: white;
+  position: relative;
+}
+main #sidebarContainer a.currentPage:after {
+  opacity: 1;
+  content: "  >";
+  position: relative;
+  top: 2px;
+}
+main #sidebarContainer hr {
+  display: block;
+  border: none;
+  background-color: transparent;
+  margin: 1em 0;
+  height: 4px;
+  overflow: visible;
+}
+main #sidebarContainer hr:before {
+  display: block;
+  content: ".....";
+  letter-spacing: 0.3em;
+  color: gray;
+  height: 1px;
+  line-height: 0;
+}
+main #sidebarContainer a {
+  color: lightblue;
+  text-decoration: none;
+}
+main #sidebarContainer a:hover {
+  color: orangered;
+}
+main #sidebarContainer ul {
+  list-style-type: none;
+  padding-left: 0rem;
+  margin: 0;
+}
+main #sidebarContainer li {
+  margin-bottom: 1em;
+  font-family: "PT Serif Caption", Times, serif;
+}
+main #sidebarContainer li ul {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border-left: 1px solid gray;
+  padding-left: 1em;
+}
+main #content {
+  padding: 0;
+  width: 100%;
+}
+main #content h1, main #content h2, main #content h3, main #content h4, main #content h5, main #content h6 {
+  font-family: "PT Serif", Times, serif;
+  font-weight: 600;
+  line-height: 110%;
+  color: #444;
+}
+main #content h1 {
+  font-size: 2.5rem;
+  margin: 2rem 0;
+}
+main #content h2 {
+  margin: 2rem 0;
+  font-size: 2rem;
+}
+main #content h1 + h2 {
+  font-size: 1.5rem;
+  margin-top: -1.5rem;
+  margin-bottom: 4rem;
+}
+main #content h3 {
+  margin: 1.5rem 0;
+  font-size: 1.5rem;
+}
+main #content h4 {
+  margin: 1rem 0;
+  font-size: 1rem;
+}
+main #content h2 + h3 {
+  margin-top: -1rem;
+}
+main #content h5, main #content h6 {
+  font-family: "PT Serif Caption", "PT Serif", Times, serif;
+  letter-spacing: 0.06em;
+}
+main #content a {
+  color: royalblue;
+}
+main #content a:visited {
+  color: #1a3ca2;
+}
+main #content table {
+  font-size: 0.75rem;
+  font-family: "PT Serif Caption", "PT Serif", Times, serif;
+  line-height: 120%;
+  border-collapse: collapse;
+  margin: 2rem auto;
+  max-width: 100%;
+  overflow-x: auto;
+}
+main #content table caption {
+  text-align: left;
+  padding-bottom: 0.5em;
+}
+main #content table td, main #content table th {
+  border: 1px solid #999;
+  padding: 6px 8px;
+  text-align: left;
+  vertical-align: top;
+}
+main #content hr {
+  border: none;
+  display: block;
+  background-color: #ccc;
+  margin: 1rem auto;
+  height: 2px;
+  width: 100%;
+}
+main #content .text {
+  max-width: 500px;
+  padding: 1rem;
+  padding-top: 2rem;
+  padding-left: 2rem;
+}
+main #content .text p {
+  margin: 0;
+  margin-bottom: 1rem;
+}
+main #content .text img {
+  display: block;
+  max-width: 100%;
+  margin: 2em auto;
+  border-radius: 4px;
+}
+
+footer {
+  margin-top: 4rem;
+  text-align: left;
+  display: inline-block;
+  font-size: 0.75rem;
+  background-color: transparent;
+  color: silver;
+  width: 250px;
+}
+
+@media (max-width: 800px) {
+  main {
+    display: block;
+  }
+  main #content .text {
+    max-width: 100%;
+    padding-left: 1rem;
+  }
+  main #sidebarContainer {
+    z-index: 500;
+    margin-left: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: auto;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+  main #sidebarContainer #burger {
+    transition: right 0.5s;
+    display: block;
+    border-radius: 4px;
+    box-sizing: border-box;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    line-height: 6px;
+    padding-top: 6px;
+    user-select: none;
+    cursor: pointer;
+  }
+  main #sidebarContainer #burger:hover {
+    background-color: orangered;
+  }
+  main #sidebarContainer.hidden {
+    left: -100vw;
+    width: 100vw;
+  }
+  main #sidebarContainer.hidden #burger {
+    right: -40px;
+  }
+}

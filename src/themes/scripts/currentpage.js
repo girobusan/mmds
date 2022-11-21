@@ -1,0 +1,1 @@
+console.info("Current Link user script"),window.MMDS.addUpdater((function(e,r){e||(e=window.MMDS.current.path),document.querySelectorAll("a").forEach((r=>{r.getAttribute("href")==e?r.classList.add("currentPage"):r.classList.remove("currentPage")}))}));

@@ -107,6 +107,7 @@ window.MMDS = new function(){
 
   this.updateViews = (path,content)=>{
     Object.values(this._updaters).forEach(f=>f(path,content));
+    this.fire("views_updated");
   },
 
   //re-run view updaters
@@ -194,7 +195,7 @@ window.MMDS = new function(){
       const sidebarNode = document.getElementById("menu");
       if(!p){ return };
       getContent(this.makePath(this.settings.menuFile) , fetchOptions)
-      .then(r=>{sidebarNode.innerHTML=r.html; this.refresh()})
+      .then(r=>{sidebarNode.innerHTML=r.html ; this.fire("redraw" , "menu")})
     .catch( e=>console.log( "no sidebar" ,e ))
 
     }
@@ -275,11 +276,11 @@ async function startSite(){
 
     const t = evt.target;
 
-    const h =t.getAttribute("href") || (t.parentNode.getAttribute && t.parentNode.getAttribute("href") ) ;
+    const h =t.getAttribute("href") || (t.parentNode.getAttribute && t.parentNode.getAttribute("href") ) || "";
     if(!h || h.startsWith("data:")){ return } //no link
     //goo!
-    window.MMDS.go( h );
     console.log("link clicked" , h);
+    window.MMDS.go( h );
     evt.preventDefault();
     evt.stopPropagation();
 

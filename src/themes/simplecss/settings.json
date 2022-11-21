@@ -1,0 +1,13 @@
+{
+  
+    "mdDir": "../md/",
+    "indexFile": "simplecss.md",
+    "scripts" : [],
+    "usr" : {
+      "bilingual": {
+         "langs" : "ru,en"
+      }    
+    },
+    "editorScript": "../mdeditor.js"
+    
+}

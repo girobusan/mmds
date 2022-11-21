@@ -1,0 +1,13 @@
+{
+  
+    "mdDir": "../md/",
+    "indexFile": "tufte.md",
+    "scripts" : [],
+    "usr" : {
+      "bilingual": {
+         "langs" : "ru,en"
+      }    
+    },
+    "editorScript": "../mdeditor.js"
+    
+}

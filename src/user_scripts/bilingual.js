@@ -50,11 +50,14 @@ window.MMDS.addUpdater( (p,c)=>{
   const pathL= B.extractLang( p );
   // console.log("We're inside Bilingual updater" , sbL , pathL);
   if(sbL === pathL || !pathL){return}
-  //change menufile
-  const newM = B.changeLang( window.MMDS.settings.menuFile , pathL );
-  window.MMDS.settings.menuFile = newM;
-  //force load menufile
-  window.MMDS.action.setMenu(newM);
+  //change menufile IF menufile has language mark
+  if(B.extractLang(window.MMDS.settings.menuFile))
+  {
+    const newM = B.changeLang( window.MMDS.settings.menuFile , pathL );
+    window.MMDS.settings.menuFile = newM;
+    //force load menufile
+    window.MMDS.action.setMenu(newM);
+  }
   //update langswitch if prsent
   var langSwitchContainer = document.querySelector("#langSwitch");
   if(langSwitchContainer){

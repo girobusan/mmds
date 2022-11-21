@@ -7,7 +7,7 @@
   * [ Многоязычный сайт](multilanguage_setup.ru.md)
 
 * Кастомизация
-  * [ Внешний вид ](customization.ru.md)
+  * [ Дизайн ](customization.ru.md)
   * [ Настройки ](settings.ru.md)
   * [Java Script API](api.ru.md)
 
