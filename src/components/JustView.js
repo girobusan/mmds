@@ -3,6 +3,7 @@ import {html} from "htm/preact";
 import {ActionRow} from "./ActionRow";
 
 
+
 export class JustView extends Component{
  
   constructor(props){

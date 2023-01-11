@@ -1,9 +1,11 @@
 @use "_normalize";
+// @import "../style/nofont.scss";
 
 .ViewEdit{
   position: relative;
   .editor-toolbar{
     background-color: white !important;
+    
   }
   .notSavedWarning{
     position: fixed;

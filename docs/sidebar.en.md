@@ -9,6 +9,7 @@
 * Customization
   * [Design](customization.en.md)
   * [Settings ](settings.en.md)
+  *  [Themes](themes.en.md)
   * [Java Script API](api.en.md)
 
 *  [:wrench:](sidebar.en.md)

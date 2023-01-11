@@ -9,6 +9,8 @@ import { saveToDisk } from "../fileops";
 // require("./editor.scss")
 require("easymde/dist/easymde.min.css");
 require("./viewedit.scss");
+require("../style/nofont.scss");
+
 
 const MMDS = window.MMDS;
 
@@ -105,7 +107,7 @@ export class ViewEdit extends Component{
        console.log("this one has not saved changes" , this.notSaved)
        return this.notSaved[path] 
        }
-    console.log("this file was not changed")
+    console.log("This file was not changed")
     return content;
   }
   isEdited(path){
@@ -121,6 +123,7 @@ export class ViewEdit extends Component{
       {
         element: this.mdEditorNode.current ,
         syncSideBySidePreviewScroll: false,
+        autoDownloadFontAwesome: false,
         previewRender: (m ,p)=>{
           return renderMd(m);
         },

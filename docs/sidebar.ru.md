@@ -9,6 +9,7 @@
 * Кастомизация
   * [ Дизайн ](customization.ru.md)
   * [ Настройки ](settings.ru.md)
+  * [Темы](themes.ru.md)
   * [Java Script API](api.ru.md)
 
 *  [:wrench:](sidebar.ru.md)

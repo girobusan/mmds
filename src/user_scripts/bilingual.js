@@ -36,6 +36,7 @@ window.MMDS.usr.bilingual = {
   switchTo: (lc)=>{
     const B = window.MMDS.usr.bilingual;
     const cp = window.location.hash.substring(2);
+    if(!B.extractLang(cp)){ console.log("Can not get current language") ; return }
     console.log("switch to" ,  B.changeLang(cp, lc));
     window.MMDS.go(B.changeLang(cp, lc));
   }
