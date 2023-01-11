@@ -4,6 +4,6 @@
     "menuFile": "sidebar.ru.md",
     "indexFile": "index.ru.md",
     "scripts" : ["currentpage.js" , "bilingual.js" , "forkme.js"],
-    "_editorScript" : "mdeditor.js",
-    "editorScript": "https://cdn.jsdelivr.net/gh/girobusan/mmds/dist/mdeditor.js"
+    "editorScript" : "mdeditor.js",
+    "_editorScript": "https://cdn.jsdelivr.net/gh/girobusan/mmds/dist/mdeditor.js"
   }
