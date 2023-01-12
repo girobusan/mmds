@@ -7,6 +7,10 @@
     background-color: white !important;
     
   }
+  &.edited button.export{
+    background-color: orangered;
+    border-color: orangered !important;
+  }
   .notSavedWarning{
     position: fixed;
     display: block;
@@ -23,7 +27,7 @@
       // all: initial !important;
       // @include normalize.normalize;
     }
-    padding: 16px;
+    // padding: 16px;
     // position: static;
 
     &.hidden{

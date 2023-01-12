@@ -24,7 +24,8 @@ export class ViewEdit extends Component{
     this.state = {
       editMode: true,
       content: this.props.content,
-      path: this.props.path
+      path: this.props.path,
+      edited: {}
   }};
   componentWillMount(){
     MMDS.action.edit = ()=>{ 
@@ -75,7 +76,7 @@ export class ViewEdit extends Component{
   }
 
   render(){
-     return html`<div class="ViewEdit">
+     return html`<div class="ViewEdit ${this.isEdited(this.state.path) ? "edited" : "notEdited"}">
      <${ If } condition=${this.isEdited(this.state.path)}> 
      <small class="notSavedWarning">${this.state.path} has unsaved changes</small>
      </${ If }>
@@ -156,7 +157,13 @@ export class ViewEdit extends Component{
       const changeHandler = ()=>{
           console.log("edited...")
           const cm = me.easyMDE.value();
-          me.edited(me.state.path , {markdown: cm , html: renderMd(cm)})
+
+          const stateObj = {};
+          stateObj[this.state.path] = {markdown: cm , html: renderMd(cm)};
+
+          this.setState({edited: Object.assign(this.state.edited)  , stateObj});
+
+          me.edited(me.state.path , stateObj[this.state.path]);
           // this.handleInput("text", easyMDE.value()) 
         }
       this.easyMDE.codemirror.on("inputRead" , changeHandler);

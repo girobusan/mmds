@@ -13,6 +13,7 @@
 * Totally customizable design (html + css + JS API for custom scripts)
 * Light and fast 
 * Embedded markdown editor (easyMDE, loads only on demand) 
+* ...and, of course, you can use your favorite markdown editor.
 * Any server (no server setup required)
 
 ![Screenshot](docs/screen.png)

@@ -1,15 +1,16 @@
 $sidebarW: 250px;
-$mainW: 500px;
+$mainW: 600px;
 $colW: $sidebarW + $mainW;
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code&family=PT+Serif+Caption:ital@0;1&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 body,html{
  font-size: 18px;
  line-height: 140%;
- font-family: 'PT Serif' , 'Times New Roman', Times, serif;
+ font-family: 'PT Serif' , 'Georgia', 'Apple Garamond' , 'DejaVu Serif' , ui-serif, serif;
+ // font-family:  ui-serif, serif;
  margin: 0;
  padding: 0;
- background-color: rgba(255,255,250);
+ background-color: rgb(250,250,250);
  color: #333;
 
 }
@@ -21,7 +22,7 @@ body{
 }
 
 code{
-  font-family:  'Fira Code', monospace;
+  font-family:  'Fira Code', Consolas , 'Lucida Console' , ui-monospace , monospace;
   font-weight: 400;
   background-color: #efefef;
   font-size: 0.85em;
@@ -48,11 +49,11 @@ blockquote{
   padding: 2rem 2rem 3rem 3rem;
   position: relative;
   // padding-left: 3rem;
-  font-family: "PT Serif Caption";
+  font-family: "PT Serif Caption" , 'PT Serif' , ui-serif , serif;
   color: #555;
   cite{
     
-  font-family: "PT Serif";
+  font-family: "PT Serif" , ui-serif , serif;
     display: block;
     font-size: 0.75em;
     letter-spacing: 0.03em;
@@ -79,10 +80,10 @@ main{
   #sidebarContainer{
     transition: left 0.5s;
     box-sizing: border-box;
-    text-align: right;
-    padding: 16px;
-      padding-top: 4rem;
-    width: calc(100vw - $colW + $sidebarW);
+    text-align: left;
+    padding: 2rem;
+    padding-top: 2rem;
+    // width: calc(100vw - $colW + $sidebarW);
     min-width: $sidebarW;
     // max-width: 400px;
     // min-width: 200px;
@@ -113,7 +114,7 @@ main{
     #menu{
       font-size: 0.8rem;
       text-align: left;
-      width: $sidebarW;
+      // width: $sidebarW;
       display: inline-block;
       // padding: 1rem;
       box-sizing: content-box;
@@ -166,7 +167,7 @@ main{
     }
     li{
       margin-bottom: 1em;
-      font-family: "PT Serif Caption" , Times , serif;
+      font-family: "PT Serif Caption" ,  Georgia , ui-serif , serif;
       ul{
         margin-top: 1em;
         margin-bottom: 1em;
@@ -177,12 +178,14 @@ main{
   }
   #content{
     padding: 0;
+    padding-top: 6rem;
     width: 100%;
     h1,h2,h3,h4,h5,h6{
-      font-family: "PT Serif" , Times , serif;
+      // font-family: "PT Serif" , Times , serif;
       font-weight: 600;
         line-height: 110%;
-        color: #444;
+        // color: #444;
+        color: #333;
     }
       h1{
         font-size: 3rem;
@@ -210,7 +213,7 @@ main{
       }
       h5,h6{
 
-         font-family: "PT Serif Caption" , "PT Serif" , Times , serif;
+         font-family: "PT Serif Caption" , "PT Serif" , Georgia , ui-serif , serif;
          letter-spacing: 0.06em;
       }
       a{
@@ -237,12 +240,17 @@ main{
           padding-bottom: 0.5em;
         }
          font-size: 0.75rem;
-         font-family: "PT Serif Caption" , "PT Serif" , Times , serif;
+         font-family: "PT Serif Caption" , "PT Serif" , Georgia , ui-serif, serif;
          line-height: 120%;;
          border-collapse: collapse;
          margin: 2rem auto;
          max-width: 100%;
          overflow-x: auto;
+         th{
+           
+         font-family: "PT Serif" , Georgia, ui-serif , serif;
+         letter-spacing: 0.03em;
+         }
          td , th{
            border: 1px solid #999;
            padding: 6px 8px;
@@ -262,8 +270,9 @@ main{
     .text{
       max-width: $mainW; // calc(100vw - $colW + $mainW);
       padding: 1rem;
-      padding-top: 2rem;
-      padding-left: 2rem;
+      padding-top: 0rem;
+      padding-left: 1rem;
+      margin: 0 auto;
       p{
         margin:0 ;
          margin-bottom: 1rem;
@@ -287,8 +296,19 @@ footer{
   font-size: 0.75rem;
   background-color: transparent;
   color: silver;
-      width: $sidebarW;
+      // width: $sidebarW;
   
+}
+
+.ActionRow {
+  width: $mainW;
+  margin: 0 auto;
+}
+.editorContainer{
+ 
+ max-width: 800px;
+ padding: 1rem;
+  margin: 0 auto;
 }
 
 @media(max-width:800px){
