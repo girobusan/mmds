@@ -21,6 +21,7 @@ export class ViewEdit extends Component{
     this.updater = this.updater.bind(this);
     this.text = createRef();
     this.mdEditorNode = createRef();
+    this.componentContainer = createRef();
     this.state = {
       editMode: true,
       content: this.props.content,
@@ -76,9 +77,11 @@ export class ViewEdit extends Component{
   }
 
   render(){
-     return html`<div class="ViewEdit ${this.isEdited(this.state.path) ? "edited" : "notEdited"}">
-     <${ If } condition=${this.isEdited(this.state.path)}> 
-     <small class="notSavedWarning">${this.state.path} has unsaved changes</small>
+     return html`<div class="ViewEdit ${this.isEdited(this.state.path) ? "edited" : "notEdited"}"
+     ref=${this.componentContainer}
+     >
+     <${ If } condition=${this.isEdited(this.state.path)&&( !MMDS.editMode )}> 
+     <small class="notSavedWarning">${this.state.path} has unsaved changes </small>
      </${ If }>
      <div class=${"editorContainer " + (MMDS.editMode ? "" : "hidden")}>
      <textarea 
@@ -98,6 +101,7 @@ export class ViewEdit extends Component{
   edited(path,content){
     // console.info("we touched" , path);
     this.notSaved[path] = content;
+    this.componentContainer.current.classList.add("edited"); // :FIXME
   }
   saved(path){
     delete(this.notSaved[path])
@@ -161,7 +165,7 @@ export class ViewEdit extends Component{
           const stateObj = {};
           stateObj[this.state.path] = {markdown: cm , html: renderMd(cm)};
 
-          this.setState({edited: Object.assign(this.state.edited)  , stateObj});
+          // this.setState({edited: Object.assign(this.state.edited)  , stateObj});
 
           me.edited(me.state.path , stateObj[this.state.path]);
           // this.handleInput("text", easyMDE.value()) 
