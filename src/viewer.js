@@ -251,7 +251,7 @@ async function startSite(){
 
   })
 
-  MMDS.on("ready" , ()=>console.log("ready fired"));
+  // MMDS.on("ready" , ()=>console.log("ready fired"));
 
   //add and show content
   if(contentNode){

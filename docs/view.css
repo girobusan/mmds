@@ -1,12 +1,12 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css2?family=PT+Serif+Caption:ital@0;1&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code&family=PT+Serif+Caption:ital@0;1&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 body, html {
   font-size: 18px;
   line-height: 140%;
-  font-family: "PT Serif", "Times New Roman", Times, serif;
+  font-family: "PT Serif", "Georgia", "Apple Garamond", "DejaVu Serif", ui-serif, serif;
   margin: 0;
   padding: 0;
-  background-color: rgb(255, 255, 250);
+  background-color: rgb(250, 250, 250);
   color: #333;
 }
 
@@ -18,7 +18,8 @@ body {
 }
 
 code {
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Fira Code", Consolas, "Lucida Console", ui-monospace, monospace;
+  font-weight: 400;
   background-color: #efefef;
   font-size: 0.85em;
   line-height: 1em;
@@ -44,11 +45,11 @@ blockquote {
   margin: 0;
   padding: 2rem 2rem 3rem 3rem;
   position: relative;
-  font-family: "PT Serif Caption";
+  font-family: "PT Serif Caption", "PT Serif", ui-serif, serif;
   color: #555;
 }
 blockquote cite {
-  font-family: "PT Serif";
+  font-family: "PT Serif", ui-serif, serif;
   display: block;
   font-size: 0.75em;
   letter-spacing: 0.03em;
@@ -72,12 +73,11 @@ main {
 main #sidebarContainer {
   transition: left 0.5s;
   box-sizing: border-box;
-  text-align: right;
-  padding: 16px;
-  padding-top: 4rem;
-  width: calc(100vw - 750px + 250px);
+  text-align: left;
+  padding: 2rem;
+  padding-top: 2rem;
   min-width: 250px;
-  background-color: #444;
+  background-color: #222;
   color: #999;
 }
 main #sidebarContainer #langSwitch {
@@ -92,10 +92,10 @@ main #sidebarContainer #langSwitch div, main #sidebarContainer #langSwitch a {
   display: inline-block;
   background-color: #333;
   padding: 0 8px;
-  color: gold;
+  color: #eee;
   cursor: pointer;
 }
-main #sidebarContainer #langSwitch.ru .ru, main #sidebarContainer #langSwitch.en .en {
+main #sidebarContainer #langSwitch.ru .ru, main #sidebarContainer #langSwitch.en .en, main #sidebarContainer #langSwitch .currentLanguage {
   color: gray;
   pointer-events: none;
 }
@@ -105,7 +105,6 @@ main #sidebarContainer #burger {
 main #sidebarContainer #menu {
   font-size: 0.8rem;
   text-align: left;
-  width: 250px;
   display: inline-block;
   box-sizing: content-box;
 }
@@ -150,7 +149,7 @@ main #sidebarContainer ul {
 }
 main #sidebarContainer li {
   margin-bottom: 1em;
-  font-family: "PT Serif Caption", Times, serif;
+  font-family: "PT Serif Caption", Georgia, ui-serif, serif;
 }
 main #sidebarContainer li ul {
   margin-top: 1em;
@@ -160,16 +159,16 @@ main #sidebarContainer li ul {
 }
 main #content {
   padding: 0;
+  padding-top: 6rem;
   width: 100%;
 }
 main #content h1, main #content h2, main #content h3, main #content h4, main #content h5, main #content h6 {
-  font-family: "PT Serif", Times, serif;
   font-weight: 600;
   line-height: 110%;
-  color: #444;
+  color: #333;
 }
 main #content h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
   margin: 2rem 0;
 }
 main #content h2 {
@@ -193,7 +192,7 @@ main #content h2 + h3 {
   margin-top: -1rem;
 }
 main #content h5, main #content h6 {
-  font-family: "PT Serif Caption", "PT Serif", Times, serif;
+  font-family: "PT Serif Caption", "PT Serif", Georgia, ui-serif, serif;
   letter-spacing: 0.06em;
 }
 main #content a {
@@ -202,9 +201,21 @@ main #content a {
 main #content a:visited {
   color: #1a3ca2;
 }
+main #content ul li {
+  list-style-type: none;
+  position: relative;
+}
+main #content ul li::before {
+  content: ".";
+  position: absolute;
+  font-size: 1.5em;
+  font-weight: bold;
+  left: -0.6em;
+  top: -0.25em;
+}
 main #content table {
   font-size: 0.75rem;
-  font-family: "PT Serif Caption", "PT Serif", Times, serif;
+  font-family: "PT Serif Caption", "PT Serif", Georgia, ui-serif, serif;
   line-height: 120%;
   border-collapse: collapse;
   margin: 2rem auto;
@@ -214,6 +225,10 @@ main #content table {
 main #content table caption {
   text-align: left;
   padding-bottom: 0.5em;
+}
+main #content table th {
+  font-family: "PT Serif", Georgia, ui-serif, serif;
+  letter-spacing: 0.03em;
 }
 main #content table td, main #content table th {
   border: 1px solid #999;
@@ -230,10 +245,11 @@ main #content hr {
   width: 100%;
 }
 main #content .text {
-  max-width: 500px;
+  max-width: 600px;
   padding: 1rem;
-  padding-top: 2rem;
-  padding-left: 2rem;
+  padding-top: 0rem;
+  padding-left: 1rem;
+  margin: 0 auto;
 }
 main #content .text p {
   margin: 0;
@@ -253,7 +269,17 @@ footer {
   font-size: 0.75rem;
   background-color: transparent;
   color: silver;
-  width: 250px;
+}
+
+.ActionRow {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.editorContainer {
+  max-width: 800px;
+  padding: 1rem;
+  margin: 0 auto;
 }
 
 @media (max-width: 800px) {
