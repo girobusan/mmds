@@ -149,10 +149,19 @@ export class BareMDE extends Component{
       ">
          <button class="previewToggle ${this.state.showPreview ? "on" : "off"}" 
          title="Toggle Preview" onclick=${this.togglePreview}> </button>
+
+
+       ${ this.props.externalPreview ?  html`<button class="externalPreview" 
+       title=${this.props.externalPreviewTitle} onclick=${this.props.externalPreview}></button>` : ""
+           
+       }
+
          <button class="fullscreenToggle ${this.state.fullscreen? "on" : "off"}" 
          title="Toggle Fullscreen" onclick=${this.toggleFullscreen}></button>
+         
          <button class="spellcheckToggle ${this.state.spellCheck ? "on" : "off"}" 
          title="Toggle spellcheck" onclick=${this.toggleSpellcheck}></button>
+
          <button class="saveButton" title="Save File" onclick=${this.saveFile}></button>
         </div>
       <div class="workArea">
@@ -176,6 +185,8 @@ BareMDE.defaultProps = {
    showPreview: true,
    spellCheck: true,
    fullscreenZIndex: 1001,
+   externalPreview: null,
+   externalPreviewTitle: "External Preview",
    documentPath: 'default'
 
 }

@@ -22,19 +22,6 @@
    inkscape:export-ydpi="103.4356">
   <defs
      id="defs2">
-    <clipPath
-       clipPathUnits="userSpaceOnUse"
-       id="clipPath906">
-      <rect
-         style="opacity:0.60100002;fill:#b0b0b0;fill-opacity:0;stroke:#204a87;stroke-width:0.52916664;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
-         id="rect908"
-         width="274.90207"
-         height="135.73125"
-         x="-173.73676"
-         y="52.241528"
-         rx="3.2972903"
-         ry="3.2972903" />
-    </clipPath>
     <filter
        inkscape:collect="always"
        style="color-interpolation-filters:sRGB"
@@ -48,6 +35,19 @@
          stdDeviation="4.1063332"
          id="feGaussianBlur1182" />
     </filter>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath920">
+      <rect
+         ry="3.2972903"
+         rx="3.2972903"
+         y="52.241528"
+         x="-173.73676"
+         height="135.73125"
+         width="274.90207"
+         id="rect922"
+         style="opacity:0.60100002;fill:#b0b0b0;fill-opacity:0;stroke:#204a87;stroke-width:0.52916664;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers" />
+    </clipPath>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -57,16 +57,16 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.63403909"
-     inkscape:cx="555.17082"
-     inkscape:cy="419.92316"
+     inkscape:cx="249.98459"
+     inkscape:cy="267.61624"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1280"
-     inkscape:window-height="953"
+     inkscape:window-height="984"
      inkscape:window-x="1600"
-     inkscape:window-y="176"
-     inkscape:window-maximized="1"
+     inkscape:window-y="194"
+     inkscape:window-maximized="0"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
@@ -86,7 +86,8 @@
   <g
      inkscape:groupmode="layer"
      id="layer2"
-     inkscape:label="shadow">
+     inkscape:label="shadow"
+     sodipodi:insensitive="true">
     <rect
        transform="translate(183.59195,-42.386332)"
        style="opacity:0.60100002;fill:#000000;fill-opacity:0.69680852;stroke:#204a87;stroke-width:0.52916664;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers;filter:url(#filter1180)"
@@ -103,17 +104,17 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(183.59195,-42.386332)"
-     sodipodi:insensitive="true"
      style="display:inline">
     <image
-       sodipodi:absref="/home/gleb/PROJECTS_MMXX/my-md-site/docs/screenshot_00.png"
-       xlink:href="screenshot_00.png"
-       y="52.241528"
-       x="-173.73676"
-       id="image901"
-       preserveAspectRatio="none"
-       height="135.73125"
+       sodipodi:absref="/home/gleb/PROJECTS_MMXX/my-md-site/docs/screenshot_01.png"
+       xlink:href="screenshot_01.png"
+       clip-path="url(#clipPath920)"
+       style="stroke-width:1.1549567"
        width="274.90207"
-       clip-path="url(#clipPath906)" />
+       height="137.45103"
+       preserveAspectRatio="none"
+       id="image917"
+       x="-173.73676"
+       y="52.241528" />
   </g>
 </svg>

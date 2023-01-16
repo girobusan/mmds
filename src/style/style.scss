@@ -182,9 +182,15 @@ main{
     }
   }
   #content{
-    padding: 0;
+    padding: 1rem;
     padding-top: 6rem;
-    width: 100%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+    // width: 100%;
+           *{
+              box-sizing: border-box;
+           }
     h1,h2,h3,h4,h5,h6{
       // font-family: "PT Serif" , Times , serif;
       font-weight: 600;
@@ -273,10 +279,14 @@ main{
       }
 
     .text{
+      box-sizing: border-box;
+      *{
+      box-sizing: border-box;
+      }
       max-width: $mainW; // calc(100vw - $colW + $mainW);
-      padding: 1rem;
-      padding-top: 0rem;
-      padding-left: 1rem;
+      padding: 0;
+      // padding-top: 0rem;
+      // padding-left: 1rem;
       margin: 0 auto;
       p{
         margin:0 ;
@@ -306,7 +316,7 @@ footer{
 }
 
 .ActionRow {
-  width: $mainW;
+  max-width: 600px;
   padding: 0;
   margin: 0 auto;
   input[type=button]{
@@ -339,7 +349,7 @@ footer{
 
   #content .text{
     max-width: 100%;
-    padding-left: 1rem;
+    // padding-left: 1rem;
   }
   }
   main #sidebarContainer{

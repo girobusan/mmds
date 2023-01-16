@@ -82,7 +82,7 @@ export class ViewEdit extends Component{
 
   render(){
      // console.log("RENDER VIEWEDIT: \n", this.checkContent(this.state.path, this.state.content).markdown.substring(0,150))
-     const theMD = this.checkContent(this.state.path, this.state.content).markdown;
+     // const theMD = this.checkContent(this.state.path, this.state.content).markdown;
      return html`<div class="ViewEdit ${this.isEdited(this.state.path) ? "edited" : "notEdited"}"
      ref=${this.componentContainer}
      >
@@ -95,6 +95,9 @@ export class ViewEdit extends Component{
         content=${this.checkContent(this.state.path, this.state.content).markdown } 
         render=${renderMd}
         save=${window.MMDS.action.save}
+        externalPreview=${window.MMDS.action.edit}
+        showPreview=${false}
+        externalPreviewTitle="Hide Editor"
         onUpdate=${(c)=>this.edited(this.state.path , {markdown: c , html: renderMd(c)})}
         modified=${this.isEdited(this.state.path)}
         documentPath=${this.state.path}

@@ -66,6 +66,9 @@
             background-image: url(./icons/fullscreen_exit_FILL0_wght400_GRAD0_opsz24.svg);
           }
         }
+        &.externalPreview{
+          background-image: url(./icons/preview_FILL0_wght400_GRAD0_opsz24.svg);
+        }
         &.saveButton{
           background-image: url(./icons/save_white.svg);
         }
@@ -105,6 +108,9 @@
        border-left: 1px solid #ddd;
        overflow: auto;
        flex-basis: 0;
+       img , video , audio , iframe, object{
+         max-width: 100% !important;
+       }
      }
    }
    &.noPreview{
