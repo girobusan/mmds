@@ -3,6 +3,7 @@ import {h, render} from "preact";
 import { getContent } from "./mdops";
 import { JustView} from "./components/JustView"
 import {saveToDisk} from "./fileops";
+import { goEditMode } from "./editor";
 
 
 window.MMDS = new function(){
@@ -181,9 +182,10 @@ window.MMDS = new function(){
 
     edit: ()=>{
       this.editMode = true;
-      const s = document.createElement("script");
-      s.src= this.settings.editorScript;
-      document.body.appendChild(s)
+      goEditMode();
+      // const s = document.createElement("script");
+      // s.src= this.settings.editorScript;
+      // document.body.appendChild(s)
     },
     save: ()=>{
       console.info("Saving without editing")  ;

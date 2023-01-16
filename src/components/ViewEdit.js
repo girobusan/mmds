@@ -2,21 +2,24 @@ import {Component , createRef } from "preact";
 // import { useRef } from "preact/hooks";
 import {html} from "htm/preact";
 import {ActionRow} from "./ActionRow";
-import * as MDE from "easymde";
+// import * as MDE from "easymde";
 import {If} from "./If";
 import {renderMd} from "../mdops";
 import { saveToDisk } from "../fileops";
 // require("./editor.scss")
-require("easymde/dist/easymde.min.css");
+// require("easymde/dist/easymde.min.css");
 require("./viewedit.scss");
-require("../style/nofont.scss");
+// require("../style/nofont.scss");
+//bare MDE
+import { BareMDE } from "./mde/BareMDE";
 
 
-const MMDS = window.MMDS;
+// const MMDS = window.MMDS;
 
 export class ViewEdit extends Component{
   constructor(props){
     super(props);
+    this.MMDS = window.MMDS;
     this.notSaved={};
     this.updater = this.updater.bind(this);
     this.text = createRef();
@@ -27,28 +30,28 @@ export class ViewEdit extends Component{
       content: this.props.content,
       path: this.props.path,
       edited: {}
-  }};
+  }
+  this.updater= this.updater.bind(this);
+  };
   componentWillMount(){
-    MMDS.action.edit = ()=>{ 
+    // const MMDS = window.MMDS;
+    this.MMDS.action.edit = ()=>{ 
     // console.log("new and improved function")
-    MMDS.editMode = !MMDS.editMode 
-    this.setState({editMode: MMDS.editMode})
+    this.MMDS.editMode = !this.MMDS.editMode 
+    this.setState({editMode: this.MMDS.editMode})
     };
-    MMDS.action.save = ()=>{
+    this.MMDS.action.save = ()=>{
        console.info("Saving from editor");
-       saveToDisk( this.state.path, this.easyMDE.value());
+       saveToDisk( this.state.path, this.checkContent(this.state.path, this.state.content).markdown);
        this.saved(this.state.path);
-       MMDS.whenActive( MMDS.reload );
+       this.MMDS.whenActive( this.MMDS.reload );
 
     }
 
-    MMDS.addUpdater(this.updater);
+    this.MMDS.addUpdater(this.updater);
   }
   componentDidUpdate(){
-    if(this.easyMDE){
-       console.log("Update editor content...")
-       this.easyMDE.value(this.checkContent(this.state.path, this.state.content).markdown);
-    }
+     console.log("ViewEdit updated");
      if(this.text.current)
      {
        const imgs = this.text.current.querySelectorAll("*[src]");
@@ -64,11 +67,12 @@ export class ViewEdit extends Component{
      }
   }
   componentDidMount(){
-    this.updateMdEditor();
+     
+    // this.updateMdEditor();
   }
 
   updater(p,c){
-    console.log("mds editmode" , MMDS.editMode);
+    console.log("UPDATER!" );
     this.setState({content: c , path: p}) 
     // if(this.easyMDE){
     //    console.log("Update editor content...")
@@ -77,19 +81,27 @@ export class ViewEdit extends Component{
   }
 
   render(){
+     // console.log("RENDER VIEWEDIT: \n", this.checkContent(this.state.path, this.state.content).markdown.substring(0,150))
+     const theMD = this.checkContent(this.state.path, this.state.content).markdown;
      return html`<div class="ViewEdit ${this.isEdited(this.state.path) ? "edited" : "notEdited"}"
      ref=${this.componentContainer}
      >
-     <${ If } condition=${this.isEdited(this.state.path)&&( !MMDS.editMode )}> 
+     <${ If } condition=${this.isEdited(this.state.path)&&( !this.MMDS.editMode )}> 
      <small class="notSavedWarning">${this.state.path} has unsaved changes </small>
      </${ If }>
-     <div class=${"editorContainer " + (MMDS.editMode ? "" : "hidden")}>
-     <textarea 
-     class="editorArea"
-     ref=${this.mdEditorNode}>
-     </textarea>
-     </div>
-     <${If} condition=${!MMDS.editMode}>
+     <${ If } condition=${this.MMDS.editMode}>
+        <div class=${"editorContainer " }>
+        <${BareMDE} 
+        content=${this.checkContent(this.state.path, this.state.content).markdown } 
+        render=${renderMd}
+        save=${window.MMDS.action.save}
+        onUpdate=${(c)=>this.edited(this.state.path , {markdown: c , html: renderMd(c)})}
+        modified=${this.isEdited(this.state.path)}
+        documentPath=${this.state.path}
+        />
+        </div>
+     </${ If }>
+     <${If} condition=${!this.MMDS.editMode}>
     <div class="text" 
     ref=${this.text}
     dangerouslySetInnerHTML=${{ __html:this.checkContent(this.state.path, this.state.content).html }} >
@@ -107,7 +119,7 @@ export class ViewEdit extends Component{
     delete(this.notSaved[path])
   }
   checkContent(path,content){
-    // console.log("Checking" , path);
+    console.log("Checking" , path);
     if(this.notSaved[path]){ 
        console.log("this one has not saved changes" , this.notSaved)
        return this.notSaved[path] 

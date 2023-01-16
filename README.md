@@ -2,7 +2,7 @@
 
 # My Markdown Site
 
-100% client-side markdown CMS/viewer/editor written in Java Script.
+100% client-side markdown CMS/viewer/editor written in Java Script. Current version is still experimental (but mostly works), but we're close to something useful.
 
 ## Features
 
@@ -13,7 +13,20 @@
 * Totally customizable design (html + css + JS API for custom scripts)
 * Light and fast 
 * Embedded markdown editor (easyMDE, loads only on demand) 
-* ...and, of course, you can use your favorite markdown editor.
+* ...and, of course, you can use ANY markdown editor.
 * Any server (no server setup required)
 
 ![Screenshot](docs/screen.png)
+
+## License
+
+- MIT
+
+## Based on
+
+- CodeJar
+- Preact
+- Markdown-it
+- Prism
+- ...
+

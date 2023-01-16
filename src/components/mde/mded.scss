@@ -1,0 +1,148 @@
+.BareMDE{
+   // all: initial;
+   display: flex;
+   flex-direction: column;
+   box-sizing: border-box;
+   border: 1px solid #eee;
+   border-radius: 4px;
+   overflow: hidden;
+   // max-height: 100%;
+   // position: absolute;
+   padding: 0;
+   // background-color: #ccc;
+   &.fullscreen{
+     position: fixed;
+     top: 0;
+     left: 0;
+     right:0;
+     bottom:0;
+     border-radius: 0;
+     border: none;
+     z-index: 1000;
+   }
+   .toolbar{
+      background-color: #223  ;
+      padding: 6px;
+      text-align: center;
+      flex-grow: 0;
+      &.modified button.saveButton{
+          background-color: orangered;
+          &:hover{
+            border-color: transparent;
+          }
+      }
+      
+      button{
+        all:initial;
+        appearance: none;
+        border: 1px solid transparent;
+        border-radius: 6px;
+        width: 32px;
+        height: 32px;
+        display: inline-block;
+        cursor: pointer;
+        margin-right: 6px;
+        background-repeat: no-repeat;
+        background-position: 4px 4px;
+        &:hover{
+          border-color: gray;
+        }
+        &.on{
+          border-color: gray;
+        }
+
+        &:last-child{
+          margin-right: 0;
+        }
+        &.previewToggle{
+          background-image: url(./icons/visibility_FILL0_wght400_GRAD0_opsz24.svg);
+          &.on{
+            background-image: url(./icons/visibility_off_FILL0_wght400_GRAD0_opsz24.svg);
+          }
+        }
+        &.fullscreenToggle{
+          background-image: url(./icons/fullscreen_FILL0_wght400_GRAD0_opsz24.svg);
+          &.on{
+            background-image: url(./icons/fullscreen_exit_FILL0_wght400_GRAD0_opsz24.svg);
+          }
+        }
+        &.saveButton{
+          background-image: url(./icons/save_white.svg);
+        }
+        &.spellcheckToggle{
+          background-image: url(./icons/spellcheck_FILL1_wght400_GRAD0_opsz24.svg);
+          &.on{
+            background-image: url(./icons/spellcheck_active_minified.svg);
+          }
+        }
+      }
+   }
+   .workArea{
+     flex-grow: 1;
+     display: flex;
+     flex-direction: row;
+     min-height: 200px;
+     // max-height: 100%;
+     
+     .codeJar{
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', ui-monospace , monospace;
+    ::spelling-error{
+     background-color: yellow;
+   }
+     font-size: 18px;
+     line-height: 150%;
+       flex-grow: 1;
+       padding: 8px;
+       background-color: #fafafa;
+       overflow: auto;
+       flex-basis:0;
+       
+     }
+     .preview{
+       flex-grow: 1;
+       padding: 16px;
+       max-width: 50%;
+       border-left: 1px solid #ddd;
+       overflow: auto;
+       flex-basis: 0;
+     }
+   }
+   &.noPreview{
+     .preview{
+       display: none;
+     }
+   }
+}
+//states
+// .mdBear .noPreview .workArea .preview{
+//   display: none;
+// }
+
+//some additions
+
+.codeJar{
+  .token{
+    &.hr{
+      letter-spacing: .5em; 
+    }
+    &.important{
+      font-weight: bold;
+      color: darkred;
+    }
+    &.title{
+      line-height: 1em;
+      font-size: 1.2em;
+    }
+    &.strike{
+      .content{
+        text-decoration: line-through;
+      }
+    }
+    &.code-language{
+      opacity: 0.5;
+    }
+    &.code-block{
+      color: #1990b8;
+    }
+  }
+}

@@ -14,6 +14,11 @@ body,html{
  color: #333;
 
 }
+
+.markdownPreviewArea{
+ background-color: rgb(250,250,250);
+
+}
 body{
   display: flex;
   flex-direction: column;
@@ -302,7 +307,23 @@ footer{
 
 .ActionRow {
   width: $mainW;
+  padding: 0;
   margin: 0 auto;
+  input[type=button]{
+      appearance: none;
+      border: 1px solid #666;
+      background-color: #ddd;
+      cursor: pointer;
+      border-radius: 4px;
+      font-family: 'Fira Code' , Menlo , ui-monospace , monospace;
+      font-size: 12px;
+      padding: 4px 16px;
+      &:hover{
+        background-color: #333;
+        border-color: #333;
+        color: white;
+      }
+  }
 }
 .editorContainer{
  

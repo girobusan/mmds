@@ -1,3 +1,5 @@
+var WebpackBundleSizeAnalyzerPlugin = require('webpack-bundle-size-analyzer').WebpackBundleSizeAnalyzerPlugin;
+// import { WebpackBundleSizeAnalyzerPlugin } from 'webpack-bundle-size-analyzer';
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
@@ -34,7 +36,7 @@ module.exports = function (env, argv) {
     mode: argv.mode,
     entry: {
       "mdsite": './src/viewer.js',
-      "mdeditor": './src/editor.js',
+      // "mdeditor": './src/editor.js',
       // USER SCRIPTS
       "scripts/currentpage": "./src/user_scripts/currentlink.js",
       "scripts/bilingual": "./src/user_scripts/bilingual.js",
@@ -78,6 +80,7 @@ module.exports = function (env, argv) {
 
     },
     plugins: [
+     new WebpackBundleSizeAnalyzerPlugin('./plain-report.txt'),
       new webpack.DefinePlugin({
         // Definitions...
         'VERSION': JSON.stringify(pkg.version)

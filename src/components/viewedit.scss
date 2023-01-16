@@ -3,25 +3,24 @@
 
 .ViewEdit{
   position: relative;
-  .editor-toolbar{
-    background-color: white !important;
-    
-  }
-  &.edited button.export{
-    background-color: orangered;
-    border-color: orangered !important;
-  }
+            *{
+              box-sizing: border-box;
+            }
+
   .notSavedWarning{
     position: fixed;
     display: block;
     padding: 0 8px;
     z-index: 1000;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
     background-color: orangered;
     color: black;
   }
   .editorContainer{
+    box-sizing: border-box;
     // all: initial;
     .CodeMirror-scroll{
       // all: initial !important;
@@ -34,7 +33,4 @@
       display: none;
     }
   }
-}
-.editor-preview p img{
-  max-width: 100%;
 }
