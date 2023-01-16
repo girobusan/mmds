@@ -12,7 +12,7 @@
 * Fully client side 
 * Totally customizable design (html + css + JS API for custom scripts)
 * Light and fast 
-* Embedded markdown editor (easyMDE, loads only on demand) 
+* Embedded markdown editor 
 * ...and, of course, you can use ANY markdown editor.
 * Any server (no server setup required)
 
