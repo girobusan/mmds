@@ -3,9 +3,9 @@
    display: flex;
    flex-direction: column;
    box-sizing: border-box;
-   border: 1px solid #eee;
+   border: 1px solid #ddd;
    border-radius: 4px;
-   overflow: hidden;
+   // overflow: hidden;
    // max-height: 100%;
    // position: absolute;
    padding: 0;
@@ -21,6 +21,8 @@
      z-index: 1000;
    }
    .toolbar{
+     margin: -1px -1px 0 -1px;
+     border-radius: 4px 4px 0 0 ;
       background-color: #223  ;
       padding: 6px;
       text-align: center;
@@ -34,6 +36,7 @@
       
       button{
         all:initial;
+        transition: background-color .5s;
         appearance: none;
         border: 1px solid transparent;
         border-radius: 6px;
@@ -55,9 +58,9 @@
           margin-right: 0;
         }
         &.previewToggle{
-          background-image: url(./icons/visibility_FILL0_wght400_GRAD0_opsz24.svg);
+          background-image: url(./icons/side-by-side-min.svg);
           &.on{
-            background-image: url(./icons/visibility_off_FILL0_wght400_GRAD0_opsz24.svg);
+            background-image: url(./icons/no-preview-2.svg);
           }
         }
         &.fullscreenToggle{
@@ -67,7 +70,7 @@
           }
         }
         &.externalPreview{
-          background-image: url(./icons/preview_FILL0_wght400_GRAD0_opsz24.svg);
+          background-image: url(./icons/visibility_FILL0_wght400_GRAD0_opsz24.svg);
         }
         &.saveButton{
           background-image: url(./icons/save_white.svg);
@@ -86,8 +89,23 @@
      flex-direction: row;
      min-height: 200px;
      // max-height: 100%;
+     .codeJar , .preview{
+        scrollbar-width: thin;
+        scrollbar-color: black #dddddd;
+        &::-webkit-scrollbar{
+          width: 4px;
+        }
+        &::-webkit-scrollbar-track{
+          background: #dddddd;
+        }
+        &::-webkit-scrollbar-thumb{
+          background-color: black;
+          border-radius: 4px;
+        }
+     }
      
      .codeJar{
+       border-bottom-left-radius: 4px;
 	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', ui-monospace , monospace;
     ::spelling-error{
      background-color: yellow;
@@ -102,6 +120,7 @@
        
      }
      .preview{
+       border-bottom-right-radius: 4px;
        flex-grow: 1;
        padding: 16px;
        max-width: 50%;

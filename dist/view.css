@@ -162,9 +162,14 @@ main #sidebarContainer li ul {
   padding-left: 1em;
 }
 main #content {
-  padding: 0;
+  padding: 1rem;
   padding-top: 6rem;
-  width: 100%;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0;
+}
+main #content * {
+  box-sizing: border-box;
 }
 main #content h1, main #content h2, main #content h3, main #content h4, main #content h5, main #content h6 {
   font-weight: 600;
@@ -249,11 +254,13 @@ main #content hr {
   width: 100%;
 }
 main #content .text {
+  box-sizing: border-box;
   max-width: 600px;
-  padding: 1rem;
-  padding-top: 0rem;
-  padding-left: 1rem;
+  padding: 0;
   margin: 0 auto;
+}
+main #content .text * {
+  box-sizing: border-box;
 }
 main #content .text p {
   margin: 0;
@@ -276,7 +283,7 @@ footer {
 }
 
 .ActionRow {
-  width: 600px;
+  max-width: 600px;
   padding: 0;
   margin: 0 auto;
 }
@@ -308,7 +315,6 @@ footer {
   }
   main #content .text {
     max-width: 100%;
-    padding-left: 1rem;
   }
   main #sidebarContainer {
     z-index: 500;
