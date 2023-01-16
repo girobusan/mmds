@@ -2,7 +2,7 @@
 
 # My Markdown Site
 
-100% client-side markdown CMS/viewer/editor written in Java Script. Current version is still experimental (but mostly works), but we're close to something useful.
+100% client-side markdown CMS/viewer/editor written in Java Script. Current version is still experimental (but mostly works), but we're close to something useful. [See demo site](https://girobusan.github.io/mmds/#!index.en.md).
 
 ## Features
 

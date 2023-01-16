@@ -1,19 +1,19 @@
 :tent: My Markdown Site
-================
+=======================
 
 MMDS is a fully client-side markdown viewer/editor/CMS, written in java Script. It can easily convert any set of markdown files into nice site, which can be then hosted anywhere.
 
 ![screenshot](screen.png)
 
 Core features
------------
+-------------
 * Direct links to pages
 * No restrictions on markdown content 
 * Renders `html` inside markdown
 * Fully client side 
 * Totally customizable design (html + css + JS API for custom scripts)
 * Light and fast
-* Embedded markdown editor (easyMDE, loads only on demand) 
+* Embedded markdown editor
 
 ## Custom scripts (included, but not enabled by default)
 * Highlight links to current page
@@ -21,7 +21,7 @@ Core features
 
 
 
-Comparision
+Comparison
 --------------------
 There are at least two apps of the same kind:
 * [CMS.js](https://github.com/chrisdiana/cms.js) — alive
