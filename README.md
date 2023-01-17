@@ -21,16 +21,9 @@ servers, when MMDS can work locally on your computer without Internet access. An
 Therefore, if you do not mind dependency on Java Script, MMDS do have some advantages: ability to edit files in place, no special requirements on 
 server software or source files and almost no setup. 
 
-### Use cases
-
-* Documentation
-* Temporary sites for projects
-* Sites for learning courses (when site is started with the course, than filled as the course go, and finally closed, converted to pdf and handed to students)
-* [ Neocities ](https://neocities.org/)
-* Quick publication of notes from markdown note-taking apps like Obsidian or Joplin.
 
 
-## Cpmparison with other projects of the same kind 
+### Comparison with other projects of the same kind 
 
 * [CMS.js](https://github.com/chrisdiana/cms.js): CMS, which works entirely in browser
 * [IMP!](https://github.com/girobusan/imp): my other project, single page CMS
@@ -50,7 +43,15 @@ server software or source files and almost no setup.
 
 \* IMP! is CMS/Editor/Viewer for single page.
 
-# Features
+## Use cases
+
+* Documentation
+* Temporary sites for projects
+* Sites for learning courses (when site is started with the course, than filled as the course go, and finally closed, converted to pdf and handed to students)
+* [ Neocities ](https://neocities.org/)
+* Quick publication of notes from markdown note-taking apps like Obsidian or Joplin.
+
+## Features
 
 * Direct links to pages
 * No restrictions on markdown content 
