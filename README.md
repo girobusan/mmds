@@ -37,17 +37,20 @@ server software or source files and almost no setup.
 * [IMP!](https://github.com/girobusan/imp): my other project, single page CMS
 * [MDWiki](https://github.com/Dynalon/mdwiki): client-side wiki-like web app
  
-|  :wrench:             | CMS.js             | MDWiki             | MMDS              | IMP!                | 
-|-----------------------|--------------------|--------------------|-------------------|---------------------|
-| Multi page site       | yes :+1:         | yes :+1:         | yes :+1:        |  no :thumbsdown:   |
-| Requires JS to view   | yes :thumbsdown: | yes :thumbsdown: | yes :thumbsdown:|  no :+1:          |
-| URLs for pages        | yes  :+1:        | yes :+1:         | yes :+1:        |  inapplicable*      |
-| Editor                | no :thumbsdown:  | no  :thumbsdown: | yes :+1:        |  yes :+1:         |
-| Requires server setup | yes :thumbsdown: | no :+1:          | no :+1:         |  no :+1:          |
-| Automatic lists       | yes :+1:         | no  :thumbsdown: | no :thumbsdown: |  inapplicable*      | 
-| Custom design         |themes and templates| CSS                | full control      |  full control       |
-| Custom functions      | :question:         | Plugins            | User scripts      |  Any scripts        |
-| Project status        | mature             | dead               | just started      |  pretty mature      |
+|  :wrench:             | CMS.js             | MDWiki           | MMDS            | IMP!              | 
+|-----------------------|--------------------|------------------|-----------------|-------------------|
+| Multi page site       | yes :large_blue_circle:           | yes :large_blue_circle:         | yes :large_blue_circle:        |  no :red_circle:  |
+| Requires JS to view   | yes :red_circle:   | yes :red_circle: | yes :red_circle:|  no :large_blue_circle:          |
+| URLs for pages        | yes :large_blue_circle:          | yes :large_blue_circle:         | yes :large_blue_circle:        |  inapplicable*    |
+| Editor                | no :red_circle:    | no  :red_circle: | yes :large_blue_circle:        |  yes :large_blue_circle:         |
+| Requires server setup | yes :red_circle:   | no :large_blue_circle:          | no :large_blue_circle:         |  no :large_blue_circle:          |
+| Automatic lists       | yes :large_blue_circle:           | no  :red_circle: | no :red_circle: |  inapplicable*    | 
+| Custom design         |themes and templates| CSS              | html and css    |  html and css     |
+| Custom functions      | :question:         | Plugins          | User scripts    |  Any scripts      |
+| Project status        | mature             | dead             | just started    |  pretty mature    |
+
+:large_blue_circle: beneficial features<br/>
+:red_circle: non-beneficial
 
 \* IMP! is CMS/Editor/Viewer for **single** page.
 
