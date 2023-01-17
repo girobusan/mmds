@@ -37,20 +37,19 @@ server software or source files and almost no setup.
 * [IMP!](https://github.com/girobusan/imp): my other project, single page CMS
 * [MDWiki](https://github.com/Dynalon/mdwiki): client-side wiki-like web app
  
-|  :wrench:             | CMS.js             | MDWiki             | MMDS               | IMP!                | 
-|-----------------------|--------------------|--------------------|--------------------|---------------------|
-| Multi page site       | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |  :heavy_minus_sign: |
-| Requires JS to view   | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |  :heavy_minus_sign: |
-| URLs for pages        | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |  inapplicable*      |
-| Editor                | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_check_mark: |  :heavy_check_mark: |
-| Requires server setup | :heavy_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: |  :heavy_minus_sign: |
-| Automatic lists       | :heavy_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: |  inapplicable*      | 
-| Custom design         | themes and templates | CSS              | full control       |  full control       |
-| Custom functions      | :question:         | Plugins            | User scripts       |  Any scripts        |
-| Project status        | mature             |  dead              | just started       |  pretty mature      |
+|  :wrench:             | CMS.js             | MDWiki             | MMDS              | IMP!                | 
+|-----------------------|--------------------|--------------------|-------------------|---------------------|
+| Multi page site       | yes (:+1:)         | yes (:+1:)         | yes (:+1:)        |  no (:thumbsdown)   |
+| Requires JS to view   | yes (:thumbsdown:) | yes (:thumbsdown:) | yes (:thumbsdown:)|  no (:+1:)          |
+| URLs for pages        | yes  (:+1:)        | yes (:+1:)         | yes (:+1:)        |  inapplicable*      |
+| Editor                | no (:thumbsdown:)  | no  (:thumbsdown:) | yes (:+1:)        |  yes (:+1:)         |
+| Requires server setup | yes (:thumbsdown:) | no (:+1:)          | no (:+1:)         |  no (:+1:)          |
+| Automatic lists       | yes (:+1:)         | no  (:thumbsdown:) | no (:thumbsdown:) |  inapplicable*      | 
+| Custom design         |themes and templates| CSS                | full control      |  full control       |
+| Custom functions      | :question:         | Plugins            | User scripts      |  Any scripts        |
+| Project status        | mature             | dead               | just started      |  pretty mature      |
 
 \* IMP! is CMS/Editor/Viewer for **single** page.
-
 
 ## Features
 
