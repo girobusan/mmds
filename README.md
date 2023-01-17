@@ -1,22 +1,59 @@
 :ru: [Русский](https://girobusan.github.io/mmds/#!index.ru.md)
 
-# My Markdown Site
+My Markdown Site
+================
 
 100% client-side markdown CMS/viewer/editor written in Java Script. Current version is still experimental (but mostly works), but we're close to something useful. [See demo site](https://girobusan.github.io/mmds/#!index.en.md).
 
-## Features
+
+The purpose of it is to publish any set of markdown documents on any server in no time,
+be able to quickly edit them in place, and be able to easily use the same markdown files anywhere else. The main alternatives are either server-side Content Management System (CMS) or Static Site Generator (SSG) like Jekill. Others are online services, like Notion. 
+
+![Screenshot](docs/screen.png)
+
+### Comparison
+
+- *SSG:* resulting site may be static and more accessible (MMDS requires Java Script in browser), but you have to regenerate site after any edits or setup the automated workflow. Usually does not include markdown editor.
+- *CMS:* more accessible site, usually includes editor and full-blown backend, but requires server setup and your need to perform additional task to get your text as separate files for use somewhere outside the CMS.
+- *Online services:* a lot of useful functions, but your files are kept on they
+servers only, when MMDS can work locally on your computer without Internet access. And it is not that easy to ban you from your own computer, you know.
+
+Therefore, if you do not mind dependency on Java Script, MMDS do have some advantages: ability to edit files in place, no special requirements on 
+server software or source files and almost no setup. 
+
+### Use cases
+
+* Documentation
+* Temporary sites for projects
+* Sites for learning courses (when site is started with the course, than filled as the course go, and finally closed, converted to pdf and handed to students)
+* [ Neocities ](https://neocities.org/)
+
+
+## Other projects of the same kind and comparison
+
+* [CMS.js](https://github.com/chrisdiana/cms.js) — alive
+* [MDWiki](https://github.com/Dynalon/mdwiki) — archived
+ 
+|  :wrench:  | CMS.js | MDWiki | MMDS |
+|-------|-----|-----|------|
+| URLs for pages | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:|
+| Editor | :heavy_minus_sign:  | :heavy_minus_sign: | :heavy_check_mark: |
+| Requires server setup | :heavy_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: |
+| Automatic lists | :heavy_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: |
+| Custom design | themes and templates | CSS | full control |
+| Custom functions| :question: | Plugins | User scripts |
+| Project status | :blush: |  :skull: | :baby: |
+
+# Features
 
 * Direct links to pages
 * No restrictions on markdown content 
 * Renders HTML inside markdown
-* Fully client side 
 * Totally customizable design (html + css + JS API for custom scripts)
-* Light and fast 
 * Embedded markdown editor 
 * ...and, of course, you can use ANY markdown editor.
 * Any server (no server setup required)
 
-![Screenshot](docs/screen.png)
 
 ## License
 
