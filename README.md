@@ -45,7 +45,7 @@ server software or source files and almost no setup.
 | Editor                                  | no      | no      | yes   |  yes           |
 | Can run without additional server setup | no      | yes     | yes   |  yes (edititng without server at all)  |
 | Automatic lists                         | yes     | no      | no    |  inapplicable* | 
-| Custom design               | themes and templates| CSS     | html and css    |  html and css     |
+| Custom design               | themes and templates| CSS     | HTML and CSS    |  CSS     |
 | Custom functions            | :question:          | Plugins | User scripts    |  Any scripts      |
 | Project status              | mature              | dead    | just started    |  pretty mature    |
 
