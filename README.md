@@ -11,7 +11,7 @@ be able to quickly edit them in place, and be able to easily use the same markdo
 
 ![Screenshot](docs/screen.png)
 
-### Comparison
+### Comparison with alternative approaches
 
 - __SSG:__ resulting site may be static and more accessible (MMDS requires Java Script in browser), but you have to regenerate site after any edits or setup the automated workflow. Usually does not include markdown editor.
 - __CMS:__ more accessible site, usually includes editor and full-blown backend, but requires server setup and your need to perform additional task to get your text as separate files for use somewhere outside the CMS.
@@ -30,7 +30,7 @@ server software or source files and almost no setup.
 * Quick publication of notes from markdown note-taking apps like Obsidian or Joplin.
 
 
-## Other projects of the same kind and comparison
+## Cpmparison with other projects of the same kind 
 
 * [CMS.js](https://github.com/chrisdiana/cms.js): CMS, which works entirely in browser
 * [IMP!](https://github.com/girobusan/imp): my other project, single page CMS

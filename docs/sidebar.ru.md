@@ -11,5 +11,8 @@
   * [ Настройки ](settings.ru.md)
   * [Темы](themes.ru.md)
   * [Java Script API](api.ru.md)
+  
+* Доп. материалы
+  * [Шпаргалка по markdown](markdown_sampler.ru.md)
 
 *  [:wrench:](sidebar.ru.md)

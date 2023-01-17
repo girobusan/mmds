@@ -11,5 +11,7 @@
   * [Settings ](settings.en.md)
   *  [Themes](themes.en.md)
   * [Java Script API](api.en.md)
+* Additions
+  * [Markdown sampler](markdown_sampler.en.md)
 
 *  [:wrench:](sidebar.en.md)
