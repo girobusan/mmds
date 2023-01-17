@@ -32,17 +32,22 @@ server software or source files and almost no setup.
 ## Other projects of the same kind and comparison
 
 * [CMS.js](https://github.com/chrisdiana/cms.js) — alive
+* [IMP!](https://github.com/girobusan/imp) -  alive
 * [MDWiki](https://github.com/Dynalon/mdwiki) — archived
  
-|  :wrench:  | CMS.js | MDWiki | MMDS |
-|-------|-----|-----|------|
-| URLs for pages | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:|
-| Editor | :heavy_minus_sign:  | :heavy_minus_sign: | :heavy_check_mark: |
-| Requires server setup | :heavy_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: |
-| Automatic lists | :heavy_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: |
-| Custom design | themes and templates | CSS | full control |
-| Custom functions| :question: | Plugins | User scripts |
-| Project status | :blush: |  :skull: | :baby: |
+|  :wrench:             | CMS.js             | MDWiki             | MMDS               | IMP!                | 
+|-----------------------|--------------------|--------------------|--------------------|---------------------|
+| Multi page site       | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |  :heavy_minus_sign: |
+| Requiers JS to view   | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |  :heavy_minus_sign: |
+| URLs for pages        | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |  inapplicable*      |
+| Editor                | :heavy_minus_sign: | :heavy_minus_sign: | :heavy_check_mark: |  :heavy_check_mark: |
+| Requires server setup | :heavy_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: |  :heavy_minus_sign: |
+| Automatic lists       | :heavy_check_mark: | :heavy_minus_sign: | :heavy_minus_sign: |  inapplicable*      | 
+| Custom design         | themes and templates | CSS              | full control       |  full control       |
+| Custom functions      | :question:         | Plugins            | User scripts       |  Any scripts        |
+| Project status        | :blush:            |  :skull:           | :baby:             |  :blush             |
+
+\* IMP! is CMS/Editor/Viewer for single page.
 
 # Features
 
