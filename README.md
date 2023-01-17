@@ -39,12 +39,12 @@ server software or source files and almost no setup.
  
 |  :wrench:             | CMS.js             | MDWiki             | MMDS              | IMP!                | 
 |-----------------------|--------------------|--------------------|-------------------|---------------------|
-| Multi page site       | yes (:+1:)         | yes (:+1:)         | yes (:+1:)        |  no (:thumbsdown)   |
-| Requires JS to view   | yes (:thumbsdown:) | yes (:thumbsdown:) | yes (:thumbsdown:)|  no (:+1:)          |
-| URLs for pages        | yes  (:+1:)        | yes (:+1:)         | yes (:+1:)        |  inapplicable*      |
-| Editor                | no (:thumbsdown:)  | no  (:thumbsdown:) | yes (:+1:)        |  yes (:+1:)         |
-| Requires server setup | yes (:thumbsdown:) | no (:+1:)          | no (:+1:)         |  no (:+1:)          |
-| Automatic lists       | yes (:+1:)         | no  (:thumbsdown:) | no (:thumbsdown:) |  inapplicable*      | 
+| Multi page site       | yes :+1:         | yes :+1:         | yes :+1:        |  no :thumbsdown:   |
+| Requires JS to view   | yes :thumbsdown: | yes :thumbsdown: | yes :thumbsdown:|  no :+1:          |
+| URLs for pages        | yes  :+1:        | yes :+1:         | yes :+1:        |  inapplicable*      |
+| Editor                | no :thumbsdown:  | no  :thumbsdown: | yes :+1:        |  yes :+1:         |
+| Requires server setup | yes :thumbsdown: | no :+1:          | no :+1:         |  no :+1:          |
+| Automatic lists       | yes :+1:         | no  :thumbsdown: | no :thumbsdown: |  inapplicable*      | 
 | Custom design         |themes and templates| CSS                | full control      |  full control       |
 | Custom functions      | :question:         | Plugins            | User scripts      |  Any scripts        |
 | Project status        | mature             | dead               | just started      |  pretty mature      |
