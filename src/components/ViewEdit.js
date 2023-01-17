@@ -87,7 +87,8 @@ export class ViewEdit extends Component{
      ref=${this.componentContainer}
      >
      <${ If } condition=${this.isEdited(this.state.path)&&( !this.MMDS.editMode )}> 
-     <small class="notSavedWarning">${this.state.path} has unsaved changes </small>
+     <small class="notSavedWarning">${this.state.path} has unsaved changes <input type="button" value="save" onclick=${window.MMDS.action.save}>
+     </input></small>
      </${ If }>
      <${ If } condition=${this.MMDS.editMode}>
         <div class=${"editorContainer " }>

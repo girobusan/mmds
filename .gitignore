@@ -3,6 +3,8 @@ test/
 refs/
 libs/
 *.zip
+dist/plain-report.txt
+dist/mdsite.js.LICENSE.txt
 # Logs
 logs
 *.log

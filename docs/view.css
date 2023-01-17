@@ -86,7 +86,6 @@ main #sidebarContainer {
 }
 main #sidebarContainer #langSwitch {
   font-family: monospace;
-  width: 250px;
   text-align: left;
   display: inline-block;
 }

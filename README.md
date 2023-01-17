@@ -12,7 +12,7 @@ be able to quickly edit them in place, and be able to easily use the same markdo
 ## Use cases
 
 * Documentation
-* Temporary sites for projects
+* Sites for limited term projects
 * Sites for learning courses (when site is started with the course, than filled as the course go, and finally closed, converted to pdf and handed to students)
 * [ Neocities ](https://neocities.org/)
 * Quick publication of notes from markdown note-taking apps like Obsidian or Joplin.
@@ -28,7 +28,7 @@ The main alternatives are either server-side Content Management System (CMS) or 
 - __Online services:__ a lot of useful functions, but your files are kept on they
 servers, when MMDS can work locally on your computer without Internet access. And it is not that easy to ban you from your own computer, you know.
 
-Therefore, if you do not mind dependency on Java Script, MMDS do have some advantages: ability to edit files in place, no special requirements on 
+Therefore, if you do not mind dependency on Java Script, MMDS do have some advantages here: ability to edit files in place, no special requirements on 
 server software or source files and almost no setup. 
 
 ### Comparison with other projects of the same kind 
