@@ -112,7 +112,7 @@ export class BareMDE extends Component{
   }
   saveFile(){
     console.info("saving...")
-    if(this.props.indicateChanges&&this.state.modified)
+    if(this.props.indicateChanges&&this.modified)
     { this.setState({modified:false}) } 
   this.props.save(this.jar.toString());
   }

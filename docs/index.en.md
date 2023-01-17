@@ -1,4 +1,6 @@
-:tent: My Markdown Site
+<div style="font-size:96px">⛺</div>
+
+My Markdown Site
 =======================
 
 MMDS is a fully client-side markdown viewer/editor/CMS, written in java Script. It can easily convert any set of markdown files into nice site, which can be then hosted anywhere.
