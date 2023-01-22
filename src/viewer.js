@@ -1,7 +1,9 @@
 //viewer
+import "preact/debug";
 import {h, render} from "preact";
 import { getContent } from "./mdops";
-import { JustView} from "./components/JustView"
+// import { JustView} from "./components/JustView"
+import {ViewEdit} from "./components/ViewEdit"
 import {saveToDisk} from "./fileops";
 import { goEditMode } from "./editor";
 
@@ -61,6 +63,10 @@ window.MMDS = new function(){
   this._updaters= {};
   this._handlers= {};
   var updID =  1;
+  this.makeID = function(){
+     updID+=1;
+     return updID;
+  }
   this.addUpdater = (f)=>{
     updID++;
     this._updaters[updID] =  f;
@@ -255,23 +261,9 @@ async function startSite(){
 
   // MMDS.on("ready" , ()=>console.log("ready fired"));
 
-  //add and show content
-  if(contentNode){
-    // console.log("Content node found")
-    const JV = h(JustView , {base: MMDS.settings.mdDir})
-    render( JV, contentNode )
-    //
-    //find and display start location
-    if(window.location.hash){
-      history.replaceState( { path: window.location.hash.substring(2) , isMMMDSstate: true} , null  );
-      MMDS.showPath(window.location.hash.substring(2))
-    }else{
-      history.replaceState({ path: window.MMDS.settings.indexFile , isMMMDSstate:true } , null , "#!"+window.MMDS.settings.indexFile) ; 
-      MMDS.showPath(MMDS.settings.indexFile)
-    }
-  }else{
-    console.error("Content node not found")
-  }
+  //
+  // add and show content viewer
+  // 
 
   //add listeners
   function detectClicks(evt){
@@ -306,8 +298,35 @@ async function startSite(){
       // window.removeEventListener("popstate" , restoreState );
       window.removeEventListener("DOMContentLoaded", startSite);
     }
-
+    //
+    //we must add content only here
+    // when everything is set up
+    if(contentNode){
+      // mount viewer
+      // const JV = h(JustView , {base: MMDS.settings.mdDir})
+      const JV = h(ViewEdit , {base: MMDS.settings.mdDir})
+      render( JV, contentNode )
+      //
+    }else{
+    console.error("Content node not found")
   }
+    //start location 
+    //find and display start location
+
+    if(window.location.hash){
+    //if there is hash, it is (probably) start location
+      history.replaceState( { path: window.location.hash.substring(2) , 
+      isMMMDSstate: true} , null  );
+      MMDS.showPath(window.location.hash.substring(2))
+    }else{
+      //else -- index file
+      history.replaceState({ path: window.MMDS.settings.indexFile , isMMMDSstate:true } ,
+      null , "#!"+window.MMDS.settings.indexFile) ; 
+      MMDS.showPath(MMDS.settings.indexFile)
+    }
+
+
+  }// /startSite
 
   window.addEventListener("DOMContentLoaded", startSite);
 

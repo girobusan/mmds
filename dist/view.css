@@ -323,6 +323,8 @@ footer {
     left: 0;
     right: auto;
     width: 100vw;
+    overflow: auto;
+    height: 100vh;
     background-color: rgba(0, 0, 0, 0.9);
   }
   main #sidebarContainer #burger {
@@ -347,6 +349,7 @@ footer {
     background-color: orangered;
   }
   main #sidebarContainer.hidden {
+    overflow: initial;
     left: -100vw;
     width: 100vw;
   }

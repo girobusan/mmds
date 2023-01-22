@@ -5,6 +5,7 @@ libs/
 *.zip
 dist/plain-report.txt
 dist/mdsite.js.LICENSE.txt
+dist/settings.json
 # Logs
 logs
 *.log

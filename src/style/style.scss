@@ -361,6 +361,8 @@ footer{
     right: auto;
     // min-height: 100vh;
     width: 100vw;
+    overflow: auto;
+    height: 100vh;
 
     background-color: rgba(0,0,0,.9);
     #burger{
@@ -385,6 +387,7 @@ footer{
       }
     }
     &.hidden{
+      overflow: initial;
       left: -100vw;
       // left: auto;
       width: 100vw;
