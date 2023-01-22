@@ -1,5 +1,5 @@
 //viewer
-import "preact/debug";
+// import "preact/debug";
 import {h, render} from "preact";
 import { getContent } from "./mdops";
 // import { JustView} from "./components/JustView"
@@ -303,9 +303,9 @@ async function startSite(){
     // when everything is set up
     if(contentNode){
       // mount viewer
-      // const JV = h(JustView , {base: MMDS.settings.mdDir})
-      const JV = h(ViewEdit , {base: MMDS.settings.mdDir})
-      render( JV, contentNode )
+      contentNode.innerHTML = "";
+      const ViewComp = h(ViewEdit , {base: MMDS.settings.mdDir})
+      render( ViewComp, contentNode )
       //
     }else{
     console.error("Content node not found")
