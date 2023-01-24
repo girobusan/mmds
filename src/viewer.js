@@ -1,5 +1,8 @@
-//viewer
-// import "preact/debug";
+if(process.env.NODE_ENV=='development')
+{
+  console.info("Debug enabled.");
+  require( "preact/debug" );
+}
 import {h, render} from "preact";
 import { getContent } from "./mdops";
 // import { JustView} from "./components/JustView"
@@ -36,7 +39,7 @@ window.MMDS = new function(){
   },
 
   this.errorPage = (p , errCode) =>{
-    console.info("Error: " , errCode )
+    // console.info("Error: " , errCode )
 
     if(errCode===404){
       return this.page404(p);
@@ -78,7 +81,6 @@ window.MMDS = new function(){
 
   this.on = (evtID , f)=>{
     console.log("setting listener" , evtID)
-    // const mmds = window.MMDS;
     updID+=1;
     if(!this._handlers[evtID]){ this._handlers[evtID] = {} };
     this._handlers[evtID][updID] = f;
@@ -94,7 +96,7 @@ window.MMDS = new function(){
   },
 
   this.fire = (evtID , evtArgs)=>{
-    console.log("firing" , evtID );
+    // console.log("firing" , evtID );
     if(!this._handlers[evtID] ){return};
     Object.values( this._handlers[evtID] ) 
     .forEach( ff=>ff(evtArgs) )
@@ -146,7 +148,7 @@ window.MMDS = new function(){
     const filePath = this.makePath(p || this.settings.indexFile);
     return getContent(filePath, fetchOpts)
     .then(r=>{
-      if(r.error){ console.info("Error" , r.error) ;
+      if(r.error){ console.info("Error:" , r.error) ;
 
         this.showContent( p , this.errorPage(p , r.error ) );
         return;

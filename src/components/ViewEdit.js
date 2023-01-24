@@ -49,7 +49,7 @@ export class ViewEdit extends Component{
     this.MMDS.addUpdater(this.updater);
   }
   componentDidUpdate(){
-    console.log("ViewEdit updated");
+    // console.log("ViewEdit updated");
     if(this.text.current)
     {
       const imgs = this.text.current.querySelectorAll("*[src]");
@@ -74,15 +74,15 @@ export class ViewEdit extends Component{
     this.setState({content: c , path: p}) 
   }
     checkContent(path,content){
-      console.log("Checking content at" , path);
+      // console.log("Checking content at" , path);
       if(!path){ 
          console.log("empty path")
          return content || {markdown: "" , html: "One moment, please..."} }
       if(this.notSaved[path]){ 
-        console.log("This one has not saved changes" , this.notSaved)
+        // console.log("This one has not saved changes" , this.notSaved)
         return this.notSaved[path] 
       }
-      console.log("This file was not changed")
+      // console.log("This file was not changed")
       return content;
     }
 
@@ -138,7 +138,7 @@ export class ViewEdit extends Component{
     //   return content;
     // }
     isEdited(path){
-      console.log("Is it edited?" , path)
+      // console.log("Is it edited?" , path)
       if(this.notSaved[path]){return true}
       return false;
     }
