@@ -196,6 +196,7 @@ BareMDE.defaultProps = {
    fullscreenZIndex: 1001,
    externalPreview: null,
    externalPreviewTitle: "External Preview",
-   documentPath: 'default'
+   documentPath: 'default',
+   imageRewriter: (p)=>p
 
 }
