@@ -330,6 +330,11 @@ async function startSite(){
 
   }// /startSite
 
-  window.addEventListener("DOMContentLoaded", startSite);
+  if(document.readyState!='loading')
+  {
+     startSite();
+  }else{
+    window.addEventListener("DOMContentLoaded", startSite);
+  }
 
 

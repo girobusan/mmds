@@ -32,6 +32,7 @@ export class ViewEdit extends Component{
     this.updater= this.updater.bind(this);
   };
   componentWillMount(){
+    const my = this;
     // const MMDS = window.MMDS;
     this.MMDS.action.edit = ()=>{ 
       // console.log("new and improved function")
@@ -47,6 +48,9 @@ export class ViewEdit extends Component{
     }
 
     this.MMDS.addUpdater(this.updater);
+    window.onbeforeunload =  
+    ()=>{  console.log(my.notSaved) ; return Object.keys(my.notSaved).length==0 ? undefined : "Some files are not saved" }
+    ;
   }
   componentDidUpdate(){
     // console.log("ViewEdit updated");
