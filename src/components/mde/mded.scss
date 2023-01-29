@@ -107,11 +107,13 @@
      .codeJar{
        border-bottom-left-radius: 4px;
 	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', ui-monospace , monospace;
+     
     ::spelling-error{
      background-color: yellow;
    }
      font-size: 18px;
      line-height: 150%;
+     color: #333;
        flex-grow: 1;
        padding: 8px;
        background-color: #fafafa;

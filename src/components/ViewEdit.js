@@ -52,6 +52,9 @@ export class ViewEdit extends Component{
     ()=>{  console.log(my.notSaved) ; return Object.keys(my.notSaved).length==0 ? undefined : "Some files are not saved" }
     ;
   }
+  fixImages(){
+  
+  }
   componentDidUpdate(){
     // console.log("ViewEdit updated");
     if(this.text.current)
@@ -112,6 +115,7 @@ export class ViewEdit extends Component{
     onUpdate=${(c)=>this.edited(this.state.path , {markdown: c , html: renderMd(c)})}
     modified=${this.isEdited(this.state.path)}
     documentPath=${this.state.path}
+    imageRewriter=${ (p)=>p.startsWith(this.props.base) ? p : this.props.base + p }
     />
     </div>
     </${ If }>

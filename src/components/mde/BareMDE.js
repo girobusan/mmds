@@ -22,7 +22,7 @@ export class BareMDE extends Component{
        showPreview: props.showPreview,
        content: props.content,
        // content: props.content || "# type here",
-       modified: props.modified ,
+       // modified: props.modified ,
        spellCheck: props.spellCheck,
        // documentPath: props.documentPath
      }
@@ -68,7 +68,7 @@ export class BareMDE extends Component{
     this.doPreview();
     this.jar.onUpdate( ()=>{
 
-      if(this.props.indicateChanges&&!this.state.modified){ 
+      if(this.props.indicateChanges&&!this.modified){ 
          this.setState({modified: true}) ;
          this.modified=true;
          }
@@ -112,14 +112,22 @@ export class BareMDE extends Component{
   }
   saveFile(){
     console.info("saving...")
-    if(this.props.indicateChanges&&this.modified)
+    if(this.props.indicateChanges&&this.state.modified)
     { this.setState({modified:false}) } 
   this.props.save(this.jar.toString());
   }
   doPreview(force){
     const redraw = ()=>{
       this.previewContainer.current.innerHTML = this.props.render(this.jar.toString())
+      const imgs = this.previewContainer.current.querySelectorAll("*[src]");
+      imgs.forEach(i=>{
+        if(i.getAttribute("src").match(/^http(s)?:/)){
+          return;
+        }
+        i.src = this.props.imageRewriter(i.getAttribute( "src" ));
+      })
     }
+
     if(!this.state.showPreview&&!force){ return }
     if(!this.previewThrottle){
       // console.log("previewing...");
@@ -132,6 +140,7 @@ export class BareMDE extends Component{
     //   console.log("throttled....")
     // }
     }
+
   render(){
 
     // buttons:
