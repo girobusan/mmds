@@ -1,23 +1,12 @@
 var WebpackBundleSizeAnalyzerPlugin = require('webpack-bundle-size-analyzer').WebpackBundleSizeAnalyzerPlugin;
-// import { WebpackBundleSizeAnalyzerPlugin } from 'webpack-bundle-size-analyzer';
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-// const HTMLInlineCSSWebpackPlugin = require("html-inline-css-webpack-plugin").default;
 const webpack = require('webpack');
 const pkg = require('./package.json');
-const fs = require('fs');
-var coreCSS="/*not generated yet*/"
 
 
 const env = process.env.NODE_ENV;
-
-const econfig = {
-  mode: env || 'development'
-}
-
-
 
 module.exports = function (env, argv) {
 
@@ -29,14 +18,11 @@ module.exports = function (env, argv) {
     target: 'web',
     optimization: {
 
-
     },
-
 
     mode: argv.mode,
     entry: {
       "mdsite": './src/viewer.js',
-      // "mdeditor": './src/editor.js',
       // USER SCRIPTS
       "scripts/currentpage": "./src/user_scripts/currentlink.js",
       "scripts/bilingual": "./src/user_scripts/bilingual.js",
@@ -80,7 +66,7 @@ module.exports = function (env, argv) {
 
     },
     plugins: [
-     new WebpackBundleSizeAnalyzerPlugin('./plain-report.txt'),
+       new WebpackBundleSizeAnalyzerPlugin('./plain-report.txt'),
       new webpack.DefinePlugin({
         // Definitions...
         'VERSION': JSON.stringify(pkg.version)
@@ -95,27 +81,10 @@ module.exports = function (env, argv) {
         filename: 'index.html',
         minify: false,
         inject: false,
-        css: coreCSS,
-        // scriptLoading: 'defer',
         template: path.join(__dirname, "src/templates/index.ejs"),
       }
       ),
-      new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/loader/]),
-      // new HTMLInlineCSSWebpackPlugin(
-
-      //   {
-      //     filter: (n)=>{console.log("NAME" , n) ; return n!=="editor.css"},
-      //     leaveCSSFile: true,
-      //     replace:
-      //     {target: '<style id="customCSS">' , 
-      //       position: "before",
-      //       removeTarget: false,
-      //     },
-      //     styleTagFactory({ style }){ return `<style id="coreCSS">${ style }</style>`
-      //     },
-      //   }
-      // ),
-
+      // new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/loader/]),
 
     ],
   };
