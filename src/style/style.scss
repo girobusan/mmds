@@ -77,6 +77,13 @@ blockquote{
   }
 }
 
+a.unsavedDoc{
+  &::before{
+    content: "●";
+    color: orangered;
+  }
+}
+
 
 main{
   display: flex;

@@ -27,6 +27,7 @@ module.exports = function (env, argv) {
       "scripts/currentpage": "./src/user_scripts/currentlink.js",
       "scripts/bilingual": "./src/user_scripts/bilingual.js",
       "scripts/forkme" : "./src/user_scripts/forkme.js",
+      "scripts/mark_unsaved" : "./src/user_scripts/mark_unsaved.js"
     },
     devtool: argv.mode != "production" ? 'inline-source-map' : false, 
     // devServer: argv.mode != "production" ? {contentBase: 'dist'} : {contentBase: 'dist'},

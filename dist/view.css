@@ -69,6 +69,11 @@ blockquote:before {
   color: silver;
 }
 
+a.unsavedDoc::before {
+  content: "●";
+  color: orangered;
+}
+
 main {
   display: flex;
   flex-direction: row;
