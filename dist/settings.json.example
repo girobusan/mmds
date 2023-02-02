@@ -3,5 +3,5 @@
    "mdDir" : "md/",
    "indexFile": "index.md",
    "menuFile": "menu.md",
-   "scripts" : [ "scripts/currentpage.js"]   
+   "scripts" : [ "scripts/currentpage.js" , "scripts/mark_unsaved.js"]   
  }
