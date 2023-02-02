@@ -3,7 +3,6 @@
     "mdDir": "",
     "menuFile": "sidebar.ru.md",
     "indexFile": "index.ru.md",
-    "scripts" : ["currentpage.js" , "bilingual.js" , "forkme.js"],
-    "editorScript" : "mdeditor.js",
-    "_editorScript": "https://cdn.jsdelivr.net/gh/girobusan/mmds/dist/mdeditor.js"
-  }
+    "scripts" : ["scripts/currentpage.js" , "scripts/bilingual.js" , "scripts/forkme.js" , "scripts/mark_unsaved.js"],
+    "editorScript" : "mdeditor.js"
+} 
