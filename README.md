@@ -33,9 +33,9 @@ server software or source files and almost no setup.
 
 ### Comparison with other projects of the same kind 
 
-* [CMS.js](https://github.com/chrisdiana/cms.js): CMS, which works entirely in browser
-* [IMP!](https://github.com/girobusan/imp): my other project, single page CMS
-* [MDWiki](https://github.com/Dynalon/mdwiki): client-side wiki-like web app
+* [*CMS.js*](https://github.com/chrisdiana/cms.js): CMS, which works entirely in browser
+* [*IMP!*](https://github.com/girobusan/imp): my other project, single page CMS
+* [*MDWiki*](https://github.com/Dynalon/mdwiki): client-side wiki-like web app
  
 |  :wrench:                               | CMS.js  | MDWiki  | MMDS  | IMP!  | 
 |-----------------------------------------|---------|---------|-------|-------|
