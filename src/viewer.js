@@ -79,6 +79,10 @@ window.MMDS = new function(){
     delete(my._updaters[id]);
   };
 
+  this.onMany = (idsarray , f)=>{
+    idsarray.forEach(i=>this.on(i,f));
+  }
+
   this.on = (evtID , f)=>{
     console.log("setting listener" , evtID)
     updID+=1;
@@ -96,7 +100,7 @@ window.MMDS = new function(){
   },
 
   this.fire = (evtID , evtArgs)=>{
-    // console.log("firing" , evtID );
+    console.log("firing" , evtID );
     if(!this._handlers[evtID] ){return};
     Object.values( this._handlers[evtID] ) 
     .forEach( ff=>ff(evtArgs) )

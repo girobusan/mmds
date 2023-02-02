@@ -74,6 +74,7 @@ export class ViewEdit extends Component{
           i.src = this.props.base + i.getAttribute("src")
       })
     }
+    this.MMDS.fire("editor_redraw");
   }
   componentDidMount(){
 
