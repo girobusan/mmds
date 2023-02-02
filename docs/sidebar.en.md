@@ -5,6 +5,7 @@
   * [First Site](basic_setup.en.md)
   *  [Highlight current document in the menu](currentlink.en.md)
   * [Multilanguage site](multilanguage_setup.en.md)
+  * [Embedded editor](editor.en.md)
 
 * Customization
   * [Design](customization.en.md)
