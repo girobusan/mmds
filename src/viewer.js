@@ -80,7 +80,7 @@ window.MMDS = new function(){
   };
 
   this.onMany = (idsarray , f)=>{
-    idsarray.forEach(i=>this.on(i,f));
+    return idsarray.map(i=>this.on(i,f));
   }
 
   this.on = (evtID , f)=>{
