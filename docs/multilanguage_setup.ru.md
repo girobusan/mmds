@@ -29,7 +29,7 @@
    "mdDir" : "docs/",
    "indexFile": "main.en.md",
    "menuFile": "sidebar.en.md",
-   "scripts" : ["currentpage.js" , "bilingual.js"],
+   "scripts" : ["scripts/currentpage.js" , "scripts/bilingual.js"],
    "usr" : { "bilingual" : 
 	      {
 	         "langs" : "ru,en,es,ar"
@@ -38,7 +38,6 @@
  }
  
 ```
-Такая настройка предполагает, что файл `bilingual.js` находится в той же директории, что и основной файл.
 
 Всё. Можно запустить локальный сервер, и посмотреть, что получилось. Если вы используете тему по умолчанию, то слева появится более-менее симпатичный виджет выбора языка.
 

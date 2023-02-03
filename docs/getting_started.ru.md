@@ -10,10 +10,9 @@ Python 3:
 $ python3 -m http.server
 ```
 
-Или, если есть node.js (первая строчка устанавливает модуль, это надо сделать один раз):
+Или, если у вас установлен node.js:
 
 ```
-$ npm install http-server -g 
 $ http-server
 ```
 

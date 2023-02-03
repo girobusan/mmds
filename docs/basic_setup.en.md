@@ -5,9 +5,11 @@ Here is a list of files in the `dist` directory:
 * **index.html** — main file, which will be opened in browser
 * **mdsite.js** — main script
 * **view.css** — default page style
-* **scripts/currentpage.js** — user script, which highlights link to current document in menu
-* **scripts/bilingual.js** — user script for creating multilanguage site
-* **md** — *directory*  with markdown files
+* **settings.json.example** — example settings file
+
+- **scripts** — user scripts directory
+- **md** — directory  with markdown files
+
 
 
 ## Creating settings file

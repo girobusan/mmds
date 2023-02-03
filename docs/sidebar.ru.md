@@ -12,6 +12,11 @@
   * [ Настройки ](settings.ru.md)
   * [Темы](themes.ru.md)
   * [Java Script API](api.ru.md)
+* [Пользовательские скрипты](user_scripts.ru.md)
+  * [forkme](us_forkme.ru.md)
+  * [bilingual](multilanguage_setup.ru.md)
+  * [currentpage](currentlink.ru.md)
+  * [mark_unsaved](us_mark_unsaved.ru.md)
   
 * Доп. материалы
   * [Шпаргалка по markdown](markdown_sampler.ru.md)
