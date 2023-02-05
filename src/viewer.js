@@ -34,7 +34,7 @@ window.MMDS = new function(){
   this.page404 =  function(l){
     return{
       html: `<h1>${l}</h1><p>This page is not created yet. Click "edit" to create it.</p>`,
-      markdown: ""
+      markdown: `<!--${l}-->`
     }
   },
 
@@ -47,13 +47,13 @@ window.MMDS = new function(){
     if(typeof(errCode)==='number'){
       return {
         html: "<h1>Error " + errCode + "</h1><p>Something went wrong</p>",
-        markdown: ""
+        markdown: "<!--error-->"
       }
     }
 
     return {
       html: "<h1>Fatal error</h1><p>Network down or host unreachable</p>",
-      markdown: ""
+      markdown: "<!--Fatal error-->"
     }
   };
 
