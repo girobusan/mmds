@@ -12,6 +12,8 @@
   * [Settings ](settings.en.md)
   *  [Themes](themes.en.md)
   * [Java Script API](api.en.md)
+* User scripts
+  * [mark_unsaved.js](us_mark_unsaved.en.md)
 * Additions
   * [Markdown sampler](markdown_sampler.en.md)
 

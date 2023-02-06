@@ -17,3 +17,14 @@ Toolbar buttons, listed left to right:
 3. Enable spellcheck (it uses browser spellchecker engine)
 4. Exit edit mode
 5. Save file (when there are unsaved changes, this button is highlighted) 
+
+New file creation
+----------------- 
+In order to create new file inside MMDS, you have to create a link to non-existent file in some other file, like this:
+
+```
+[See more](see_more.md)
+``` 
+Than you can either:
+1. Enable preview, click the link in the preview panel and you'll be presented with newly created file.
+2. Exit editor, click the link in the view mode. You'll see the message "...press edit button to create...". Press the `edit` button, and you'll get your file. 

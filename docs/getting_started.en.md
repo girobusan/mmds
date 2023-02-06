@@ -26,7 +26,7 @@ To start editing, click `edit` button at the bottom of the page. Pages will be l
 
 Then you may press the `view` button to switch back to view mode. If file was edited, but wasn't saved, you'll see a warning. 
 
-Save button is on the tools panel of the editor, it has a floppy disk icon. For now, you may need to reload page after saving.
+Save button is on the tools panel of the editor, it has a floppy disk icon. You _may_ need to reload page after saving.
 
 ### Settings
 The best way to add user settings is by creating `settings.json` file near the `index.html`. For detailed instructions on settings, go [there](settings.en.md).
