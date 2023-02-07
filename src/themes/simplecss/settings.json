@@ -2,7 +2,7 @@
   
     "mdDir": "../md/",
     "indexFile": "simplecss.md",
-    "scripts" : [],
+    "scripts" : [ "../scripts/currentpage.js" , "../scripts/mark_unsaved.js" ],
     "usr" : {
       "bilingual": {
          "langs" : "ru,en"

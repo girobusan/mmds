@@ -6,8 +6,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="simplecss.css">
   <script defer src="mdsite.js"></script>
+  <script>
+    function sidebarToggle(){
+       document.body.classList.toggle("sidebarOff");
+    }
+    window.addEventListener("DOMContentLoaded" , function(){
+        //add new listener
+        window.MMDS.on("ready" , ()=>{
+            if(document.body.classList.contains("sidebarOff")){ 
+              return  }
+            document.body.classList.add("sidebarOff");
+        })
+        //added
+    })
+  </script>
 </head>
-<body>
+<body class="sidebarOff">
+  <div id="burger" onclick="sidebarToggle()">
+     <hr/>
+     <hr/>
+     <hr/>
+  </div>
   <div id="sidebar">
     <div id="langSwitch"></div>
     <nav id="menu"></nav>

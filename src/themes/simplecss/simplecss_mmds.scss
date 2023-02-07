@@ -1,14 +1,86 @@
 @use "_simple";
 
+body,html{
+  margin: 0;
+  padding:0;
+  min-height: 100vh;
+}
+
 body{
 
   grid-template-columns: min(20rem , 20%) 1fr min(40rem, 80%) 1fr;
 }
 
+.sidebarOff 
+{
+  @media(max-width: 800px){
+    #sidebar{
+      display: none;
+    }
+  }
+
+}
+
+#burger{
+  display: none;
+}
+@media(min-width: 1300px){
+   
+  body{
+    grid-template-columns: min(20rem , 20%) 1fr min(40rem, 80%) 1fr min(20rem,20%);
+  }
+}
 @media(max-width: 800px){
+  main{
+    box-sizing: border-box;
+    margin:0;
+    margin-top: 4rem;
+    padding:0;
+    width: 100%;//calc(100% - 2rem);
+    grid-row: 1;
+    grid-column: 1;
+    overflow: auto;
+  }
+  #sidebar{
+    box-sizing: border-box;
+    padding: 1rem;
+     position: absolute;
+     top: 0;
+     left: 0;
+     right: 0;
+     height: 100vh;
+     overflow: auto;
+     z-index: 50;
+     background-color: var(--bg);
+     
+  }
+    #burger{
+      z-index: 100;
+      display: block;
+      box-sizing: border-box;
+      position: absolute;
+      top: 12px;
+      right:4px;
+      width: 48px;
+      height: 48px;
+      padding: 6px;
+      cursor: pointer;
+      // border: 1px solid red;
+      hr{
+        all: unset;
+        display: block;
+        width: 32px;
+        height: 2px;
+        background-color: var(--text);
+        margin-bottom: 10px;
+      }
+    }
   body{
     
-  grid-template-columns:  1fr min(45rem, 90%) 1fr;
+    grid: none;
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  // grid-template-columns:  1fr min(45rem, 90%) 1fr;
   }
 }
 
@@ -19,7 +91,7 @@ body{
     &{
       grid-column: 2;
       grid-row: 1;
-      padding: 0;
+      // padding: 0;
       padding-top: 1rem;
     }
   }
@@ -50,8 +122,8 @@ body{
 main{
   grid-row: 1;
   @media(max-width: 800px){
-    grid-row: 2;
-    grid-column: 2;
+    grid-row: 1;
+    grid-column: 1;
     
   }
 }
@@ -64,8 +136,12 @@ main{
   padding: 1rem 0 !important;
 }
 
+.markdownPreviewArea{
+  background-color: var(--bg);
+}
+
 #langSwitch{
-  grid-column: 1;
+  // grid-column: 1;
   margin: 0;
   a{
     display: inline-block;
@@ -82,4 +158,9 @@ main{
       background-color: var(--accent);
     }
   }
+}
+
+li input[type=checkbox]{
+  margin-left: -1rem;
+  margin-right: 1rem;
 }

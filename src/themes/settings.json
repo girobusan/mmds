@@ -1,4 +1,5 @@
 {
   "menuFile" : "themes_sidebar.md",
-  "indexFile" : "themes_index.md"
+  "indexFile" : "themes_index.md",
+  "scripts" : ["scripts/currentpage.js" , "scripts/mark_unsaved.js"]
 }
