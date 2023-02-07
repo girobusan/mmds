@@ -74,6 +74,14 @@ a.unsavedDoc::before {
   color: orangered;
 }
 
+li input[type=checkbox] {
+  margin-left: -1rem;
+  margin-right: 0.5rem;
+  background-color: white;
+  z-index: 2;
+  position: relative;
+}
+
 main {
   display: flex;
   flex-direction: row;
