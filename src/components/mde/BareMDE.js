@@ -110,10 +110,11 @@ export class BareMDE extends Component{
        const efullH = this.codeJarContainer.current.scrollHeight;
        const escrolled = this.codeJarContainer.current.scrollTop;
 
-       const element_height = this.previewContainer.current.getBoundingClientRect().height;
-       const editor_ratio = (escrolled+element_height)/efullH;
+       const elementHeight = this.previewContainer.current.getBoundingClientRect().height;
 
-       const scrollPreviewTo = pfullH*editor_ratio - element_height;
+       const editorRatio = escrolled/( efullH - elementHeight );
+
+       const scrollPreviewTo =  ( pfullH-elementHeight ) * editorRatio;
        this.previewContainer.current.scrollTo({top: scrollPreviewTo , left:0 , behavior: "smooth"});
      }
       doScroll()
