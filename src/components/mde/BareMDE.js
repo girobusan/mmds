@@ -13,6 +13,7 @@ export class BareMDE extends Component{
   constructor(props){
      super(props);
      this.previewThrottle = false;
+     this.scrollThrottled = false;
      this.componentContainer = createRef();
      this.codeJarContainer = createRef();
      this.previewContainer = createRef();
@@ -24,25 +25,30 @@ export class BareMDE extends Component{
        // content: props.content || "# type here",
        // modified: props.modified ,
        spellCheck: props.spellCheck,
+       syncScroll: true,
        // documentPath: props.documentPath
      }
      this.togglePreview = this.togglePreview.bind(this);
      this.toggleFullscreen = this.toggleFullscreen.bind(this);
      this.toggleSpellcheck = this.toggleSpellcheck.bind(this);
      this.saveFile = this.saveFile.bind(this);
+     this.syncPreviewScroll = this.syncPreviewScroll.bind(this);
   }
-  shouldComponentUpdate(p){
+  shouldComponentUpdate(p , s){
      //if content is reset, we have to reset.
      if(this.props.content!=p.content){
          this.jar.updateCode(p.content);
          this.modified = p.modified;
          this.doPreview();
      }
+    if( s.syncScroll && !this.state.syncScroll ){
+       this.syncPreviewScroll(true);
+    }
      return true;
   }
 
   compomemtDidUpdate(oldS , oldP){
-  // console.log("Bare MDE updated" , oldP , this.props)
+  console.log("Bare MDE updated" , oldP , this.props)
   //if(oldP.modified!=this.props.modified){
       
   //}
@@ -90,6 +96,35 @@ export class BareMDE extends Component{
     return t;
     
   }
+  syncPreviewScroll(force){
+      if(!this.state.syncScroll && !force ){ return }
+      if(!this.state.showPreview){ return }
+      // console.log("sync scroll..")
+      if(this.scrollThrottled){ 
+      // console.log("throttled") ;
+      return }
+      this.scrollThrottled = true;
+     //preview
+     const doScroll = ()=>{
+       const pfullH = this.previewContainer.current.scrollHeight;
+       // const pscrolled = this.previewContainer.current.scrollTop;
+       //editor
+       const efullH = this.codeJarContainer.current.scrollHeight;
+       const escrolled = this.codeJarContainer.current.scrollTop;
+
+       // const element_height = this.previewContainer.current.getBoundingClientRect().height;
+       const editor_ratio = escrolled/efullH;
+
+       const scrollPreviewTo = pfullH*editor_ratio;
+       this.previewContainer.current.scrollTo({top: scrollPreviewTo , left:0 , behavior: "smooth"});
+     }
+      doScroll()
+
+      window.setTimeout( ()=>{ this.scrollThrottled=false ; doScroll() } , 300 );
+
+     
+  }
+
   toggleSpellcheck(){
 
     this.jar.updateOptions({spellcheck: !this.state.spellCheck});
@@ -120,6 +155,7 @@ export class BareMDE extends Component{
     const redraw = ()=>{
       this.previewContainer.current.innerHTML = this.props.render(this.jar.toString())
       const imgs = this.previewContainer.current.querySelectorAll("*[src]");
+      this.syncPreviewScroll();
       imgs.forEach(i=>{
         if(i.getAttribute("src").match(/^http(s)?:/)){
           return;
@@ -167,6 +203,9 @@ export class BareMDE extends Component{
          <button class="spellcheckToggle ${this.state.spellCheck ? "on" : "off"}" 
          title="Toggle spellcheck" onclick=${this.toggleSpellcheck}></button>
 
+         <button class="syncScrollToggle ${this.state.syncScroll ? "on" : "off"}" 
+         title="Sync preview scroll" onclick=${()=>{ this.setState({syncScroll: !this.state.syncScroll}) }}></button>
+
        ${ this.props.externalPreview ?  html`<button class="externalPreview" 
        title=${this.props.externalPreviewTitle} onclick=${this.props.externalPreview}></button>` : ""
            
@@ -174,7 +213,7 @@ export class BareMDE extends Component{
          <button class="saveButton" title="Save File" onclick=${this.saveFile}></button>
         </div>
       <div class="workArea">
-        <div  class="codeJar language-md" ref=${this.codeJarContainer}></div>
+        <div  class="codeJar language-md" ref=${this.codeJarContainer} onscroll=${(e)=>this.syncPreviewScroll()}></div>
         <div class="preview ${this.props.previewClass}" ref=${this.previewContainer}></div>
       </div>
     </div>`
