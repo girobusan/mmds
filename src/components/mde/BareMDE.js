@@ -99,9 +99,7 @@ export class BareMDE extends Component{
   syncPreviewScroll(force){
       if(!this.state.syncScroll && !force ){ return }
       if(!this.state.showPreview){ return }
-      // console.log("sync scroll..")
       if(this.scrollThrottled){ 
-      // console.log("throttled") ;
       return }
       this.scrollThrottled = true;
      //preview
@@ -112,10 +110,10 @@ export class BareMDE extends Component{
        const efullH = this.codeJarContainer.current.scrollHeight;
        const escrolled = this.codeJarContainer.current.scrollTop;
 
-       // const element_height = this.previewContainer.current.getBoundingClientRect().height;
-       const editor_ratio = escrolled/efullH;
+       const element_height = this.previewContainer.current.getBoundingClientRect().height;
+       const editor_ratio = (escrolled+element_height)/efullH;
 
-       const scrollPreviewTo = pfullH*editor_ratio;
+       const scrollPreviewTo = pfullH*editor_ratio - element_height;
        this.previewContainer.current.scrollTo({top: scrollPreviewTo , left:0 , behavior: "smooth"});
      }
       doScroll()

@@ -100,7 +100,7 @@ window.MMDS = new function(){
   },
 
   this.fire = (evtID , evtArgs)=>{
-    console.log("firing" , evtID );
+    // console.log("firing" , evtID );
     if(!this._handlers[evtID] ){return};
     Object.values( this._handlers[evtID] ) 
     .forEach( ff=>ff(evtArgs) )
