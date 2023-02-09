@@ -97,31 +97,33 @@ export class BareMDE extends Component{
     
   }
   syncPreviewScroll(force){
-      if(!this.state.syncScroll && !force ){ return }
-      if(!this.state.showPreview){ return }
-      if(this.scrollThrottled){ 
+    if(!this.state.syncScroll && !force ){ return }
+    if(!this.state.showPreview){ return }
+    if(this.scrollThrottled){ 
       return }
       this.scrollThrottled = true;
-     //preview
-     const doScroll = ()=>{
-       const pfullH = this.previewContainer.current.scrollHeight;
-       // const pscrolled = this.previewContainer.current.scrollTop;
-       //editor
-       const efullH = this.codeJarContainer.current.scrollHeight;
-       const escrolled = this.codeJarContainer.current.scrollTop;
+      const doScroll = ()=>{
+        //preview
+        const previewFullH = this.previewContainer.current.scrollHeight;
+        //editor
+        const editorFullH = this.codeJarContainer.current.scrollHeight;
+        const editorScrolled = this.codeJarContainer.current.scrollTop;
 
-       const elementHeight = this.previewContainer.current.getBoundingClientRect().height;
+        const elementHeight = this.previewContainer.current.getBoundingClientRect().height;
+        //if one of them can not scroll, do nothing
+        if(previewFullH<=elementHeight || editorFullH<=elementHeight ){ return }
 
-       const editorRatio = escrolled/( efullH - elementHeight );
+        const editorRatio = editorScrolled/( editorFullH - elementHeight );
 
-       const scrollPreviewTo =  ( pfullH-elementHeight ) * editorRatio;
-       this.previewContainer.current.scrollTo({top: scrollPreviewTo , left:0 , behavior: "smooth"});
-     }
+
+        const scrollPreviewTo =  ( previewFullH-elementHeight ) * editorRatio;
+        this.previewContainer.current.scrollTo({top: scrollPreviewTo , left:0 , behavior: "smooth"});
+      }
       doScroll()
 
       window.setTimeout( ()=>{ this.scrollThrottled=false ; doScroll() } , 300 );
 
-     
+
   }
 
   toggleSpellcheck(){
