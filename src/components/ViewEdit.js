@@ -2,19 +2,12 @@ import {Component , createRef } from "preact";
 // import { useRef } from "preact/hooks";
 import {html} from "htm/preact";
 import {ActionRow} from "./ActionRow";
-// import * as MDE from "easymde";
 import {If} from "./If";
 import {renderMd} from "../mdops";
 import { saveToDisk } from "../fileops";
-// require("./editor.scss")
-// require("easymde/dist/easymde.min.css");
 require("./viewedit.scss");
-// require("../style/nofont.scss");
 //bare MDE
-import { BareMDE } from "./mde/BareMDE";
-
-
-// const MMDS = window.MMDS;
+import { BareMDE } from "./editor/BareMDE";
 
 export class ViewEdit extends Component{
   constructor(props){
@@ -57,7 +50,7 @@ export class ViewEdit extends Component{
     ;
   }
   fixImages(){
-  
+
   }
   componentDidUpdate(){
     // console.log("ViewEdit updated");
@@ -85,18 +78,18 @@ export class ViewEdit extends Component{
     // console.log("UPDATER!" );
     this.setState({content: c , path: p}) 
   }
-    checkContent(path,content){
-      // console.log("Checking content at" , path);
-      if(!path){ 
-         console.log("empty path")
-         return content || {markdown: "" , html: "One moment, please..."} }
+  checkContent(path,content){
+    // console.log("Checking content at" , path);
+    if(!path){ 
+      console.log("empty path")
+      return content || {markdown: "" , html: "One moment, please..."} }
       if(this.notSaved[path]){ 
         // console.log("This one has not saved changes" , this.notSaved)
         return this.notSaved[path] 
       }
       // console.log("This file was not changed")
       return content;
-    }
+  }
 
   render(){
     // console.log("RENDER VIEWEDIT: \n", this.checkContent(this.state.path, this.state.content).markdown.substring(0,150))
@@ -141,15 +134,7 @@ export class ViewEdit extends Component{
     saved(path){
       delete(this.notSaved[path])
     }
-    // checkContent(path,content){
-    //   console.log("Checking" , path);
-    //   if(this.notSaved[path]){ 
-    //     console.log("this one has not saved changes" , this.notSaved)
-    //     return this.notSaved[path] 
-    //   }
-    //   console.log("This file was not changed")
-    //   return content;
-    // }
+
     isEdited(path){
       // console.log("Is it edited?" , path)
       if(this.notSaved[path]){return true}

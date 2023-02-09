@@ -73,6 +73,9 @@
         }
         &.syncScrollToggle{
            background-image: url(./icons/swap_vert_FILL0_wght400_GRAD0_opsz24.svg);
+          &.on{
+            background-image: url(./icons/arrows_locked.svg);
+          }
         }
         &.externalPreview{
           background-image: url(./icons/visibility_FILL0_wght400_GRAD0_opsz24.svg);
