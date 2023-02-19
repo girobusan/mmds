@@ -3,9 +3,10 @@
 * [Руководства](guides.ru.md)
   * [ Начало работы ](getting_started.ru.md)
   * [ Первый сайт](basic_setup.ru.md)
+  * [ Встроенный редактор ](editor.ru.md)
   * [ Выделяем текущий документ в меню](currentlink.ru.md)
   * [ Многоязычный сайт](multilanguage_setup.ru.md)
-  * [ Встроенный редактор ](editor.ru.md)
+  * [Уменьшаем количество служенбных файлов](single_file_viewer.ru.md)
 
 * Кастомизация
   * [ Дизайн ](customization.ru.md)
