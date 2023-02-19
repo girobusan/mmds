@@ -6,7 +6,7 @@
   * [ Встроенный редактор ](editor.ru.md)
   * [ Выделяем текущий документ в меню](currentlink.ru.md)
   * [ Многоязычный сайт](multilanguage_setup.ru.md)
-  * [Уменьшаем количество служенбных файлов](single_file_viewer.ru.md)
+  * [Уменьшаем количество служебных файлов](single_file_viewer.ru.md)
 
 * Кастомизация
   * [ Дизайн ](customization.ru.md)
