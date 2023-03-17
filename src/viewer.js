@@ -168,16 +168,30 @@ window.MMDS = new function(){
   //go to location 
   this.go =  (p)=>{ //go to the location
     //check and handle external links
-    if(( p.match(/^( http|ftp )(s)?\:/i) ) ||  //starts with http
-    ( !p.match(/\.(md|markdown)$/i) )  || //does not end with md extension
-    p.match(/\#/) //contains hash
+    console.log("Incoming path" , p);
+    if(( p.match(/^(http|ftp)(s)?\:/i) ) //||  //starts with http
+    // ( !p.match(/\.(md|markdown)$/i) )  || //does not end with md extension
+    // p.match(/\#/) //contains hash
     ){
+      console.info("External link", p);
       this.cleanUp();
-      window.location = p;
+        window.location = p;
       return; 
     }
 
+    if ( !p.match(/\.(md|mkd|mdwn|mdown|mdtxt|mdtext|markdown)$/i) ){
+       //not markdown, but, probably, local
+       //go relative to md folder
+      console.info("Internal link", p);
+       this.cleanUp();
+       window.location = this.makePath(p);
+       return;
+    }
+
+
     if(p){
+
+      console.info("Link to other page", p);
       this.showPath( p );
       history.pushState({ path: p , isMMMDSstate:true } , null , "#!"+p) ; //no URL here
       //handle empty path (=>indexFile)

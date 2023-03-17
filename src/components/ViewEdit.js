@@ -56,19 +56,28 @@ export class ViewEdit extends Component{
     // console.log("ViewEdit updated");
     if(this.text.current)
     {
-      const imgs = this.text.current.querySelectorAll("*[src]");
+      const imgs = this.text.current.querySelectorAll("*[src],*[href]");
+      // const lnks = this.text.current.querySelectorAll("*[href]");
+      
+      const attrs = ["src" , "href"];
+      const doAttr = (attr , els)=>{
+
+        els.forEach(i=>{
+          if(!i.getAttribute(attr)){return}
+          if(i.getAttribute(attr).match(/^(http|ftp)(s)?:/)){
+            return;
+          }
+          if(i.getAttribute(attr).startsWith(this.props.base)){
+            return;}
+            i.src = this.props.base + i.getAttribute(attr)
+        })
+      }
       // console.log("found" ,imgs )
-      imgs.forEach(i=>{
-        if(i.getAttribute("src").match(/^http(s)?:/)){
-          return;
-        }
-        if(i.getAttribute("src").startsWith(this.props.base)){
-          return;}
-          i.src = this.props.base + i.getAttribute("src")
-      })
-    }
+      doAttr("src" , imgs);
+      doAttr("href" , imgs);
+
     this.MMDS.fire("editor_redraw");
-  }
+  }}
   componentDidMount(){
 
     // this.updateMdEditor();
