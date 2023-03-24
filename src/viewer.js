@@ -3,6 +3,7 @@ if(process.env.NODE_ENV=='development')
   console.info("Debug enabled.");
   require( "preact/debug" );
 }
+require("./style/loader.scss");
 import {h, render} from "preact";
 import { getContent } from "./mdops";
 // import { JustView} from "./components/JustView"
@@ -147,7 +148,18 @@ window.MMDS = new function(){
 
   //show content of the file by given path
   this.showPath = (p , fetchOpts)=>{
-    // console.log('showPath' , p);
+    // draw waiting animation here
+    const e = document.createElement("div");
+    e.id="loaderAnimation"
+    e.innerHTML = this.settings.loaderText || "loading";
+    e.style.opacity=1;
+    document.body.appendChild(e);
+    // remove waiting animation on ready
+    const hr = this.on("ready" , ()=>{
+       e.style.opacity=0;
+       window.setTimeout(()=>e.remove() , 300);
+       this.off("ready" , hr);
+    })
 
     const filePath = this.makePath(p || this.settings.indexFile);
     return getContent(filePath, fetchOpts)
@@ -161,6 +173,7 @@ window.MMDS = new function(){
     })
     .catch(e=>{
       console.info("No such file" , filePath , e);
+      // e.remove();
       this.showContent( p , this.page404(p) );
     })
   },
@@ -169,9 +182,7 @@ window.MMDS = new function(){
   this.go =  (p)=>{ //go to the location
     //check and handle external links
     console.log("Incoming path" , p);
-    if(( p.match(/^(http|ftp)(s)?\:/i) ) //||  //starts with http
-    // ( !p.match(/\.(md|markdown)$/i) )  || //does not end with md extension
-    // p.match(/\#/) //contains hash
+    if(( p.match(/^(http|ftp)(s)?\:/i) ) //starts with http
     ){
       console.info("External link", p);
       this.cleanUp();
@@ -182,24 +193,18 @@ window.MMDS = new function(){
     if ( !p.match(/\.(md|mkd|mdwn|mdown|mdtxt|mdtext|markdown)$/i) ){
        //not markdown, but, probably, local
        //go relative to md folder
-      console.info("Internal link", p);
+      console.info("Internal link, but not page", p);
        this.cleanUp();
        window.location = this.makePath(p);
        return;
     }
-
-
-    if(p){
-
-      console.info("Link to other page", p);
-      this.showPath( p );
-      history.pushState({ path: p , isMMMDSstate:true } , null , "#!"+p) ; //no URL here
-      //handle empty path (=>indexFile)
-    }else{
-      this.showPath( this.settings.indexFile );
-      history.pushState({ path: this.settings.indexFile , isMMMDSstate:true } , null , "#!"+this.settings.indexFile) ; 
-
-    }
+    
+    //handle empty path (=>indexFile)
+    p = p ? p : this.settings.indexFile;
+    console.info("Link to other page", p);
+    this.showPath( p );
+    history.pushState({ path: p , isMMMDSstate:true } , null , "#!"+p) ; //no URL here
+    
   },
 
   //basic app actions
@@ -209,9 +214,6 @@ window.MMDS = new function(){
     edit: ()=>{
       this.editMode = true;
       goEditMode();
-      // const s = document.createElement("script");
-      // s.src= this.settings.editorScript;
-      // document.body.appendChild(s)
     },
     save: ()=>{
       console.info("Saving without editing")  ;
