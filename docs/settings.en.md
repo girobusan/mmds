@@ -36,6 +36,7 @@ Please, note: if the `settings.json` present, all settings, defined in `index.ht
 | usr | {} | User scripts settings dictionary |
 | editorFile* | "mdeditor.js" | Path to editor script |
 | userScriptsPath* | "" | Path to user scripts |
+| loaderText | "loading" | Text to display, while page is loading |
 [Settings explained]
 
 <small>* experimental</small>
