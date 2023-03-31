@@ -1,3 +1,5 @@
+const yaml = require('js-yaml');
+const frm = require('markdown-it-front-matter');
 var emoji = require('markdown-it-emoji');
 // import { parse as emoParse } from 'twemoji';
 var md = require('markdown-it')({
@@ -31,22 +33,40 @@ export function getFile(p , fetchOpts){
 }
 
 export function getContent(p, fetchOpts){
-// console.log("eee" , getFile(p));
+  // console.log("eee" , getFile(p));
   return getFile(p, fetchOpts)
   .then(r=>{
+    const r_out = {};
+
+    md.use(frm , (f)=>{
+      try{
+        r_out.fm = yaml.load(f);
+        console.info("Frontmatter found" , r_out.fm);
+      }catch(e){
+        console.error("Can not parse frontmatter:" , e)
+      }
+    } );
     // console.log("r is" ,r)
-     if(r.error){ return r }
-    
-    return { 
-      markdown: r ,
-      html: md.render(r) ,
-       }
-     })
-    // .catch(e=>console.log("errororo",e))
-    
-     ;
+    if(r.error){ return r }
+    r_out.html = md.render( r )
+    r_out.markdown  = r;
+
+    return r_out; 
+  })
+  // .catch(e=>console.log("errororo",e))
+
+    ;
 }
 
 export function renderMd(m){
- return md.render(m);
+  const r = {};
+  md.use(frm , (f)=>{
+    try{
+       r.fm = yaml.load(f);
+    }catch(e){
+       console.error("Can not parse frontmatter:" , e)
+    }
+  } );
+  r.html = md.render(m);
+  return r.html;
 }
