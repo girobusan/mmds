@@ -1,5 +1,4 @@
-var WebpackBundleSizeAnalyzerPlugin = require('webpack-bundle-size-analyzer').WebpackBundleSizeAnalyzerPlugin;
-const path = require('path');
+var WebpackBundleSizeAnalyzerPlugin = require('webpack-bundle-size-analyzer').WebpackBundleSizeAnalyzerPlugin; const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require('webpack');
@@ -13,6 +12,11 @@ module.exports = function (env, argv) {
   let builddir = argv.mode== 'production' ? 'dist' : 'test';
 
   return {
+   resolve: {
+        fallback: {
+            buffer: require.resolve('buffer/'),
+        }},
+    // resolve: { fallback:{ "buffer" : false  } },
     //externals: ["fs"],
     watch: argv.mode != 'production',
     target: 'web',
@@ -67,6 +71,9 @@ module.exports = function (env, argv) {
 
     },
     plugins: [
+      new webpack.ProvidePlugin({
+            Buffer: ['buffer', 'Buffer'],
+        }),
        new WebpackBundleSizeAnalyzerPlugin('./plain-report.txt'),
       new webpack.DefinePlugin({
         // Definitions...
@@ -88,5 +95,6 @@ module.exports = function (env, argv) {
       // new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/loader/]),
 
     ],
+  
   };
 }

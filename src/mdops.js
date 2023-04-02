@@ -1,5 +1,6 @@
-const yaml = require('js-yaml');
-const frm = require('markdown-it-front-matter');
+// const yaml = require('js-yaml');
+// const frm = require('markdown-it-front-matter');
+const matter = require("gray-matter");
 var emoji = require('markdown-it-emoji');
 // import { parse as emoParse } from 'twemoji';
 var md = require('markdown-it')({
@@ -36,20 +37,14 @@ export function getContent(p, fetchOpts){
   // console.log("eee" , getFile(p));
   return getFile(p, fetchOpts)
   .then(r=>{
-    const r_out = {};
-
-    md.use(frm , (f)=>{
-      try{
-        r_out.fm = yaml.load(f);
-        console.info("Frontmatter found" , r_out.fm);
-      }catch(e){
-        console.error("Can not parse frontmatter:" , e)
-      }
-    } );
-    // console.log("r is" ,r)
     if(r.error){ return r }
-    r_out.html = md.render( r )
+    const withFM = matter(r);
+    const r_out = {};
+    r_out.html = md.render( withFM.content )
     r_out.markdown  = r;
+    r_out.meta = withFM.data;
+
+    // console.info("Return" , r_out.meta)
 
     return r_out; 
   })
@@ -59,14 +54,8 @@ export function getContent(p, fetchOpts){
 }
 
 export function renderMd(m){
-  const r = {};
-  md.use(frm , (f)=>{
-    try{
-       r.fm = yaml.load(f);
-    }catch(e){
-       console.error("Can not parse frontmatter:" , e)
-    }
-  } );
-  r.html = md.render(m);
-  return r.html;
+  // console.log("Simple render!" , m)
+  const withFM = matter(m);
+  const r = md.render(withFM.content);
+  return r;
 }

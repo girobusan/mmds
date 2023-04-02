@@ -273,6 +273,12 @@ async function startSite(){
   MMDS.addUpdater((p,c)=>{
     const ttr = /<h1>(.*?)<\/h1>/i ;
     const ttext = c.html.match(ttr) ;
+    // console.log("title for" , c)
+    if(c.meta && c.meta.title){
+       console.log("Custom title" , c.meta.title);
+       window.document.title = c.meta.title;
+       return;
+    }
     if(ttext){
       window.document.title = ttext[1].replace(/<[^>]+>/g , "") 
     }else{
