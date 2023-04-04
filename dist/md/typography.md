@@ -1,4 +1,6 @@
-
+---
+title: typography
+---
 
 	
 #  Typography test page for the sake of test

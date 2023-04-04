@@ -1,8 +1,6 @@
-// const yaml = require('js-yaml');
-// const frm = require('markdown-it-front-matter');
-const matter = require("gray-matter");
+const yaml = require('js-yaml');
+const extractFM = require("./dumb_fm_extractor.js").extractFM; 
 var emoji = require('markdown-it-emoji');
-// import { parse as emoParse } from 'twemoji';
 var md = require('markdown-it')({
   html:true,
   linkify: false,
@@ -38,11 +36,16 @@ export function getContent(p, fetchOpts){
   return getFile(p, fetchOpts)
   .then(r=>{
     if(r.error){ return r }
-    const withFM = matter(r);
+    const withFM = extractFM(r);
     const r_out = {};
-    r_out.html = md.render( withFM.content )
+    r_out.html = md.render( withFM.markdown )
     r_out.markdown  = r;
-    r_out.meta = withFM.data;
+    try{
+      r_out.meta = yaml.load( withFM.meta );
+    } catch (e) {
+       console.error("Frontmatter parse error" , e);
+       r_out.meta = {error: e};
+    }
 
     // console.info("Return" , r_out.meta)
 
@@ -55,7 +58,7 @@ export function getContent(p, fetchOpts){
 
 export function renderMd(m){
   // console.log("Simple render!" , m)
-  const withFM = matter(m);
-  const r = md.render(withFM.content);
+  const withFM = extractFM(m);
+  const r = md.render(withFM.markdown);
   return r;
 }
