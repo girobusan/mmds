@@ -22,8 +22,9 @@ export class BareMDE extends Component{
        fullscreen: props.fullscreen,
        showPreview: props.showPreview,
        content: props.content,
+       // modified: false,
        // content: props.content || "# type here",
-       // modified: props.modified ,
+       modified: props.modified ,
        spellCheck: props.spellCheck,
        syncScroll: true,
        // documentPath: props.documentPath
@@ -74,7 +75,7 @@ export class BareMDE extends Component{
     this.doPreview();
     this.jar.onUpdate( ()=>{
 
-      if(this.props.indicateChanges&&!this.modified){ 
+      if(this.props.indicateChanges&&!this.state.modified){ 
          this.setState({modified: true}) ;
          this.modified=true;
          }
@@ -147,7 +148,7 @@ export class BareMDE extends Component{
      this.doPreview(true);
   }
   saveFile(){
-    console.info("saving...")
+    console.info("saving..." , this.props.indicateChanges , this.state.modified)
     if(this.props.indicateChanges&&this.state.modified)
     { this.setState({modified:false}) } 
   this.props.save(this.jar.toString());
@@ -191,7 +192,7 @@ export class BareMDE extends Component{
       <div class="toolbar top 
        ${ this.state.fullscreen ? 'fullscreen' : 'windowed' }
        ${ this.state.showPreview ? 'preview' : 'noPreview' }
-       ${ this.modified ? 'modified' : '' }
+       ${ this.state.modified ? 'modified' : '' }
       ">
          <button class="previewToggle ${this.state.showPreview ? "on" : "off"}" 
          title="Toggle Preview" onclick=${this.togglePreview}> </button>

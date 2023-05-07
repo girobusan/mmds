@@ -1,7 +1,7 @@
 
 var inited = false;
-var fileHandlerEnabled = false;
 var dirHandler = null;
+var fsHandler = null;
 
 const tagsToReplace = {
   '&': '&amp;',
@@ -37,6 +37,7 @@ export async function startWorkingWithFiles(){
   if('showDirectoryPicker' in window){ 
     console.info("FS Access API available... maybe.")
     if( confirm("Do you want to use local file access?") ){
+        
         dirHandler = await window.showDirectoryPicker({mode:"readwrite"}).catch(e=>console.error(e));
         console.log("dir handler" , dirHandler);
     }

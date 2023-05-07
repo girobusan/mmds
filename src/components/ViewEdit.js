@@ -21,6 +21,7 @@ export class ViewEdit extends Component{
     this.state = {
       content: this.props.content,
       path: this.props.path,
+      edited: false
     }
     this.updater= this.updater.bind(this);
   };
@@ -38,6 +39,7 @@ export class ViewEdit extends Component{
       console.info("Saving from editor");
       saveToDisk( this.state.path, this.checkContent(this.state.path, this.state.content).markdown);
       this.saved(this.state.path);
+      this.setState({edited: false})
       //reloading left to parent routine
       // this.MMDS.whenActive( this.MMDS.reload );
       // this.MMDS.reload();
@@ -110,8 +112,9 @@ export class ViewEdit extends Component{
     return html`<div class="ViewEdit ${this.isEdited(this.state.path) ? "edited" : "notEdited"}"
     ref=${this.componentContainer}
     >
-    <${ If } condition=${this.isEdited(this.state.path)&&( !this.MMDS.editMode )}> 
-    <small class="notSavedWarning">${this.state.path} has unsaved changes <input type="button" value="save" onclick=${window.MMDS.action.save}>
+    <${ If } condition=${this.state.edited&&( !this.MMDS.editMode )}> 
+    <small class="notSavedWarning">${this.state.path} has unsaved changes <input type="button" value="save" 
+    onclick=${()=>{ window.MMDS.action.save() ; this.saved(this.state.path) ; console.log(this.notSaved) }}>
     </input></small>
     </${ If }>
     <${ If } condition=${this.MMDS.editMode}>
@@ -123,7 +126,7 @@ export class ViewEdit extends Component{
     externalPreview=${window.MMDS.action.edit}
     showPreview=${false}
     externalPreviewTitle="Hide Editor"
-    onUpdate=${(c)=>this.edited(this.state.path , {markdown: c , html: renderMd(c)})}
+    onUpdate=${(c)=>{this.setState({edited:true}) ; this.edited(this.state.path , {markdown: c , html: renderMd(c)})}}
     modified=${this.isEdited(this.state.path)}
     documentPath=${this.state.path}
     imageRewriter=${ (p)=>p.startsWith(this.props.base) ? p : this.props.base + p }
