@@ -1,4 +1,7 @@
 
+var inited = false;
+var fileHandlerEnabled = false;
+var dirHandler = null;
 
 const tagsToReplace = {
   '&': '&amp;',
@@ -21,8 +24,43 @@ export function unescapeTags(s){
   return s.replace(/&amp;|&lt;|&gt;/g , replacer);
 }
 
+export async function startWorkingWithFiles(){
+  if(inited){ return }
+  console.log("Starting working with files...");
+  if(window.isSecureContext){
+  console.log("Context is secure, which is good")
+  }else{
 
-export function saveToDisk(name,content){
+  console.log("Context is NOT secure, which is bad")
+  }
+
+  if('showDirectoryPicker' in window){ 
+    console.info("FS Access API available... maybe.")
+    if( confirm("Do you want to use local file access?") ){
+        // fileHandlerEnabled = true;
+        dirHandler = await window.showDirectoryPicker({mode:"readwrite"}).catch(e=>console.error(e));
+        console.log("dir handler" , dirHandler);
+    }
+  }else{
+    console.info("FS Access API not available... maybe.")
+    fileHandlerEnabled = false;
+  }
+  inited = true;
+}
+
+
+export async function saveToDisk(name,content){
+  if(dirHandler){ 
+    console.info('Save using local file access' , dirHandler);
+    //get file handler
+    const fh = await dirHandler.getFileHandle(name , {create: true}  )
+    //write
+    const wb = await fh.createWritable();
+    await wb.write(content);
+    await wb.close();
+    return;
+
+  }
   var element = document.createElement('a');
   element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
   element.setAttribute('download', name);
@@ -30,6 +68,10 @@ export function saveToDisk(name,content){
   element.click();
   document.body.removeChild(element);
 
+}
+
+function saveViaFS(name, content){
+return true;
 }
 
 

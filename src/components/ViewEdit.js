@@ -4,7 +4,7 @@ import {html} from "htm/preact";
 import {ActionRow} from "./ActionRow";
 import {If} from "./If";
 import {renderMd} from "../mdops";
-import { saveToDisk } from "../fileops";
+import { startWorkingWithFiles , saveToDisk } from "../fileops";
 require("./viewedit.scss");
 //bare MDE
 import { BareMDE } from "./editor/BareMDE";
@@ -28,6 +28,7 @@ export class ViewEdit extends Component{
     const my = this;
     // const MMDS = window.MMDS;
     this.MMDS.action.edit = ()=>{ 
+       startWorkingWithFiles();
       // console.log("new and improved function")
       this.MMDS.editMode = !this.MMDS.editMode 
       this.setState({editMode: this.MMDS.editMode})
