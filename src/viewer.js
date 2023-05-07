@@ -212,6 +212,7 @@ window.MMDS = new function(){
 
 
     edit: ()=>{
+      console.info("actions.edit")
       this.editMode = true;
       goEditMode();
     },

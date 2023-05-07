@@ -208,7 +208,7 @@ export class BareMDE extends Component{
          title="Sync preview scroll" onclick=${()=>{ this.setState({syncScroll: !this.state.syncScroll}) }}></button>
 
        ${ this.props.externalPreview ?  html`<button class="externalPreview" 
-       title=${this.props.externalPreviewTitle} onclick=${this.props.externalPreview}></button>` : ""
+       title=${this.props.externalPreviewTitle} onclick=${()=>{console.log('EP' , this.props.externalPreview) ;this.props.externalPreview()}}></button>` : ""
            
        }
          <button class="saveButton" title="Save File" onclick=${this.saveFile}></button>

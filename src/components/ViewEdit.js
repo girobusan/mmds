@@ -31,13 +31,16 @@ export class ViewEdit extends Component{
        startWorkingWithFiles();
       // console.log("new and improved function")
       this.MMDS.editMode = !this.MMDS.editMode 
+      if(!this.MMDS.editMode){ this.MMDS.reload() }
       this.setState({editMode: this.MMDS.editMode})
     };
     this.MMDS.action.save = ()=>{
       console.info("Saving from editor");
       saveToDisk( this.state.path, this.checkContent(this.state.path, this.state.content).markdown);
       this.saved(this.state.path);
-      this.MMDS.whenActive( this.MMDS.reload );
+      //reloading left to parent routine
+      // this.MMDS.whenActive( this.MMDS.reload );
+      // this.MMDS.reload();
 
     }
 

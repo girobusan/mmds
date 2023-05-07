@@ -37,7 +37,6 @@ export async function startWorkingWithFiles(){
   if('showDirectoryPicker' in window){ 
     console.info("FS Access API available... maybe.")
     if( confirm("Do you want to use local file access?") ){
-        // fileHandlerEnabled = true;
         dirHandler = await window.showDirectoryPicker({mode:"readwrite"}).catch(e=>console.error(e));
         console.log("dir handler" , dirHandler);
     }
@@ -53,7 +52,8 @@ export async function saveToDisk(name,content){
   if(dirHandler){ 
     console.info('Save using local file access' , dirHandler);
     //get file handler
-    const fh = await dirHandler.getFileHandle(name , {create: true}  )
+    const fh = 
+    await dirHandler.getFileHandle(name , {create: true}  )
     //write
     const wb = await fh.createWritable();
     await wb.write(content);
