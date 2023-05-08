@@ -37,9 +37,8 @@ export class ViewEdit extends Component{
     };
     this.MMDS.action.save = ()=>{
       console.info("Saving from editor");
-      saveToDisk( this.state.path, this.checkContent(this.state.path, this.state.content).markdown , this.MMDS.reload)
+      saveToDisk( this.state.path, this.checkContent(this.state.path, this.state.content).markdown , ()=>{ this.MMDS.reload(); this.saved(this.state.path) })
       // .then(this.MMDS.reload);
-      this.saved(this.state.path);
       // this.setState({edited: false})
 
     }
@@ -91,15 +90,15 @@ export class ViewEdit extends Component{
     this.setState({content: c , path: p , edited: this.isEdited(p)}) 
   }
   checkContent(path,content){
-    // console.log("Checking content at" , path);
+    console.log("Checking content at" , path);
     if(!path){ 
       console.log("empty path")
       return content || {markdown: "" , html: "One moment, please..."} }
       if(this.notSaved[path]){ 
-        // console.log("This one has not saved changes" , this.notSaved)
+        console.log("This one has not saved changes" , this.notSaved)
         return this.notSaved[path] 
       }
-      // console.log("This file was not changed")
+      console.log("This file was not changed")
       return content;
   }
 
@@ -126,7 +125,6 @@ export class ViewEdit extends Component{
     externalPreviewTitle="Hide Editor"
     onUpdate=${(c)=>{ this.edited(this.state.path , {markdown: c , html: renderMd(c)})}}
     modified=${this.state.edited}
-    documentPath=${this.state.path}
     imageRewriter=${ (p)=>p.startsWith(this.props.base) ? p : this.props.base + p }
     />
     </div>
