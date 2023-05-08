@@ -49,7 +49,7 @@ export async function startWorkingWithFiles(){
 }
 
 
-export async function saveToDisk(name,content){
+export async function saveToDisk(name,content,refreshFn){
   if(dirHandler){ 
     console.info('Save using local file access' , dirHandler);
     //get file handler
@@ -59,6 +59,7 @@ export async function saveToDisk(name,content){
     const wb = await fh.createWritable();
     await wb.write(content);
     await wb.close();
+    if(refreshFn){ refreshFn() };
     return;
 
   }
@@ -66,7 +67,14 @@ export async function saveToDisk(name,content){
   element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
   element.setAttribute('download', name);
   document.body.appendChild(element);
+  const focushandler = ()=>{
+     // console.log("FOCUS POKUS")
+     window.setTimeout(()=>{refreshFn();window.removeEventListener("focus", focushandler)} , 200 );
+     
+  }
+  element.onclick=(e)=>{console.log(e)}
   element.click();
+  window.addEventListener("focus", focushandler);
   document.body.removeChild(element);
 
 }

@@ -31,14 +31,14 @@ export class ViewEdit extends Component{
     this.MMDS.action.edit = ()=>{ 
        startWorkingWithFiles();
       this.MMDS.editMode = !this.MMDS.editMode 
-      if(!this.MMDS.editMode){ this.MMDS.reload() }
+      // if(!this.MMDS.editMode){ this.MMDS.reload() }
       this.setState({editMode: this.MMDS.editMode})
       // this.MMDS.reload() 
     };
     this.MMDS.action.save = ()=>{
       console.info("Saving from editor");
-      saveToDisk( this.state.path, this.checkContent(this.state.path, this.state.content).markdown)
-      .then(this.MMDS.reload);
+      saveToDisk( this.state.path, this.checkContent(this.state.path, this.state.content).markdown , this.MMDS.reload)
+      // .then(this.MMDS.reload);
       this.saved(this.state.path);
       // this.setState({edited: false})
 
@@ -118,6 +118,7 @@ export class ViewEdit extends Component{
     <div class=${"editorContainer " }>
     <${BareMDE} 
     content=${this.checkContent(this.state.path, this.state.content).markdown } 
+    contentId=${this.state.path}
     render=${renderMd}
     save=${window.MMDS.action.save}
     externalPreview=${window.MMDS.action.edit}

@@ -130,7 +130,8 @@ window.MMDS = new function(){
   };
 
   //force reload current file from server
-  this.reload = ()=>{
+  this.reload = (msg)=>{
+     console.info("reload..." , msg?msg:"no msg");
     this.showPath(this.current.path , {cache: "reload"});
     if(this.current.path===this.settings.menuFile){
       this.action.setMenu(this.settings.menuFile , {cache:"reload"});

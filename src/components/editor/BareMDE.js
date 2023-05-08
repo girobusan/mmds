@@ -39,13 +39,15 @@ export class BareMDE extends Component{
      // console.log("should BM update?" , this.jar.save())
      //if content is reset, we have to reset.
      this.pos = this.jar.save();
-     if(this.props.content!=p.content){
+     if(this.props.contentId!=p.contentId){
+         console.log("Update content...")
+         
+         // this.pos =null;
          this.jar.updateCode(p.content);
          // this.modified = p.modified;
          this.doPreview();
-     }else{
-       this.pos = this.jar.save();
      }
+
     if( s.syncScroll && !this.state.syncScroll ){
        this.syncPreviewScroll(true);
     }
@@ -81,10 +83,10 @@ export class BareMDE extends Component{
     this.jar.onUpdate( ()=>{
         this.pos = this.jar.save();
 
-      if(this.props.indicateChanges&&!this.props.modified){ 
-         // this.ste({modified: true}) ;
-         // this.modified=true;
-         }
+      // if(this.props.indicateChanges&&!this.props.modified){ 
+      //    // this.ste({modified: true}) ;
+      //    // this.modified=true;
+      //    }
        this.props.onUpdate(this.jar.toString());
        this.doPreview();
         // console.log("local update end" , this.jar.save());
@@ -155,9 +157,9 @@ export class BareMDE extends Component{
      this.doPreview(true);
   }
   saveFile(){
-    console.info("saving..." , this.props.indicateChanges , this.state.modified)
-    if(this.props.indicateChanges&&this.state.modified)
-    { this.setState({modified:false}) } 
+    // console.info("saving..." , this.props.indicateChanges , this.state.modified)
+    // if(this.props.indicateChanges&&this.state.modified)
+    // { this.setState({modified:false}) } 
   this.props.save(this.jar.toString());
   }
   doPreview(force){
@@ -240,6 +242,7 @@ BareMDE.defaultProps = {
    onUpdate: (c)=>console.log("Editor updated" ),
    save: (c)=>console.log("Dummy save function" , c.substring(0,200)+"..."),
    content: "write here", //text to display on mount
+   contentId: null, //id of content to track the changes
    modified: false,
    indicateChanges: true,
    previewClass: "markdownPreviewArea",
@@ -249,7 +252,6 @@ BareMDE.defaultProps = {
    fullscreenZIndex: 1001,
    externalPreview: null,
    externalPreviewTitle: "External Preview",
-   documentPath: 'default',
    imageRewriter: (p)=>p
 
 }
