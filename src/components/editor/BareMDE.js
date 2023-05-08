@@ -17,14 +17,14 @@ export class BareMDE extends Component{
      this.componentContainer = createRef();
      this.codeJarContainer = createRef();
      this.previewContainer = createRef();
-     this.modified = props.modified;
+     // this.modified = props.modified;
      this.state ={ 
        fullscreen: props.fullscreen,
        showPreview: props.showPreview,
        content: props.content,
        // modified: false,
        // content: props.content || "# type here",
-       modified: props.modified ,
+       // modified: props.modified ,
        spellCheck: props.spellCheck,
        syncScroll: true,
        // documentPath: props.documentPath
@@ -36,11 +36,15 @@ export class BareMDE extends Component{
      this.syncPreviewScroll = this.syncPreviewScroll.bind(this);
   }
   shouldComponentUpdate(p , s){
+     // console.log("should BM update?" , this.jar.save())
      //if content is reset, we have to reset.
+     this.pos = this.jar.save();
      if(this.props.content!=p.content){
          this.jar.updateCode(p.content);
-         this.modified = p.modified;
+         // this.modified = p.modified;
          this.doPreview();
+     }else{
+       this.pos = this.jar.save();
      }
     if( s.syncScroll && !this.state.syncScroll ){
        this.syncPreviewScroll(true);
@@ -49,12 +53,13 @@ export class BareMDE extends Component{
   }
 
   compomemtDidUpdate(oldS , oldP){
-  console.log("Bare MDE updated" , oldP , this.props)
+  console.log("Bare MDE updated" , this.jar.save())
+  if(oldP.content ==this.props.content){ this.jar.restore(this.pos) ; this.pos = null }
   //if(oldP.modified!=this.props.modified){
       
   //}
     if(oldP.content!=this.props.content){
-      
+      console.log("Update JAR") 
       this.jar.updateCode(this.props.content); //???
       this.doPreview();
       
@@ -74,13 +79,15 @@ export class BareMDE extends Component{
     this.jar.updateCode(this.props.content);
     this.doPreview();
     this.jar.onUpdate( ()=>{
+        this.pos = this.jar.save();
 
-      if(this.props.indicateChanges&&!this.state.modified){ 
-         this.setState({modified: true}) ;
-         this.modified=true;
+      if(this.props.indicateChanges&&!this.props.modified){ 
+         // this.ste({modified: true}) ;
+         // this.modified=true;
          }
        this.props.onUpdate(this.jar.toString());
        this.doPreview();
+        // console.log("local update end" , this.jar.save());
     } )
   }
 
@@ -180,6 +187,12 @@ export class BareMDE extends Component{
     }
 
   render(){
+     // console.log("bareMDE render" , this.jar ? this.jar.save() : "no jar");
+     // fix cursor position on render
+     if(this.pos)
+     {
+       this.jar.restore(this.pos)
+     }
 
     // buttons:
     // toggle preview , toggle fullscreen , <preview only?> , save
@@ -192,7 +205,7 @@ export class BareMDE extends Component{
       <div class="toolbar top 
        ${ this.state.fullscreen ? 'fullscreen' : 'windowed' }
        ${ this.state.showPreview ? 'preview' : 'noPreview' }
-       ${ this.state.modified ? 'modified' : '' }
+       ${ this.props.modified ? 'modified' : '' }
       ">
          <button class="previewToggle ${this.state.showPreview ? "on" : "off"}" 
          title="Toggle Preview" onclick=${this.togglePreview}> </button>
@@ -208,8 +221,7 @@ export class BareMDE extends Component{
          <button class="syncScrollToggle ${this.state.syncScroll ? "on" : "off"}" 
          title="Sync preview scroll" onclick=${()=>{ this.setState({syncScroll: !this.state.syncScroll}) }}></button>
 
-       ${ this.props.externalPreview ?  html`<button class="externalPreview" 
-       title=${this.props.externalPreviewTitle} onclick=${()=>{console.log('EP' , this.props.externalPreview) ;this.props.externalPreview()}}></button>` : ""
+       ${ this.props.externalPreview ?  html`<button class="externalPreview" title=${this.props.externalPreviewTitle} onclick=${this.props.externalPreview}></button>` : ""
            
        }
          <button class="saveButton" title="Save File" onclick=${this.saveFile}></button>

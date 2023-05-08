@@ -21,28 +21,26 @@ export class ViewEdit extends Component{
     this.state = {
       content: this.props.content,
       path: this.props.path,
-      edited: false
+      edited: false //was CURRENT document edited
     }
     this.updater= this.updater.bind(this);
   };
   componentWillMount(){
     const my = this;
-    // const MMDS = window.MMDS;
+    // adding MMDS actions
     this.MMDS.action.edit = ()=>{ 
        startWorkingWithFiles();
-      // console.log("new and improved function")
       this.MMDS.editMode = !this.MMDS.editMode 
       if(!this.MMDS.editMode){ this.MMDS.reload() }
       this.setState({editMode: this.MMDS.editMode})
+      // this.MMDS.reload() 
     };
     this.MMDS.action.save = ()=>{
       console.info("Saving from editor");
-      saveToDisk( this.state.path, this.checkContent(this.state.path, this.state.content).markdown);
+      saveToDisk( this.state.path, this.checkContent(this.state.path, this.state.content).markdown)
+      .then(this.MMDS.reload);
       this.saved(this.state.path);
-      this.setState({edited: false})
-      //reloading left to parent routine
-      // this.MMDS.whenActive( this.MMDS.reload );
-      // this.MMDS.reload();
+      // this.setState({edited: false})
 
     }
 
@@ -55,11 +53,10 @@ export class ViewEdit extends Component{
     ()=>{  console.log(my.notSaved) ; return Object.keys(my.notSaved).length==0 ? undefined : "Some files are not saved" }
     ;
   }
-  fixImages(){
 
-  }
   componentDidUpdate(){
-    // console.log("ViewEdit updated");
+    // console.log("ViewEdit updated" , a , b);
+    //check if current is modified
     if(this.text.current)
     {
       const imgs = this.text.current.querySelectorAll("*[src],*[href]");
@@ -91,7 +88,7 @@ export class ViewEdit extends Component{
 
   updater(p,c){
     // console.log("UPDATER!" );
-    this.setState({content: c , path: p}) 
+    this.setState({content: c , path: p , edited: this.isEdited(p)}) 
   }
   checkContent(path,content){
     // console.log("Checking content at" , path);
@@ -109,7 +106,7 @@ export class ViewEdit extends Component{
   render(){
     // console.log("RENDER VIEWEDIT: \n", this.checkContent(this.state.path, this.state.content).markdown.substring(0,150))
     // const theMD = this.checkContent(this.state.path, this.state.content).markdown;
-    return html`<div class="ViewEdit ${this.isEdited(this.state.path) ? "edited" : "notEdited"}"
+    return html`<div class="ViewEdit ${this.state.edited ? "edited" : "notEdited"}"
     ref=${this.componentContainer}
     >
     <${ If } condition=${this.state.edited&&( !this.MMDS.editMode )}> 
@@ -126,8 +123,8 @@ export class ViewEdit extends Component{
     externalPreview=${window.MMDS.action.edit}
     showPreview=${false}
     externalPreviewTitle="Hide Editor"
-    onUpdate=${(c)=>{this.setState({edited:true}) ; this.edited(this.state.path , {markdown: c , html: renderMd(c)})}}
-    modified=${this.isEdited(this.state.path)}
+    onUpdate=${(c)=>{ this.edited(this.state.path , {markdown: c , html: renderMd(c)})}}
+    modified=${this.state.edited}
     documentPath=${this.state.path}
     imageRewriter=${ (p)=>p.startsWith(this.props.base) ? p : this.props.base + p }
     />
@@ -145,10 +142,14 @@ export class ViewEdit extends Component{
     edited(path,content){
       // console.info("we touched" , path);
       this.notSaved[path] = content;
-      this.componentContainer.current.classList.add("edited"); // :FIXME
+      if(!this.state.edited){ this.setState({edited: true}) }
+      // this.componentContainer.current.classList.add("edited"); // :FIXME
     }
     saved(path){
       delete(this.notSaved[path])
+      if(path==this.state.path){ 
+        this.setState({edited:false}) 
+      }
     }
 
     isEdited(path){
